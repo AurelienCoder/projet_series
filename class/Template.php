@@ -11,7 +11,7 @@ class Template{
             <title>Web Serie</title>
 
             <link href='https://fonts.googleapis.com/css?family=Pirata One' rel='stylesheet'>
-            <link href='css/main.css' rel='stylesheet'>
+            <link href='../css/main.css' rel='stylesheet'>
 
             <style>
                 html,body{

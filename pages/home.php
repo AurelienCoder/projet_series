@@ -29,4 +29,4 @@ Autoloader::register();
 </div>
 </div>
 <?php $code = ob_get_clean() ?>
-<?php Template::render($code);
+<?php Template::render($code); ?>

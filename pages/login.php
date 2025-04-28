@@ -1,6 +1,4 @@
 <?php
-require_once "../config.php";
-
 session_start();
 
 require_once "../class/Autoloader.php";
@@ -26,7 +24,7 @@ ob_start();
 if(!isset($response)):
     $logger->generateLoginForm("", $username);
 elseif (!$response['granted']) :
-    echo "<div class='' id='error'>" .$response['error']."</div>" ;
+    echo "<div class='' id='error'>" .$response['error']."</div>";
     $logger->generateLoginForm("", $username, $response['error']);
 endif;
 
