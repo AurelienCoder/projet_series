@@ -2,6 +2,8 @@
 
 namespace series;
 
+use sdb\SerieDB;
+
 class Search{
 
     public function generateForm(){?>
@@ -40,11 +42,10 @@ class Search{
                 <button type="submit" class="favorite styled">Rechercher</button>
             </div>
         </form>
-
     <?php }
 
     public function getSearch(){
-        $serieDB = new \sdb\SerieDB();
+        $serieDB = new SerieDB();
 
         if($_GET['search'] == "realisateurs"){
             echo "<script>document.getElementById('home-title').innerText = 'LES RÉALISATEURS'; </script>";
@@ -70,6 +71,8 @@ class Search{
             foreach($series as $serie){
                 echo $serie->getHTML();
             }
+
+            echo "<script src='../js/doublons.js'></script>";
         }
     }
 }
