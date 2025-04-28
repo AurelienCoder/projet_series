@@ -1,3 +1,15 @@
+<?php
+session_start();
+$logged = isset($_SESSION['nickname']);
+require_once "../class/Autoloader.php";
+Autoloader::register();
+?>
+
+<?php ob_start() ?>
+
+<?php if ($logged): ?>
+    <h1>Hi <?php echo htmlspecialchars($_SESSION['nickname']); ?>,</h1>
+<?php endif; ?>
 
 <form action="recherche.php" method="GET" class="search-form">
 
@@ -36,3 +48,7 @@
   </div>
 
 </form>
+
+
+<?php $code = ob_get_clean(); ?>
+<?php Template::render($code); ?>
