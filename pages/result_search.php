@@ -16,10 +16,6 @@ Autoloader::register();
     $acteur = $_GET['acteur'] ?? '';
 ?>
 
-<?php if ($logged): ?>
-    <h1 style="text-align:center;">Hi <?php echo htmlspecialchars($_SESSION['nickname']); ?></h1>
-<?php endif; ?>
-
 <div style="margin-top: 100px;">
     <div id="home-title">LES SERIES DU MOMENT : </div>
 

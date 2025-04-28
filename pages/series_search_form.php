@@ -7,10 +7,6 @@ Autoloader::register();
 
 <?php ob_start() ?>
 
-<?php if ($logged): ?>
-    <h1>Hi <?php echo htmlspecialchars($_SESSION['nickname']); ?>,</h1>
-<?php endif; ?>
-
 <form action="result_search.php" method="GET" class="search-form">
 
   <div class="form-group">

@@ -4,7 +4,7 @@
   </div>
 
   <div>
-    <form class="search-form-header" action="search.php" method="get">
+    <form class="search-form-header" action="result_search.php" method="get">
     <input 
       type="text" 
       name="query" 

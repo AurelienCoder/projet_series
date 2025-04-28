@@ -15,12 +15,12 @@ Autoloader::register();
 
     <div class="home-button-div" style="margin-top: 10px;">
             <button class="category-btn" type="button">Tout</button>
-            <button class="category-btn" type="button">Animation</button>
+            <button class="category-btn" type="button">Drame</button>
+            <button class="category-btn" type="button">Historique</button>
+            <button class="category-btn" type="button">Science-fiction</button>
             <button class="category-btn" type="button">Action</button>
-            <button class="category-btn" type="button">Comédie</button>
             <button class="category-btn" type="button">Aventure</button>
             <button class="category-btn" type="button">Horreur</button>
-            <button class="category-btn" type="button">Drame</button>
         </div>
 
     <div style="display:flex; overflow-x: auto;">

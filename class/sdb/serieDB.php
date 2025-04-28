@@ -28,7 +28,9 @@ class serieDB{
 
     //IMPORTANT Nous ne sommes pas obligés de spécifier le type de retour
     public function getAllSeries(){
-        $sql = "SELECT * FROM serie";
+        $sql = "SELECT * FROM serie INNER JOIN serie_tag, tag 
+        WHERE serie.id_serie = serie_tag.id_serie AND tag.id_tag = serie_tag.id_tag";
+        
         $statement = $this->pdo->prepare($sql);
 
         $statement->execute() or die(var_dump($statement->errorInfo()));
