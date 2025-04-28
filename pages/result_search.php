@@ -21,7 +21,7 @@ Autoloader::register();
 <?php endif; ?>
 
 <div style="margin-top: 100px;">
-    <div class="title" style="text-align:center; font-size:2rem;">LES SERIES DU MOMENT : </div>
+    <div id="home-title">LES SERIES DU MOMENT : </div>
 
     <?php 
         $serieDB = new \sdb\SerieDB();

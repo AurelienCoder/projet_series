@@ -12,6 +12,7 @@ class Template{
 
             <link href='../css/main.css' rel='stylesheet'>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+            <link href="https://fonts.cdnfonts.com/css/elegant-2" rel="stylesheet">
             <style>
                 html,body{
                     height: 100%;
@@ -24,10 +25,11 @@ class Template{
 
                 body{
                     color: black;
-                    background-image: url('img/MagicBG2.jpg');
+                    background-color: crimson;
                     background-size: 100%;
                     background-attachment : fixed;
                     color: black;
+
                 }
 
                 header{
@@ -39,16 +41,6 @@ class Template{
                     justify-content: space-between;
                 }
 
-                footer{
-                    height: 40px;
-                    background-color: rgba(0,0,0,0.9);
-                    text-align: center;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    bottom: 0;
-                }
-
                 a{
                     padding: 10px;
                     text-decoration: none;
@@ -58,6 +50,66 @@ class Template{
 
                 #button-header:hover{
                     background-color: rgba(0,0,0,0.8);
+                }
+
+                #logo h1{
+                    font-size: 40px;
+                    font-weight: bold;
+                    font-family: 'ELEGANT', sans-serif;
+                    padding-left: 10px;
+                }
+
+                #logo a{
+                    color: #fff;
+                    text-decoration: none;
+                }
+
+                /* bouton rechercher du header */
+
+                .search-input {
+                    font-size: 1.6rem;
+                    border: solid 1px rgba(151,19,53,0.5);
+                    background: transparent;
+                    color: #fff;
+                    width: 20rem;
+                    transition: width 0.4s ease;
+                }
+
+                .search-input:focus {
+                    width: 25rem;
+                }
+
+                .search-button {
+                    background: crimson;
+                    border: none;
+                    cursor: pointer;
+                    color: #fff;
+                    font-size: 30px;
+                    transition: background 0.3s ease;
+                }
+
+                .search-button:hover {
+                    background: darkred;
+                }
+
+                #options-header:hover{
+                    background-color: crimson;
+                }
+
+                #options-header{
+                    padding: 0px;
+                    margin-left: 75px;
+                }
+
+                footer{
+                    height: 40px;
+                    background-color: rgba(0,0,0,0.9);
+                    text-align: center;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    bottom: 0;
+                    flex: 1;
                 }
                 
             </style>

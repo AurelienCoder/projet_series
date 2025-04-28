@@ -12,7 +12,7 @@ Autoloader::register();
 <?php endif; ?>
 
 <div style="margin-top: 10px; margin-bottom: 30px;">
-    <div class="title" style="text-align:center; font-size:2rem; background: rgba(0,0,0,0.9); color: white;">LES SERIES DU MOMENT : </div>
+    <div id="home-title">LES SERIES DU MOMENT</div>
 
     <div class="home-button-div" style="margin-top: 10px;">
             <button class="category-btn" type="button">Tout</button>

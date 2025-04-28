@@ -1,9 +1,9 @@
 <header class="main-header">
-  <div class="logo">
+  <div id="logo">
     <a href="home.php"><h1>AlloSpoil</h1></a>
   </div>
 
-  <div style="display:flex">
+  <div>
     <form class="search-form-header" action="search.php" method="get">
     <input 
       type="text" 
@@ -17,9 +17,7 @@
     </button>
   </form>
 
-  <div>
-      <a href="series_search_form.php"><h3>Plus d'options de reherche</h3></a>
-    </div>
+    <a href="series_search_form.php" id="options-header">▶ Plus d'options de recherche</a>
 </div>
   <?php             
       //toujours mettre session_start() lorsque nous voulons accéder à $_SESSION
