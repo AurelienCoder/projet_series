@@ -2,31 +2,27 @@
 <header>
     <nav class="navbar navbar-dark bg-dark">
         <div class="nav-content">
-            <a class="navbar-brand" href="index.php">
+            <a class="navbar-brand" href="home.php">
                 <div style="width: 0.5em"></div>
                 <h1>Web Series</h1>
-                <h1>Séries</h1>
             </a>
             
 
             <div style="flex: 1"></div>
 
-            <div class="btn-group" role="group">   
-                <div class="dropdown">
-                    <button class="btn btn-dark  dropdown-toggle" role="button" data-bs-toggle="dropdown">
-                        <span class="caret"></span></button>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
-                        <li><a class="dropdown-item" href="pages/logout.php">Logout</a></li>
-                    </div>
-                </div>
-           
-                <a class="btn btn-dark" role="button" href="pages/login.php">
-                    Login
-                </a>
+            <?php             
+                    //toujours mettre session_start() lorsque nous voulons accéder à $_SESSION
+                    //je mets une condition pour éviter de lancer 2 fois une session
+                    if(session_status() === PHP_SESSION_NONE) session_start();
+                    if(isset($_SESSION['login'])) :
+                ?>
+                    <a href="logout.php" id="button-header">Logout</a>
+                <?php else: ?>
+                    <a href="login.php" id="button-header">Login</a>
+                <?php endif;?>
+            </header>
     
             </div>
-
         </div>
     </nav>
 </header>
