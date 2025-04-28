@@ -1,4 +1,4 @@
-//utilisé dans home.php : un script qui sélectionne les séries ayant le tag choisi lors du click sur l'un des boutons du dessus
+//utilisé dans home.php : un script qui sélectionne les séries ayant le tag choisi lors du click sur l'un des boutons
 
 //on récupère l'ensemble des boutons
 const $buttons = document.querySelectorAll('.category-btn');

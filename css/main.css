@@ -73,7 +73,7 @@ button.favorite.styled {
   margin-left: 5px;
 }
 
-/* PAGE RESULT_SEARCH */
+/* PAGE SEARCH */
 
 .search-form {
   display: flex;
@@ -106,4 +106,13 @@ font-size: 1.4rem;
 
 .form-group input:focus {
 outline: 2px solid #f00;
+}
+
+/* DIV DE DESCRIPTION QUI S'AFFICHE QUAND ON CLIQUE SUR UNE SERIE, UN ACTEUR, UN REALISATEUR... */
+
+#alert{
+  position: absolute;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  padding: 50px;
 }

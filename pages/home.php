@@ -18,6 +18,10 @@ Autoloader::register();
         <button class="category-btn" type="button">Action</button>
         <button class="category-btn" type="button">Aventure</button>
         <button class="category-btn" type="button">Horreur</button>
+
+        <?php if(isset($_SESSION['nickname']) && $_SESSION['nickname'] == 'administrateur'): ?>
+            <button class="category-btn" type="button" style="background-color: green;">AJOUTER</button>
+        <?php endif; ?>
     </div>
 
     <div style="display:flex; overflow-x: auto;">
