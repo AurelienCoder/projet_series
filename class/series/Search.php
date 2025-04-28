@@ -44,9 +44,6 @@ class Search{
     <?php }
 
     public function getSearch(){
-        echo "<div id='home-title'></div>
-        <div style='display:flex; overflow-x: auto;'>";
-            
         $serieDB = new \sdb\SerieDB();
 
         if($_GET['search'] == "realisateurs"){
@@ -75,7 +72,5 @@ class Search{
             }
         }
     }
-
 }
-
 ?>
