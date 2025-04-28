@@ -20,7 +20,7 @@ class SerieRender{
 
     public function getHTML(){
         ?>
-
+        
         <div class="series-list">
                     <div class="model_serie" onclick="infoSerie()">
                         <div style="overflow: hidden">
@@ -30,6 +30,7 @@ class SerieRender{
                         <?php if(isset($_SESSION['nickname'])): ?>
                             <button>EDIT</button>
                         <?php endif; ?>
+
                         <h2><?= htmlspecialchars($this->titre_serie); ?></h2>
                         
                         <span class="tag"><?= $this->nom_tag ?></span>
