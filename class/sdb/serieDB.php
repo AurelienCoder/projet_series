@@ -40,6 +40,20 @@ class serieDB{
         return $results;
     }
 
+    public function getSpecialRequest($titre= null, $tag=null, $realisteur=null, $acteur=null){
+        $sql = "
+        ";
+        $statement = $this->pdo->prepare($sql);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+
+        //IMPORTANT FETCH_ASSOC pour transformer en tableau
+        //FETCH_CLASS pour transformer vers une classe
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\SerieRender");
+
+        return $results;
+    }
+
     public function getAllTags(){
         $sql = "SELECT * FROM tag";
         $statement = $this->pdo->prepare($sql);

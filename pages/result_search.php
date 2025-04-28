@@ -28,8 +28,9 @@ Autoloader::register();
         $series = $serieDB->getAllSeries();
 
         foreach($series as $serie){
-            if($_GET['serie'] == $serie->getIdSerie())
-            echo $serie->getHTML();
+            if($_GET['serie'] == $serie->getTitreSerie()){
+                echo $serie->getHTML();
+            }
         }
     ?>
 </div>

@@ -23,7 +23,7 @@ class SerieRender{
             </div>
     <?php }
 
-    public function getIdSerie(){
+    public function getTitreSerie(){
         return $this->titre_serie;
     }
 
