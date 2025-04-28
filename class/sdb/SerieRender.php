@@ -11,14 +11,17 @@ class SerieRender{
     private $affiche_serie;
     private $synopsis_serie;
 
-    public function getHTML(){
+    public function getHTML($tag){
         ?>
 
-            <div class="series-list" id="series-list">
-                    <div class="model_serie" onclick="openSerie(<?php echo $this->id_serie; ?>)">
+            <div class="series-list">
+           <!-- A RAJOUTER : RENVOYER VERS UN LIEN LORS D'UN CLICK SUR UNE SERIE onclick="openSerie()" -->
+                    <div class="model_serie">
+                        <div style="overflow: hidden">
                         <img src="<?= htmlspecialchars($this->affiche_serie); ?>" alt="<?php echo htmlspecialchars($this->affiche_serie); ?>">
+    </div>
                         <h2><?= htmlspecialchars($this->titre_serie); ?></h2>
-                        <span class="tag">Genre : </span>
+                        <span class="tag"><?= $tag ?></span>
                     </div>
             </div>
     <?php }

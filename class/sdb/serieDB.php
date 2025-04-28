@@ -41,6 +41,7 @@ class serieDB{
     }
 
     public function getSpecialRequest($titre= null, $tag=null, $realisteur=null, $acteur=null){
+        
         $sql = "
         ";
         $statement = $this->pdo->prepare($sql);

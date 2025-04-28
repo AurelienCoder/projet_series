@@ -8,36 +8,61 @@ Autoloader::register();
 <?php ob_start() ?>
 
 <?php if ($logged): ?>
-    <h1 style="text-align:center;">Hi <?php echo htmlspecialchars($_SESSION['nickname']); ?></h1>
+    <h1 style="text-align:center;">Salut <?php echo htmlspecialchars($_SESSION['nickname']); ?></h1>
 <?php endif; ?>
 
-<div style="margin-top: 100px;">
-    <div class="home-button-div">
-        <button class="category-btn" type="button" onclick="redirectToCategory('animation')">Animation</button>
-        <button class="category-btn" type="button" onclick="redirectToCategory('action')">Action</button>
-        <button class="category-btn" type="button" onclick="redirectToCategory('comedie')">Comédie</button>
-        <button class="category-btn" type="button" onclick="redirectToCategory('aventure')">Aventure</button>
-        <button class="category-btn" type="button" onclick="redirectToCategory('horreur')">Horreur</button>
-        <button class="category-btn" type="button" onclick="redirectToCategory('drame')">Drame</button>
+<div style="margin-top: 10px; margin-bottom: 30px;">
+    <div class="title" style="text-align:center; font-size:2rem; background: rgba(0,0,0,0.9); color: white;">LES SERIES DU MOMENT : </div>
+
+    <div class="home-button-div" style="margin-top: 10px;">
+            <button class="category-btn" type="button">Tout</button>
+            <button class="category-btn" type="button">Animation</button>
+            <button class="category-btn" type="button">Action</button>
+            <button class="category-btn" type="button">Comédie</button>
+            <button class="category-btn" type="button">Aventure</button>
+            <button class="category-btn" type="button">Horreur</button>
+            <button class="category-btn" type="button">Drame</button>
+        </div>
+
+    <div style="display:flex; overflow-x: auto;">
+
+        <?php 
+            $serieDB = new \sdb\SerieDB();
+            $series = $serieDB->getAllSeries();
+
+            $tags = $serieDB->getAllTags();
+            
+            foreach($series as $serie){
+                foreach($tags as $tag){
+                    echo $serie->getHTML($tag);
+                }
+            }
+        ?>
     </div>
-
-    <div class="title" style="text-align:center; font-size:2rem;">LES SERIES DU MOMENT : </div>
-
-    <?php 
-        $serieDB = new \sdb\SerieDB();
-        $series = $serieDB->getAllSeries();
-
-        foreach($series as $serie){
-            echo $serie->getHTML();
-        }
-
-        $tags = $serieDB->getAllTags();
-
-        foreach($tags as $tag){
-            echo $tag->getTag();
-        }
-    ?>
 </div>
+
+<script>
+    const $buttons = document.querySelectorAll('.category-btn');
+
+    const $divs = document.querySelectorAll('.model_serie');
+
+    $buttons.forEach($button => {
+        $button.addEventListener('click', function(){
+
+            //on réinitialise l'affichage des séries
+            $divs.forEach($div => {
+                $div.style.display = 'initial';
+            })
+
+            //on affiche les séries correspondantes au bouton
+            $divs.forEach($div => {
+                if($div.getElementsByTagName('span')[0].innerText != $button.innerText && $button.innerText != "Tout"){
+                    $div.style.display = 'none';
+                }
+            })
+        })
+    })
+</script>
 
 <?php $code = ob_get_clean(); ?>
 <?php Template::render($code); ?>

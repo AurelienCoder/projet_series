@@ -19,6 +19,7 @@ class Template{
                     display: flex;
                     flex-direction: column;
                     color: black;
+                    overflow: hidden;
                 }
 
                 body{
@@ -35,6 +36,7 @@ class Template{
                     background-color: rgba(0,0,0,0.9);
                     align-items: center;
                     display: flex;
+                    justify-content: space-between;
                 }
 
                 footer{
@@ -44,6 +46,7 @@ class Template{
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    bottom: 0;
                 }
 
                 a{
@@ -55,13 +58,6 @@ class Template{
 
                 #button-header:hover{
                     background-color: rgba(0,0,0,0.8);
-                }
-
-                #injected-content{
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    flex: 1; /* pousse le footer vers le bas */
                 }
                 
             </style>
