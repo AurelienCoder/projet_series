@@ -7,7 +7,7 @@ Autoloader::register();
 
 <?php ob_start() ?>
 
-<form action="result_search.php" method="GET" class="search-form">
+<form action="search_result.php" method="GET" class="search-form">
 
   <div class="form-group">
     <label for="tag">Tag :</label>

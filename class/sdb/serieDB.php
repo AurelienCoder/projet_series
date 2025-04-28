@@ -49,8 +49,6 @@ class serieDB{
 
         $statement->execute() or die(var_dump($statement->errorInfo()));
 
-        //IMPORTANT FETCH_ASSOC pour transformer en tableau
-        //FETCH_CLASS pour transmettre les données vers une classe
         $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\ActorRender");
 
         return $results;
@@ -63,8 +61,6 @@ class serieDB{
 
         $statement->execute() or die(var_dump($statement->errorInfo()));
 
-        //IMPORTANT FETCH_ASSOC pour transformer en tableau
-        //FETCH_CLASS pour transmettre les données vers une classe
         $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\RealRender");
 
         return $results;
