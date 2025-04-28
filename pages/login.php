@@ -30,3 +30,4 @@ endif;
 
 $code = ob_get_clean();
 Template::render($code);
+?>
