@@ -40,10 +40,27 @@ class serieDB{
         return $results;
     }
 
-    public function getSpecialRequest($titre= null, $tag=null, $realisteur=null, $acteur=null){
+    public function getSpecialRequest($titre= null, $tag=null, $acteur=null){
         
-        $sql = "
-        ";
+        if($titre != null){
+            $sql= "SELECT * FROM serie WHERE $titre = serie.titre_serie";
+        }
+
+        else if($tag != null){
+            $sql= "SELECT * FROM serie WHERE $tag = tag.nom_tag
+            INNER JOIN serie_tag WHERE serie.id_serie = serie_tag.serie_id
+            INNER JOIN tag WHERE serie_tag.id_tag = tag.id_tag
+            ";
+        }
+
+        else if($acteur != null){
+            $sql= "SELECT * FROM serie WHERE $acteur = acteur.nom_acteur
+            INNER JOIN saison WHERE serie.id_serie = saison.id_serie
+            INNER JOIN saison_acteur WHERE saison saison.id_saison = saison_acteur.id_saison
+            INNER JOIN acteur WHERE saison_acteur.id_acteur = acteur.id_acteur
+            ";
+        }
+
         $statement = $this->pdo->prepare($sql);
 
         $statement->execute() or die(var_dump($statement->errorInfo()));
