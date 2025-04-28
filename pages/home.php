@@ -34,6 +34,7 @@ Autoloader::register();
         ?>
     </div>
 
+    <!-- script qui checke s'il y a des doublons de séries -->
     <script>
         //tableau de toutes les séries incluant les doublons
         series = document.querySelectorAll('.series-list');
@@ -65,7 +66,7 @@ Autoloader::register();
                 titresAjoutes.push(titre);
             } else{
                 serie.style.display = "none";
-                document.getElementsByClassName('tag')[index].innerText += " , " + tag;
+                document.getElementsByClassName('tag')[index].innerText += " " + tag;
             }
         });
 

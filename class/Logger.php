@@ -2,7 +2,7 @@
 
 class Logger{
 
-    public function generateLoginForm(string $action): void{ ?>
+    public function generateLoginForm(string $action=null): void{ ?>
         <form method="post" action="<?php $action ?>" class="magic-card">
             <legend style="text-align: center; font-size: 25px;">Please Login</legend>
             <div class="form-group">

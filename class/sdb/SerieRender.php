@@ -20,7 +20,7 @@ class SerieRender{
 
     public function getHTML(){
         ?>
-        
+
         <div class="series-list">
                     <div class="model_serie" onclick="infoSerie()">
                         <div style="overflow: hidden">
@@ -39,7 +39,31 @@ class SerieRender{
 
             <script>
                 function infoSerie(){
-                    alert("<?= $this->affiche_serie ?>");
+                    let div = document.createElement('div');
+                    div.id = 'alert';
+                    div.style.width = window.innerWidth + "px";
+                    div.style.height = window.innerHeight + "px";
+                    document.getElementsByTagName('body')[0].appendChild(div);
+
+                    let divLogo = document.createElement('div');
+                    divLogo.id = 'logo';
+                    div.appendChild(divLogo);
+                    
+                    let a = document.createElement('a');
+                    a.href = "home.php";
+                    divLogo.appendChild(a);
+
+                    let h1Logo = document.createElement('h1');
+                    h1Logo.innerText = "- Retour";
+                    a.appendChild(h1Logo);
+
+                    let h1 = document.createElement('h1');
+                    h1.innerText = "Titre : <?= htmlspecialchars($this->titre_serie); ?>";
+                    div.appendChild(h1);
+                    
+                    let h3 = document.createElement('h3');
+                    h3.innerText = "Synopsis : <?= htmlspecialchars($this->synopsis_serie); ?>";
+                    div.appendChild(h3);
                 }
             </script>
     <?php }

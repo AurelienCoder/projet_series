@@ -22,10 +22,10 @@ if (isset($_POST['username']) and isset($_POST['password'])){
 ob_start();
 
 if(!isset($response)):
-    $logger->generateLoginForm("", $username);
+    $logger->generateLoginForm();
 elseif (!$response['granted']) :
     echo "<div class='' id='error'>" .$response['error']."</div>";
-    $logger->generateLoginForm("", $username, $response['error']);
+    $logger->generateLoginForm();
 endif;
 
 $code = ob_get_clean();
