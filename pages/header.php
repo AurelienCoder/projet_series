@@ -6,7 +6,7 @@
 </div>
 
   <div>
-    <form style="color: black" action="search_result.php" method="get">
+    <form style="color: black" action="search.php" method="get">
       <select name="search" class="search-input">
         <option value="">Rechercher...</option>
         <option value="series">Les séries</option>
@@ -19,7 +19,7 @@
       </button>
     </form>
 
-      <a href="search_form.php" id="options-header">▶ Plus d'options de recherche</a>
+      <a href="search.php" id="options-header">▶ Plus d'options de recherche</a>
 </div>
   <?php             
       //toujours mettre session_start() lorsque nous voulons accéder à $_SESSION
