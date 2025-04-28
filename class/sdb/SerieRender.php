@@ -4,19 +4,19 @@ namespace sdb;
 
 use sdb\SerieDB;
 
-class SerieRenderer{
+class SerieRender{
     
-    private $name;
-    private $description;
-    private $image;
-    private $id;
+    private $id_serie;
+    private $titre_serie;
+    private $affiche_serie;
+    private $synopsis_serie;
 
     public function getHTML(){
         ?>
-        <div style="text-align: center" class="game">            
-            <h2><?= $this->name ?></h2>
-            <img style="width:150px; height:auto" src="./../uploads/<?= $this->image ?>"/>
-            <h3><?= $this->description ?></h3>
+        <div class="model_serie">
+            <img src="../images/Affiches/<?= htmlspecialchars($this->affiche_serie); ?>" alt="<?php echo htmlspecialchars($this->affiche_serie); ?>">
+            <h2><?= htmlspecialchars($this->titre_serie); ?></h2>
+             <span class="tag">Genre : </span>
         </div>
         <hr>
     <?php }

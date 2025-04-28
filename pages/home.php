@@ -33,8 +33,7 @@ $series = [
 
 <div class="main_content">
     <div class="category-buttons">
-        <button class="favorite styled" type="button">Top séries</button>
-        <button type="button">Par défaut</button>
+        <div class="favorite styled">Toutes les séries</div>
         <button type="button">Animation</button>
         <button type="button">Action</button>
         <button type="button">Comédie</button>
@@ -44,13 +43,22 @@ $series = [
     </div>
 
     <div class="series-list">
-        <?php foreach ($series as $serie): ?>
-            <div class="model_serie">
-                <img src="<?php echo htmlspecialchars($serie['image']); ?>" alt="<?php echo htmlspecialchars($serie['title']); ?>">
-                <h2><?php echo htmlspecialchars($serie['title']); ?></h2>
-                <span>Durée : <?php echo htmlspecialchars($serie['duration']); ?></span>
-            </div>
-        <?php endforeach; ?>
+    <div id="main-container">
+    <?php 
+    $serieDB = new \sdb\SerieDB();
+    $data = $serieDB->getAllSeries();
+
+    foreach($data as $d){
+        echo $d->getHTML();
+    }
+
+    $data = $serieDB->getAllTags();
+
+    foreach($data as $d){
+        echo $d->getHTML();
+    }
+    ?>
+</div>
     </div>
 
     <div class="load-more">

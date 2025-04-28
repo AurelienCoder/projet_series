@@ -10,7 +10,6 @@ class Template{
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Web Serie</title>
 
-            <link href='https://fonts.googleapis.com/css?family=Pirata One' rel='stylesheet'>
             <link href='../css/main.css' rel='stylesheet'>
 
             <style>
@@ -19,15 +18,15 @@ class Template{
                     margin: 0;
                     display: flex;
                     flex-direction: column;
+                    color: black;
                 }
 
                 body{
-                    font-family: "Pirata One";
                     color: black;
                     background-image: url('img/MagicBG2.jpg');
                     background-size: 100%;
                     background-attachment : fixed;
-                    color: white;
+                    color: black;
                 }
 
                 header{
