@@ -37,6 +37,7 @@ class SerieRender{
                     </div>
             </div>
 
+            <!-- GROS PROBLEME -->
             <script>
                 function infoSerie(){
                     let div = document.createElement('div');
