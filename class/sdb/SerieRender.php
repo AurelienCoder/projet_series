@@ -11,7 +11,7 @@ class SerieRender{
     private $affiche_serie;
     private $synopsis_serie;
 
-    public function getHTML($tag){
+    public function getHTML(){
         ?>
 
             <div class="series-list">
@@ -21,7 +21,7 @@ class SerieRender{
                         <img src="<?= htmlspecialchars($this->affiche_serie); ?>" alt="<?php echo htmlspecialchars($this->affiche_serie); ?>">
     </div>
                         <h2><?= htmlspecialchars($this->titre_serie); ?></h2>
-                        <span class="tag"><?= $tag ?></span>
+                        <span class="tag"></span>
                     </div>
             </div>
     <?php }

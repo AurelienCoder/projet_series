@@ -29,13 +29,9 @@ Autoloader::register();
         <?php 
             $serieDB = new \sdb\SerieDB();
             $series = $serieDB->getAllSeries();
-
-            $tags = $serieDB->getAllTags();
             
             foreach($series as $serie){
-                foreach($tags as $tag){
-                    echo $serie->getHTML($tag);
-                }
+                echo $serie->getHTML();
             }
         ?>
     </div>
