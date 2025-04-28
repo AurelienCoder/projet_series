@@ -8,7 +8,6 @@ Autoloader::register();
 <?php ob_start() ?>
 
 <?php if ($logged): ?>
-    <h1 style="text-align:center;">Salut <?php echo htmlspecialchars($_SESSION['nickname']); ?></h1>
 <?php endif; ?>
 
 <div style="margin-top: 10px; margin-bottom: 30px;">
@@ -25,7 +24,6 @@ Autoloader::register();
         </div>
 
     <div style="display:flex; overflow-x: auto;">
-
         <?php 
             $serieDB = new \sdb\SerieDB();
             $series = $serieDB->getAllSeries();

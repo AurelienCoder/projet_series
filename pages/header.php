@@ -25,7 +25,7 @@
       if(session_status() === PHP_SESSION_NONE) session_start();
       if(isset($_SESSION['nickname'])):
   ?>
-      <a href="logout.php" id="button-header">Logout</a>
+      <a href="logout.php" id="button-header">Logout (<?php echo htmlspecialchars($_SESSION['nickname']) ?>)</a>
   <?php else: ?>
       <a href="login.php" id="button-header">Login</a>
   <?php endif;?>

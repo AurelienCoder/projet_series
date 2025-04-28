@@ -27,7 +27,7 @@ class Logger{
             $error = "password is empty" ;
         }elseif ($user == $username and $pwd == $password){
             $granted = true ;
-            $nick = htmlspecialchars("Administrateur") ;
+            $nick = htmlspecialchars("administrateur") ;
         }else{
             $error = "Authentification Failed" ;
         }
