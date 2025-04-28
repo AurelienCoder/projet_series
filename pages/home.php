@@ -1,12 +1,11 @@
 <?php
-require_once "config.php" ;
+require_once "../config.php" ;
 
 session_start() ;
-$logged = isset($_SESSION['nickname']) ;
+$logged = isset($_SESSION['nickname']);
 
-require $GLOBALS['PHP_DIR']."class/Autoloader.php";
+require_once "..\class\Autoloader.php";
 Autoloader::register();
-use series\Template ;
 ?>
 
 <?php ob_start() ?>
@@ -15,7 +14,7 @@ use series\Template ;
 <h1>Hi <?php echo $_SESSION['nickname'] ?>, </h1>
 <?php endif; ?>
 
-<div class="title">WELCOME </div>
+<div class="title">WELCOME</div>
 
 
 <?php $code = ob_get_clean() ?>
