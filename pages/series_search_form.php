@@ -11,7 +11,7 @@ Autoloader::register();
     <h1>Hi <?php echo htmlspecialchars($_SESSION['nickname']); ?>,</h1>
 <?php endif; ?>
 
-<form action="recherche.php" method="GET" class="search-form">
+<form action="result_search.php" method="GET" class="search-form">
 
   <div class="form-group">
     <label for="tag">Tag :</label>
@@ -24,8 +24,8 @@ Autoloader::register();
   </div>
 
   <div class="form-group">
-    <label for="season">Numéro de saison :</label>
-    <input type="number" id="season" name="season" min="1" placeholder="">
+    <label for="saison">Numéro de saison :</label>
+    <input type="number" id="saison" name="saison" min="1" placeholder="">
   </div>
 
   <div class="form-group">
@@ -34,13 +34,13 @@ Autoloader::register();
   </div>
 
   <div class="form-group">
-    <label for="director">Réalisateur :</label>
-    <input type="text" id="director" name="director" placeholder="Nom du réalisateur">
+    <label for="realisateur">Réalisateur :</label>
+    <input type="text" id="realisateur" name="realisateur" placeholder="Nom du réalisateur">
   </div>
 
   <div class="form-group">
-    <label for="actor">Acteur :</label>
-    <input type="text" id="actor" name="actor" placeholder="Nom de l'acteur">
+    <label for="acteur">Acteur :</label>
+    <input type="text" id="acteur" name="acteur" placeholder="Nom de l'acteur">
   </div>
 
   <div class="form-group">

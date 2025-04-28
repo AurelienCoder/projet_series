@@ -34,7 +34,7 @@ Autoloader::register();
         $tags = $serieDB->getAllTags();
 
         foreach($tags as $tag){
-            echo $tag->getHTML();
+            echo $tag->getTag();
         }
     ?>
 </div>
