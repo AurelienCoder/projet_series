@@ -4,7 +4,7 @@
         <div class="nav-content">
             <a class="navbar-brand" href="index.php">
                 <div style="width: 0.5em"></div>
-                <h1>Web Series</h1> |
+                <h1>Web Series</h1>
                 <h1>Séries</h1>
             </a>
             
