@@ -7,21 +7,18 @@ Autoloader::register();
 
 <?php ob_start() ?>
 
-<?php if ($logged): ?>
-<?php endif; ?>
-
 <div style="margin-top: 10px; margin-bottom: 30px;">
     <div id="home-title">LES SERIES DU MOMENT</div>
 
     <div class="home-button-div" style="margin-top: 10px;">
-            <button class="category-btn" type="button">Tout</button>
-            <button class="category-btn" type="button">Drame</button>
-            <button class="category-btn" type="button">Historique</button>
-            <button class="category-btn" type="button">Science-fiction</button>
-            <button class="category-btn" type="button">Action</button>
-            <button class="category-btn" type="button">Aventure</button>
-            <button class="category-btn" type="button">Horreur</button>
-        </div>
+        <button class="category-btn" type="button">Tout</button>
+        <button class="category-btn" type="button">Drame</button>
+        <button class="category-btn" type="button">Historique</button>
+        <button class="category-btn" type="button">Science-fiction</button>
+        <button class="category-btn" type="button">Action</button>
+        <button class="category-btn" type="button">Aventure</button>
+        <button class="category-btn" type="button">Horreur</button>
+    </div>
 
     <div style="display:flex; overflow-x: auto;">
         <?php 
@@ -36,30 +33,10 @@ Autoloader::register();
 
     <!-- script qui checke s'il y a des doublons dans les séries -->
     <script src="../js/doublons.js"></script>
+
+    <!-- script qui sélectionne les séries ayant le tag choisi lors du click sur l'un des boutons du dessus  -->
+    <script src="../js/tagSearch.js"></script>
 </div>
-
-<script>
-    const $buttons = document.querySelectorAll('.category-btn');
-
-    const $divs = document.querySelectorAll('.model_serie');
-
-    $buttons.forEach($button => {
-        $button.addEventListener('click', function(){
-
-            //on réinitialise l'affichage des séries
-            $divs.forEach($div => {
-                $div.style.display = 'initial';
-            })
-
-            //on affiche les séries correspondantes au bouton
-            $divs.forEach($div => {
-                if($div.getElementsByTagName('span')[0].innerText != $button.innerText && $button.innerText != "Tout"){
-                    $div.style.display = 'none';
-                }
-            })
-        })
-    })
-</script>
 
 <?php $code = ob_get_clean(); ?>
 <?php Template::render($code); ?>
