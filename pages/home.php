@@ -1,9 +1,6 @@
 <?php
-require_once "config.php" ;
-
 session_start() ;
 $logged = isset($_SESSION['nickname']) ;
-
 require_once "../class/Autoloader.php";
 Autoloader::register();
 ?>
@@ -18,7 +15,7 @@ Autoloader::register();
 
 <div class="main_content">
 <div>
-    <button>Dernières séries </button>  <button>Par défaut </button>    <button>Animation</button>    <button>Action</button>    <button>Comédie</button>   <button>Aventure</button>  <button>Horreur</button>  <button>Drame</button>
+    <button class="favorite styled" type="button">Dernières séries </button>  <button>Par défaut </button>    <button>Animation</button>    <button>Action</button>    <button>Comédie</button>   <button>Aventure</button>  <button>Horreur</button>  <button>Drame</button>
 </div>
 <div>
 <button>Voir la suite </button>
