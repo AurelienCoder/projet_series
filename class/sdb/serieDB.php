@@ -30,7 +30,7 @@ class serieDB{
     public function getAllSeries(){
         $sql = "SELECT * FROM serie INNER JOIN serie_tag, tag 
         WHERE serie.id_serie = serie_tag.id_serie AND tag.id_tag = serie_tag.id_tag";
-        
+
         $statement = $this->pdo->prepare($sql);
 
         $statement->execute() or die(var_dump($statement->errorInfo()));
@@ -38,6 +38,34 @@ class serieDB{
         //IMPORTANT FETCH_ASSOC pour transformer en tableau
         //FETCH_CLASS pour transmettre les données vers une classe
         $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\SerieRender");
+
+        return $results;
+    }
+
+    public function getAllActors(){
+        $sql = "SELECT * FROM acteur";
+
+        $statement = $this->pdo->prepare($sql);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+
+        //IMPORTANT FETCH_ASSOC pour transformer en tableau
+        //FETCH_CLASS pour transmettre les données vers une classe
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\ActorRender");
+
+        return $results;
+    }
+
+    public function getAllRealisators(){
+        $sql = "SELECT * FROM realisateur";
+
+        $statement = $this->pdo->prepare($sql);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+
+        //IMPORTANT FETCH_ASSOC pour transformer en tableau
+        //FETCH_CLASS pour transmettre les données vers une classe
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\RealRender");
 
         return $results;
     }
@@ -68,17 +96,6 @@ class serieDB{
         $statement->execute() or die(var_dump($statement->errorInfo()));
 
         $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\SerieRender");
-
-        return $results;
-    }
-
-    public function getAllTags(){
-        $sql = "SELECT * FROM tag";
-        $statement = $this->pdo->prepare($sql);
-
-        $statement->execute() or die(var_dump($statement->errorInfo()));
-
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\TagRender");
 
         return $results;
     }

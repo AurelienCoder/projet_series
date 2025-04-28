@@ -1,23 +1,25 @@
 <header class="main-header">
-  <div id="logo">
-    <a href="home.php"><h1>AlloSpoil</h1></a>
-  </div>
+  <div style="display:flex;">
+    <div id="logo">
+      <a href="home.php"><h1>AlloSpoil</h1></a>
+    </div>
+</div>
 
   <div>
-    <form class="search-form-header" action="result_search.php" method="get">
-    <input 
-      type="text" 
-      name="query" 
-      placeholder="Rechercher..." 
-      maxlength="50"
-      class="search-input"
-    >
-    <button type="submit" class="search-button">
-      <i class="fas fa-search"></i>
-    </button>
-  </form>
+    <form style="color: black" action="result_search.php" method="get">
+      <select name="search" class="search-input">
+        <option value="">Rechercher...</option>
+        <option value="series">Les séries</option>
+        <option value="acteurs">Les acteurs</option>
+        <option value="realisateurs">Les réalisateurs</option>
+      </select>
 
-    <a href="series_search_form.php" id="options-header">▶ Plus d'options de recherche</a>
+      <button type="submit" class="search-button">
+        <i class="fas fa-search"></i>
+      </button>
+    </form>
+
+      <a href="series_search_form.php" id="options-header">▶ Plus d'options de recherche</a>
 </div>
   <?php             
       //toujours mettre session_start() lorsque nous voulons accéder à $_SESSION

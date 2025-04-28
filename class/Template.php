@@ -69,7 +69,7 @@ class Template{
                 /* bouton rechercher du header */
 
                 .search-input {
-                    font-size: 1.6rem;
+                    font-size: 1.3rem;
                     border: solid 1px rgba(151,19,53,0.5);
                     background: transparent;
                     color: #fff;
@@ -77,16 +77,12 @@ class Template{
                     transition: width 0.4s ease;
                 }
 
-                .search-input:focus {
-                    width: 25rem;
-                }
-
                 .search-button {
                     background: crimson;
                     border: none;
                     cursor: pointer;
                     color: #fff;
-                    font-size: 30px;
+                    font-size: 22px;
                     transition: background 0.3s ease;
                 }
 
@@ -94,6 +90,10 @@ class Template{
                     background: darkred;
                 }
 
+                option{
+                    color: black;
+                }
+                
                 #options-header:hover{
                     background-color: crimson;
                 }
