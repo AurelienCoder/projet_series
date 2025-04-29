@@ -26,7 +26,7 @@ class SerieRender{
         ?>
 
         <div class="series-list">
-                    <div class="model_serie" onclick="infoSerie()">
+                    <div class="model_serie">
                         <div style="overflow: hidden">
                             <img src="<?= htmlspecialchars($this->affiche_serie); ?>" alt="<?php echo htmlspecialchars($this->affiche_serie); ?>">
                         </div>
@@ -42,9 +42,9 @@ class SerieRender{
                     </div>
             </div>
 
-            <!-- GROS PROBLEME -->
+            <!-- PETIT PROBLEME -->
             <script>
-                function infoSerie(){
+                document.getElementsByClassName("model_serie")[<?= $this->id_serie-1 ?>].addEventListener('click', function(){
                     let div = document.createElement('div');
                     div.id = 'alert';
                     div.style.width = window.innerWidth + "px";
@@ -70,7 +70,11 @@ class SerieRender{
                     let h3 = document.createElement('h3');
                     h3.innerText = "Synopsis : <?= htmlspecialchars($this->synopsis_serie); ?>";
                     div.appendChild(h3);
-                }
+                                        
+                    h3 = document.createElement('h3');
+                    h3.innerText = "Genre : <?= htmlspecialchars($this->nom_tag); ?>";
+                    div.appendChild(h3);
+                })
             </script>
     <?php }
 
