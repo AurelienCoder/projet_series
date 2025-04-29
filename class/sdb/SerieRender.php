@@ -28,7 +28,8 @@ class SerieRender{
                         </div>
 
                         <?php if(isset($_SESSION['nickname'])): ?>
-                            <button>EDIT</button>
+                            <button class="category-btn" type="button" style="background-color: blue;">MODIFIER</button>
+                            <button class="category-btn" type="button" style="background-color: red;">SUPPRIMER</button>
                         <?php endif; ?>
 
                         <h2><?= htmlspecialchars($this->titre_serie); ?></h2>
