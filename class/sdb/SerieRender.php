@@ -88,6 +88,7 @@ class SerieRender{
 
                 let a = document.createElement("a");
                 a.href = "home.php";
+                a.style = "color: black";
                 a.innerText = "Retour à la liste";
                 div.appendChild(a);
                 })
@@ -99,17 +100,17 @@ class SerieRender{
     }
 
     //getter pour l'ID si besoin
-    public function getIdSerie() {
+    public function getIdSerie(){
         return $this->id_serie;
     }
 
     // getter pour l'affiche si besoin
-    public function getAfficheSerie() {
+    public function getAfficheSerie(){
         return $this->affiche_serie;
     }
 
     //getter pour le synopsis si besoin
-    public function getSynopsisSerie() {
+    public function getSynopsisSerie(){
         return $this->synopsis_serie;
     }
 }

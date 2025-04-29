@@ -3,18 +3,9 @@ session_start();
 require_once "../class/Autoloader.php";
 Autoloader::register();
 
-if (!isset($_SESSION['nickname'])) {
-    header('Location: login.php');
-    exit();
-}
-
-
 $serieDB = new \sdb\SerieDB();
 
-
 $nbSeries = $serieDB->countSeries();
-
-
 $nbTags = $serieDB->countTags();
 
 ob_start();

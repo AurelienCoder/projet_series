@@ -19,12 +19,14 @@ Autoloader::register();
         <button class="category-btn" type="button">Aventure</button>
         <button class="category-btn" type="button">Horreur</button>
 
+        <!-- si l'administrateur est connecté, alors on ajoute dans home les 2 boutons AJOUTER et Voir les statistiques -->
         <?php if(isset($_SESSION['nickname']) && $_SESSION['nickname'] == 'administrateur'): ?>
             <a href="dashboard.php"><button class="category-btn" type="button" style="background-color: green;">AJOUTER</button></a>
             <a href="stats.php" class="category-btn" style="background-color: black;">Voir les statistiques</a>
         <?php endif; ?>
     </div>
 
+    <!-- div qui affiche les séries via la méthode getAllSeries(), méthode qui recupère les séries avec une requête -->
     <div style="display:flex; overflow-x: auto;">
         <?php 
             $serieDB = new \sdb\SerieDB();
@@ -39,7 +41,7 @@ Autoloader::register();
     <!-- script qui checke s'il y a des doublons dans les séries -->
     <script src="../js/doublons.js"></script>
 
-    <!-- script qui sélectionne les séries ayant le tag choisi lors du click sur l'un des boutons du dessus  -->
+    <!-- script qui en fonction du click sur les boutons du dessus, affiche les préférences, les séries liées au tag choisi  -->
     <script src="../js/tagSearch.js"></script>
 </div>
 

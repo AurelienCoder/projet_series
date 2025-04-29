@@ -8,14 +8,16 @@ $logger = new Logger();
 
 $username = null;
 $password = null;
-if (isset($_POST['username']) and isset($_POST['password'])){
+
+if(isset($_POST['username']) and isset($_POST['password'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
     $response = $logger->log(trim($username), trim($password));
-    if ($response['granted']){
+
+    if($response['granted']){
         $_SESSION['nickname'] = $response['nick'];
-        header("Location: ../index.php");
-        exit() ;
+        header("Location: home.php");
+        exit();
     }
 }
 
@@ -23,8 +25,8 @@ ob_start();
 
 if(!isset($response)):
     $logger->generateLoginForm();
-elseif (!$response['granted']) :
-    echo "<div class='' id='error'>" .$response['error']."</div>";
+elseif (!$response['granted']):
+    echo "<div>" .$response['error']."</div>";
     $logger->generateLoginForm();
 endif;
 

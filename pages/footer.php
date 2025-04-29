@@ -4,6 +4,6 @@
             Source : Allociné
         </a>
         <br>
-        <span>Réalisé par La Casa de <&#x3F; php &#x3F;> </span>
+        <span>Réalisé par La Casa de <&#x3F;php &#x3F;> </span>
     </div>
 </footer>

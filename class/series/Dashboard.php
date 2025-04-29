@@ -4,6 +4,10 @@ namespace series;
 
 use sdb\SerieDB;
 
+/**
+ * cette classe permet de créer des formulaires pour ajouter, modifier des élements dans la base de données directement via le site
+ * et les supprimer aussi
+ */
 class Dashboard{
 
     private $serieDB;

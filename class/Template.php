@@ -57,6 +57,10 @@ class Template{
                     background-color: rgba(0,0,0,0.8);
                 }
 
+                #button-header{
+                    margin-right: 50px;
+                }
+
                 #logo h1{
                     font-size: 40px;
                     font-weight: bold;
@@ -107,8 +111,7 @@ class Template{
                 }
 
                 footer{
-                    height: 40px;
-                    background-color: rgba(0,0,0,0.9);
+                    background-color: black;
                     text-align: center;
                     display: flex;
                     justify-content: center;
