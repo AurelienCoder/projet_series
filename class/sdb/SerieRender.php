@@ -32,8 +32,10 @@ class SerieRender{
                         </div>
 
                         <?php if(isset($_SESSION['nickname'])): ?>
-                            <button class="category-btn" type="button" style="background-color: blue;">MODIFIER</button>
-                            <button class="category-btn" type="button" style="background-color: red;">SUPPRIMER</button>
+
+                            <a href="dashboard.php?idModif=<?= $this->id_serie; ?>" ><button class="category-btn" type="button" style="background-color: blue;">MODIFIER</button></a>
+
+                            <a href="dashboard.php?idSupp=<?= $this->id_serie; ?>" ><button class="category-btn" type="button" style="background-color: red;" onclick="return confirm('Es-tu sûr de vouloir supprimer cette série ?');">SUPPRIMER</button></a>
                         <?php endif; ?>
 
                         <h2><?= htmlspecialchars($this->titre_serie); ?></h2>
@@ -45,35 +47,49 @@ class SerieRender{
             <!-- PETIT PROBLEME -->
             <script>
                 document.getElementsByClassName("model_serie")[<?= $this->id_serie-1 ?>].addEventListener('click', function(){
-                    let div = document.createElement('div');
-                    div.id = 'alert';
-                    div.style.width = window.innerWidth + "px";
-                    div.style.height = window.innerHeight + "px";
-                    document.getElementsByTagName('body')[0].appendChild(div);
+                let container = document.createElement('div');
+                container.id = 'alert';
+                container.style.width = window.innerWidth + "px";
+                container.style.height = window.innerHeight + "px";
+                document.getElementsByTagName('body')[0].appendChild(container);
 
-                    let divLogo = document.createElement('div');
-                    divLogo.id = 'logo';
-                    div.appendChild(divLogo);
-                    
-                    let a = document.createElement('a');
-                    a.href = "home.php";
-                    divLogo.appendChild(a);
+                let section = document.createElement('section');
+                section.style = "color: black";
+                section.id = 'page-serie';
+                container.appendChild(section);
 
-                    let h1Logo = document.createElement('h1');
-                    h1Logo.innerText = "- Retour";
-                    a.appendChild(h1Logo);
+                let h1 = document.createElement('h1');
+                h1.innerText = "<?= $this->titre_serie ?>";
+                section.appendChild(h1);
 
-                    let h1 = document.createElement('h1');
-                    h1.innerText = "Titre : <?= htmlspecialchars($this->titre_serie); ?>";
-                    div.appendChild(h1);
-                    
-                    let h3 = document.createElement('h3');
-                    h3.innerText = "Synopsis : <?= htmlspecialchars($this->synopsis_serie); ?>";
-                    div.appendChild(h3);
-                                        
-                    h3 = document.createElement('h3');
-                    h3.innerText = "Genre : <?= htmlspecialchars($this->nom_tag); ?>";
-                    div.appendChild(h3);
+                let div = document.createElement('div');
+                div.style = "overflow: hidden; max-width: 500px; margin-bottom: 20px;";
+                section.appendChild(div);
+
+                let img = document.createElement('img');
+                img.src = "<?= $this->affiche_serie ?>";
+                img.alt = "<?= $this->titre_serie ?>";
+                img.style = "width: 150px; height: auto;";
+                div.appendChild(img);
+
+                div = document.createElement('div');
+                div.style = "background: rgba(255,255,255,0.8); padding: 20px; border-radius: 10px;";
+                section.appendChild(div);
+
+                let p = document.createElement('p');
+                p.style = "bold";
+                /* A VOIR nl2br();*/
+                p.innerText = "Synopsis : " + "<?= $this->synopsis_serie ?>";
+                div.appendChild(p);
+
+                div = document.createElement('div');
+                div.style = "margin-top: 20px;";
+                section.appendChild(div);
+
+                let a = document.createElement("a");
+                a.href = "home.php";
+                a.innerText = "Retour à la liste";
+                div.appendChild(a);
                 })
             </script>
     <?php }
@@ -82,6 +98,20 @@ class SerieRender{
         return $this->titre_serie;
     }
 
+    //getter pour l'ID si besoin
+    public function getIdSerie() {
+        return $this->id_serie;
+    }
+
+    // getter pour l'affiche si besoin
+    public function getAfficheSerie() {
+        return $this->affiche_serie;
+    }
+
+    //getter pour le synopsis si besoin
+    public function getSynopsisSerie() {
+        return $this->synopsis_serie;
+    }
 }
 
 ?>

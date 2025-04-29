@@ -98,4 +98,74 @@ class serieDB{
 
         return $results;
     }
+
+    public function getAllTags() {
+        $sql = "SELECT * FROM tag";
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\TagRender");
+        return $results;
+    }
+
+    public function getSerieById($id) {
+        $sql = "SELECT * FROM serie WHERE id_serie = :id";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        $statement->setFetchMode(PDO::FETCH_CLASS, "\sdb\SerieRender");
+
+        $serie = $statement->fetch();
+        return $serie ?: null;
+    }
+
+    public function addSerie($titre, $affiche, $synopsis) {
+        $sql = "INSERT INTO serie (titre_serie, affiche_serie, synopsis_serie) 
+                VALUES (:titre, :affiche, :synopsis)";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':titre', $titre, PDO::PARAM_STR);
+        $statement->bindParam(':affiche', $affiche, PDO::PARAM_STR);
+        $statement->bindParam(':synopsis', $synopsis, PDO::PARAM_STR);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
+    public function updateSerie($id, $titre, $affiche, $synopsis) {
+        $sql = "UPDATE serie 
+                SET titre_serie = :titre, 
+                    affiche_serie = :affiche, 
+                    synopsis_serie = :synopsis 
+                WHERE id_serie = :id";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':titre', $titre, PDO::PARAM_STR);
+        $statement->bindParam(':affiche', $affiche, PDO::PARAM_STR);
+        $statement->bindParam(':synopsis', $synopsis, PDO::PARAM_STR);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
+    public function deleteSerie($id) {
+        $sql = "DELETE FROM serie WHERE id_serie = :id";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
+    public function countSeries(): int {
+        $sql = "SELECT COUNT(*) FROM serie";
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+
+        return (int) $statement->fetchColumn();
+    }
+
+    public function countTags(): int {
+        $sql = "SELECT COUNT(*) FROM tag";
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+
+        return (int) $statement->fetchColumn();
+    }
 }

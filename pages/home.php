@@ -20,7 +20,8 @@ Autoloader::register();
         <button class="category-btn" type="button">Horreur</button>
 
         <?php if(isset($_SESSION['nickname']) && $_SESSION['nickname'] == 'administrateur'): ?>
-            <button class="category-btn" type="button" style="background-color: green;">AJOUTER</button>
+            <a href="dashboard.php"><button class="category-btn" type="button" style="background-color: green;">AJOUTER</button></a>
+            <a href="stats.php" class="category-btn" style="background-color: black;">Voir les statistiques</a>
         <?php endif; ?>
     </div>
 
