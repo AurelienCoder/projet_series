@@ -1,5 +1,9 @@
 <?php
-//VOIR TP4
+
+/**
+ * Cette classe évite la profusion des require
+ * VOIR PHP (Les bases) -> Autoloading
+ */
 class Autoloader
 {
 

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Cette classe génère la page login.php et permet de se connecter
+ */
 class Logger{
 
     public function generateLoginForm(string $action=null): void{ ?>

@@ -4,9 +4,13 @@ namespace sdb;
 
 use sdb\SerieDB;
 
+/**
+ * Cette classe utilise la fonction getAllActors() de serieDB : elle recupère le sql (les ids, noms et photos des acteurs) 
+ * et elle transforme le tout en HTML
+ */
 class ActorRender{
     
-    /* PROBLEME : j'ai du rajouter ces attributs sinon les erreurs suivantes se déclarent :
+    /* PROBLEME : on a du rajouter ces attributs sinon les erreurs suivantes se déclarent :
     Deprecated: Creation of dynamic property sdb\SerieRender::$id_acteur is deprecated in C:
     ... */
     private $id_acteur;

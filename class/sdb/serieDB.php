@@ -5,6 +5,9 @@ namespace sdb;
 //IMPORTANT car l'autoloader essaye de charger la classe PDO
 use \PDO;
 
+/**
+ * Cette classe récupère la base de données seriesdb et s'occupe de mettre en place les différentes requêtes
+ */
 class serieDB{
 
     private PDO $pdo;

@@ -1,16 +1,16 @@
 /* HOME */
 
 .home-button-div{
-text-align: center;
+  text-align: center;
 }
 
-button.favorite.styled {
+button.favorite.styled{
   width: 100%;
   padding: 1rem;
   font-size: 1.6rem;
 }
 
-.category-btn {
+.category-btn{
   background-color: #222;
   color: white;
   border: none;
@@ -20,7 +20,7 @@ button.favorite.styled {
   transition: background-color 0.3s;
 }
 
-.category-btn:hover {
+.category-btn:hover{
   background-color: white;
   color: #222;
 }
@@ -32,7 +32,7 @@ button.favorite.styled {
   color: white;
 }
 
-.model_serie:hover {
+.model_serie:hover{
   transform: scale(1.05);
   background-color: white;
   border: solid 1px grey;
@@ -40,7 +40,7 @@ button.favorite.styled {
   cursor: pointer;
 }
 
-.model_serie {
+.model_serie{
   background: #222;
   color: #fff;
   padding: 0.5rem;
@@ -50,7 +50,7 @@ button.favorite.styled {
   box-shadow: 0 4px 8px rgba(0,0,0,0.8);
 }
 
-.model_serie img {
+.model_serie img{
   width: auto;
   height: 350px;
   border-radius: 10px;
@@ -61,12 +61,12 @@ button.favorite.styled {
   font-size: 15px;
 }
 
-.model_serie span {
+.model_serie span{
   font-size: 1.4rem;
   color: #aaa;
 }
 
-.series-list {
+.series-list{
   display: flex;
   flex-wrap: wrap;
   margin-top: 2rem;
@@ -75,7 +75,7 @@ button.favorite.styled {
 
 /* PAGE SEARCH */
 
-.search-form {
+.search-form{
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -87,24 +87,24 @@ button.favorite.styled {
   color: #fff;
 }
 
-.form-group {
+.form-group{
 display: flex;
 flex-direction: column;
 }
 
-.form-group label {
+.form-group label{
 margin-bottom: 0.5rem;
 font-weight: bold;
 }
 
-.form-group input {
+.form-group input{
 padding: 0.8rem;
 border: none;
 border-radius: 5px;
 font-size: 1.4rem;
 }
 
-.form-group input:focus {
+.form-group input:focus{
 outline: 2px solid #f00;
 }
 

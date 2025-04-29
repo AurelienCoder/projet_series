@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Cette classe regroupe toutes les choses communes aux pages : le header, footer...
+ */
 class Template{
     public static function render(string $content): void{ ?>
 

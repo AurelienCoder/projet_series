@@ -4,9 +4,13 @@ namespace sdb;
 
 use sdb\SerieDB;
 
+/**
+ * Cette classe utilise la fonction getAllRealisators() de serieDB : elle recupère le sql (les ids, noms et photos des réalisateurs) 
+ * et elle transforme le tout en HTML
+ */
 class RealRender{
     
-    /* PROBLEME : j'ai du rajouter ces attributs sinon les erreurs suivantes se déclarent :
+    /* PROBLEME : on a du rajouter ces attributs sinon les erreurs suivantes se déclarent :
     Deprecated: Creation of dynamic property sdb\SerieRender::$id_real is deprecated in C:
     ... */
     private $id_real;
@@ -22,8 +26,9 @@ class RealRender{
                             <img src="<?= htmlspecialchars($this->photo_real); ?>" alt="<?php echo htmlspecialchars($this->photo_real); ?>">
                         </div>
 
+                        <!-- si nous sommes connectés en tant qu'admin, nous pouvons modifier chaque élement -->
                         <?php if(isset($_SESSION['nickname'])): ?>
-                            <button>EDIT</button>
+                            <button>MODIFIER</button>
                         <?php endif; ?>
 
                         <h2><?= htmlspecialchars($this->nom_real); ?></h2>

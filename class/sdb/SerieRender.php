@@ -4,9 +4,13 @@ namespace sdb;
 
 use sdb\SerieDB;
 
+/**
+ * Cette classe utilise la fonction getAllSeries() de serieDB : elle recupère le sql (les ids, titres, affiches... des séries) 
+ * et elle transforme le tout en HTML
+ */
 class SerieRender{
     
-    /* PROBLEME : j'ai du rajouter ces attributs sinon les erreurs suivantes se déclarent :
+    /* PROBLEME : on a du rajouter ces attributs sinon les erreurs suivantes se déclarent :
     Deprecated: Creation of dynamic property sdb\SerieRender::$id_serie is deprecated in C:
     Deprecated: Creation of dynamic property sdb\SerieRender::$titre_serie is deprecated in C: 
     ... */

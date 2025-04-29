@@ -7,6 +7,7 @@ Autoloader::register();
 
 <?php ob_start() ?>
 
+<!-- PAS ENCORE UTILISÉ -->
 <?php 
     $tag = $_GET['tag'] ?? '';
     $serie = $_GET['serie'] ?? '';

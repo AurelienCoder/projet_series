@@ -4,10 +4,16 @@ namespace series;
 
 use sdb\SerieDB;
 
+/**
+ * Cette classe a pour but de générer les résultats de la page search.php ET les résultats du <select> présent dans header.php
+ */
 class Search{
 
+    /**
+     * cette méthode génère un formulaire si aucune recherche n'est précisée que ce soit dans header.php ou search.php
+     */
     public function generateForm(){?>
-        <form action="search_result.php" method="GET" class="search-form">
+        <form name="search" action="search.php" method="GET" class="search-form">
             <div class="form-group">
                 <label for="tag">Tag :</label>
                 <input type="text" id="tag" name="tag" placeholder="Comédie...">
@@ -44,6 +50,10 @@ class Search{
         </form>
     <?php }
 
+    /**le <select> dans header.php renvoie vers search.php et utilise $_GET['search'] :
+     * $_GET['search'] récupère ce que l'utilisateur souhaite rechercher et en fonction de ce résultat,
+     * nous appellons les requêtes nécessaires grâce à la classe SerieDB
+     */
     public function getSearch(){
         $serieDB = new SerieDB();
 
