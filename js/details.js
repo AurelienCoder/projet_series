@@ -33,7 +33,6 @@ series.forEach((serie, index) => {
 
         let p = document.createElement('p');
         p.style = "bold";
-        /* A VOIR nl2br();*/
         p.innerText = document.getElementsByClassName('synopsis')[index].innerText;
         div.appendChild(p);
 
@@ -46,5 +45,5 @@ series.forEach((serie, index) => {
         a.style = "color: black";
         a.innerText = "Retour à la liste";
         div.appendChild(a);
-        })
+    })
 })

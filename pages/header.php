@@ -7,8 +7,10 @@
 
   <div>
     <form style="color: black" action="search.php" method="get">
+            <!-- à modifier -->
+
       <select name="search" class="search-input">
-        <option value="">Rechercher...</option>
+        <a href="search.php/search?"></a>
         <option value="series">Les séries</option>
         <option value="acteurs">Les acteurs</option>
         <option value="realisateurs">Les réalisateurs</option>

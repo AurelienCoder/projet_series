@@ -57,6 +57,12 @@ class SerieDB{
         return $results;
     }
 
+   /* public function getRealistorFromSerie($id){
+
+        $sql = "FROM serie"
+
+    }*/
+
     public function getAllRealisators(){
         $sql = "SELECT * FROM realisateur";
 
@@ -69,6 +75,57 @@ class SerieDB{
         return $results;
     }
 
+    
+    public function getRequest(){
+        // Afficher le nombre de saison
+        $sql = "SELECT COUNT(id_saison) FROM saison
+        WHERE saison.id_serie = ...
+        INNER JOIN serie on saison.id_serie = serie.id_serie";
+
+        // Afficher le nombre d'épisodes par saisons
+        $sql = "SELECT COUNT(episode.id_episode) FROM episode
+        WHERE saison_episode.id_saison = ...
+        INNER JOIN saison_episode ON episode.id_episode = saison_episode.id_episode";
+
+        // Durée totale de la série
+        $sql = "SELECT SUM(episode.duree_episode) FROM episode
+        WHERE serie.id_serie = ...
+        INNER JOIN saison_episode ON episode.id_episode = saison_episode.id_episode
+        INNER JOIN saison ON saison_episode.id_saison = saison.id_saison
+        INNER JOIN serie ON saison.id_serie = serie.id_serie";
+
+        // Durée de chaque saison
+        $sql = "SELECT SUM(episode.duree_episode) FROM episode 
+        WHERE saison.id_saison = ...
+        INNER JOIN saison_episode ON episode.id_episode = saison_episode.id_episode
+        INNER JOIN saison ON saison_episode.id_saison = saison.id_saison";
+
+        // Durée d'un épisode
+        $sql = "SELECT episode.duree_episode FROM episode
+        WHERE episode.id_episode = ...";
+
+        // Afficher tous les real d'une série
+        $sql = "SELECT realisateur.nom_real FROM realisateur
+        WHERE serie.id_serie = ...
+        INNER JOIN episode_realisateur ON realisateur.id_real = episode_realisateur.id_real
+        INNER JOIN episode ON episode_realisateur.id_episode = episode.id_episode
+        INNER JOIN saison_episode ON episode.id_episode = saison_episode.id_episode
+        INNER JOIN saison ON saison_episode.id_saison = saison.id_saison
+        INNER JOIN serie ON saison.id_serie = saison.id_serie";
+
+        $statement = $this->pdo->prepare($sql);
+
+        $statement->bindParam(':acteur', $acteur);
+
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\SerieRender");
+
+        return $results;
+
+    }
+    
     public function getSpecialRequest(string $acteur){
         
         /*
