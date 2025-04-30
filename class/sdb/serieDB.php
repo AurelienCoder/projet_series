@@ -29,6 +29,8 @@ class SerieDB{
         }
     }
 
+    /* LES FONCTIONS CI-DESSOUS REGROUPENT LES REQUETES POUR RECHERCHER DES INFORMATIONS SUR LA BD : tous les getters*/
+
     //IMPORTANT Nous ne sommes pas obligés de spécifier le type de retour
     public function getAllSeries(){
         $sql = "SELECT * FROM serie INNER JOIN serie_tag, tag 
@@ -267,6 +269,47 @@ class SerieDB{
         return $serie;
     }
     
+    public function getSaisonByNum($num){
+        $sql= "SELECT * FROM saison WHERE numero_saison = :num";
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\SaisonRender");
+        return $results;
+    }
+
+    public function getEpisode($saison_id, $serie_id){
+        $sql = "SELECT * FROM episode
+        INNER JOIN saison_episode ON episode.id_episode = saison_episode.id_episode
+        INNER JOIN saison ON saison_episode.id_saison = saison.id_saison
+        INNER JOIN serie ON saisonid_serie = serie.id_serie
+        WHERE saison.id_saison = :saison_id AND serie.id_serie = :serie_id";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\EpisodeRender");
+        return $results;
+    }
+
+    public function getSerieByTag($tag){
+        $sql = "SELECT * FROM serie
+        INNER JOIN serie_tag ON serie.id_serie = serie.id_serie
+        INNER JOIN tag ON serie_tag.id_tag = tag.id_tag
+        WHERE tag.nom_tag = :tag";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\SerieRender");
+        return $results;
+    }
+
+
+
+
+
+    /* LES FONCTIONS CI-DESSOUS REGROUPENT LES REQUETES POUR MODIFIER LA BD : AJOUTER, MODIFIER, SUPPRIMER... */
 
     public function addSerie($titre, $affiche, $synopsis){
         $sql = "INSERT INTO serie (titre_serie, affiche_serie, synopsis_serie) 
@@ -275,6 +318,16 @@ class SerieDB{
         $statement->bindParam(':titre', $titre);
         $statement->bindParam(':affiche', $affiche);
         $statement->bindParam(':synopsis', $synopsis);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
+    public function addReal($nom, $img){
+        $sql = "INSERT INTO realisateur (nom_real, photo_real) 
+                VALUES (:nom, :img)";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':nom', $nom);
+        $statement->bindParam(':img', $img);
 
         $statement->execute() or die(var_dump($statement->errorInfo()));
     }
@@ -336,6 +389,12 @@ class SerieDB{
         $statement->execute() or die(var_dump($statement->errorInfo()));
     }
 
+
+
+
+
+    /* LES FONCTIONS CI-DESSOUS REGROUPENT LES REQUETES POUR COMPTER LE TOTAL DES SERIES, GENRES...*/
+
     public function countSeries(): int{
         $sql = "SELECT COUNT(*) FROM serie";
         $statement = $this->pdo->prepare($sql);
@@ -350,42 +409,5 @@ class SerieDB{
         $statement->execute() or die(var_dump($statement->errorInfo()));
 
         return $statement->fetchColumn();
-    }
-
-    public function getSaisonByNum($num){
-        $sql= "SELECT * FROM saison WHERE numero_saison = :num";
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute() or die(var_dump($statement->errorInfo()));
-
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\SaisonRender");
-        return $results;
-    }
-
-
-    public function getEpisode($saison_id, $serie_id){
-        $sql = "SELECT * FROM episode
-        INNER JOIN saison_episode ON episode.id_episode = saison_episode.id_episode
-        INNER JOIN saison ON saison_episode.id_saison = saison.id_saison
-        INNER JOIN serie ON saisonid_serie = serie.id_serie
-        WHERE saison.id_saison = :saison_id AND serie.id_serie = :serie_id";
-
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute() or die(var_dump($statement->errorInfo()));
-
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\EpisodeRender");
-        return $results;
-    }
-
-    public function getSerieByTag($tag){
-        $sql = "SELECT * FROM serie
-        INNER JOIN serie_tag ON serie.id_serie = serie.id_serie
-        INNER JOIN tag ON serie_tag.id_tag = tag.id_tag
-        WHERE tag.nom_tag = :tag";
-
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute() or die(var_dump($statement->errorInfo()));
-
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\SerieRender");
-        return $results;
     }
 }

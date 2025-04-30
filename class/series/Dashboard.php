@@ -17,16 +17,29 @@ class Dashboard{
     }  
 
     public function ajouterSerie(){
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $titre = $_POST['titre'] ?? '';
-            $affiche = $_POST['affiche'] ?? '';
-            $synopsis = $_POST['synopsis'] ?? '';
-        
+        if(isset($_POST['titre']) && isset($_POST['affiche']) && isset($_POST['synopsis'])){
+
+            $titre = $_POST['titre'];
+            $affiche = $_POST['affiche'];
+            $synopsis = $_POST['synopsis'];
 
             $this->serieDB->addSerie($titre, $affiche, $synopsis); 
             header('Location: home.php');
             exit;
-        } ?>
+        }
+
+        //je récupère le nom du réalisateur et sa photo envoyés en POST avec AJAX (fetch)
+        if(isset($_POST['nom']) && isset($_POST['image'])){
+            header('Content-Type: application/json');
+            $nom = $_POST['nom'];
+            $image = $_POST['image'];
+
+            $this->serieDB->addReal($nom, $image);
+
+            echo json_encode(['success' => true, 'message' => 'real ajouté']);
+            exit;
+        }?>
+
         <section class="form-ajouter">
             <h1>Ajouter une série</h1>
             <form method="POST">
@@ -51,52 +64,55 @@ class Dashboard{
                     <button type="submit"  class="category-btn" id="ajouter-real-act-saison">Ajouter</button>
                 </div>
 
-                <!-- A MODIFIER -->
                 <div id="ajout-infos">
                     <div id="sous-div">
                         <h3>Ajouter</h3>
                         <label>Nom :</label>
-                        <input type="text" id="nom-info" placeholder="">
+                        <input type="text" id="nom-ajout" placeholder="">
                         <label>Image :</label>
-                        <input type="text" id="img-info" placeholder="">
+                        <input type="text" id="img-ajout" placeholder="">
 
                         <!-- A MODIFIER : AJOUTER EPISODES -->
                         <button id="valider" style="margin-top: 10px;">Valider</button>
                     </div>
                 </div>
 
+                <script src="../js/fetch.js"></script>
+                
                 <!-- A MODIFIER -->
                 <script>
                     let totalRealAjout;
 
-                    const infos = document.getElementById("ajout-infos");
-                    const sousDiv = document.getElementById("sous-div");
+                    let infos = document.getElementById('ajout-infos');
+                    let sousDiv = document.getElementById('sous-div');
+
+                    let nom = document.getElementById('nom-ajout').value;
+                    let image = document.getElementById('img-ajout').value;
 
                     document.getElementById('ajouter-real-act-saison').addEventListener('click', function(){
-                        infos.style.display = "block";
-
-                        totalActAjout = document.getElementById('nb-act').value;
+                        infos.style.display = 'block';
                         totalRealAjout = document.getElementById('nb-real').value;
-                        totalNbSaison = document.getElementById('nb-saison').value;
                     })
 
                     let nbReal = 1;
 
-                    sousDiv.childNodes[1].innerText = "Réalisateur n°" + nbReal;
+                    sousDiv.childNodes[1].innerText = 'Réalisateur n°' + nbReal;
 
                     document.getElementById('valider').addEventListener('click', function(){
                         if(nbReal<totalRealAjout){
+                            let url = "dashboard.php";
+                            fetchBD(url, nom, image);
+                            
+                            document.getElementById('nom-ajout').value = '';
+                            document.getElementById('img-ajout').value = '';
+
                             nbReal++;
-                            sousDiv.childNodes[1].innerText = "Réalisateur n°" + nbReal;
-                            //validerActeur(nbReal);
+                            sousDiv.childNodes[1].innerText = 'Réalisateur n°' + nbReal;
+
                         }else{
-                            infos.style.display = "none";
+                            infos.style.display = 'none';
                         }
                     })
-
-                    function validerReal(){
-                        <?php $this->serieDB->addReal(document.getElementById('nom-act'),text);?>
-                    }
                 </script>
 
                 <label>Affiche (URL de l'image) :</label>
@@ -122,10 +138,10 @@ class Dashboard{
 
         $serie = $this->serieDB->getSerieById($id);
         
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            $titre = $_POST['titre'] ?? '';
-            $affiche = $_POST['affiche'] ?? '';
-            $synopsis = $_POST['synopsis'] ?? '';
+        if(isset($_POST['titre']) && isset($_POST['affiche']) && isset($_POST['synopsis'])){
+            $titre = $_POST['titre'];
+            $affiche = $_POST['affiche'];
+            $synopsis = $_POST['synopsis'];
         
             $this->serieDB->updateSerie($id, $titre, $affiche, $synopsis);
             header('Location: home.php');

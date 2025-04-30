@@ -1,4 +1,4 @@
-//utilisé dans home.php : un script qui sélectionne les séries ayant le tag choisi lors du click sur l'un des boutons
+//utilisé dans search.php : un script qui sélectionne les réalisateurs correspondant au texte choisi dans l'input
 
 //on récupère l'ensemble des boutons
 const input = document.getElementById('inputt');
@@ -7,13 +7,12 @@ let reals = document.querySelectorAll('.model_serie');
 
 input.addEventListener('change', function(){
 
-    //on réinitialise l'affichage des séries
+    //on réinitialise l'affichage des réalisateurs
     reals.forEach(real => {
         real.style.display = 'initial';
     })
 
     reals.forEach(real => {
-        //variable récupérant les genres des séries
         let serie_tag = real.getElementsByTagName('h2')[0].innerText;
 
         //variable récupérant les genres des boutons

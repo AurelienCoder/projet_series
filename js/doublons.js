@@ -32,7 +32,7 @@ series.forEach( (serie, i)=> {
     if(index==null){
         titresAjoutes.push(titre);
     } else{ //sinon la série existe déjà, il faut donc la cacher et juste récuperer son tag pour l'ajouter à l'endroit où la série existe déjà
-        serie.style.display = "none";
-        document.getElementsByClassName('tag')[index].innerText += " " + tag;
+        serie.style.display = 'none';
+        document.getElementsByClassName('tag')[index].innerText += ' '+ tag;
     }
 });

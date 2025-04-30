@@ -2,12 +2,12 @@
 
 /**
  * Cette classe génère la page login.php et permet de se connecter
- */
+ */             
 class Logger{
 
     public function generateLoginForm(string $action=null): void{ ?>
         <form method="post" action="<?php $action ?>" class="magic-card">
-            <legend style="text-align: center; font-size: 25px;">Please Login</legend>
+            <legend style="text-align: center; font-size: 25px;">ESPACE RESERVE A L'ADMINISTRATEUR</legend>
             <div class="form-group">
                 <input type="text" name="username" placeholder="username">
                 <input type="password" name="password" placeholder="password">
