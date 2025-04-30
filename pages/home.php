@@ -42,7 +42,7 @@ Autoloader::register();
     <script src="../js/doublons.js"></script>
 
     <!-- script qui en fonction du click sur les boutons du dessus, affiche les préférences, les séries liées au tag choisi  -->
-    <script src="../js/tagSearch.js"></script>
+    <script src="../js/search.js"></script>
 
     <script src="../js/details.js"></script>
 </div>

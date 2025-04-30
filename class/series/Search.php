@@ -70,7 +70,7 @@ class Search{
             foreach($realisateurs as $realisateur){
                 echo $realisateur->getHTML();
             }
-            echo "<script src='../js/realSearch.js'></script>";
+            echo "<script src='../js/search.js'></script>";
 
         }else if($_GET['search'] == "acteurs"){
             echo "<script>document.getElementById('home-title').innerText = 'LES ACTEURS'; </script>";

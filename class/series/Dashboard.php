@@ -30,7 +30,10 @@ class Dashboard{
 
         //je récupère le nom du réalisateur et sa photo envoyés en POST avec AJAX (fetch)
         if(isset($_POST['nom']) && isset($_POST['image'])){
+
+            //obligatoire sinon ça ne fonctionne pas
             header('Content-Type: application/json');
+
             $nom = $_POST['nom'];
             $image = $_POST['image'];
 
@@ -75,45 +78,8 @@ class Dashboard{
                     </div>
                 </div>
 
-                <script src="../js/fetch.js"></script>
+                <script src="../js/dashboard.js"></script>
                 
-                <!-- A MODIFIER -->
-                <script>
-                    let totalRealAjout;
-
-                    let infos = document.getElementById('ajout-infos');
-                    let sousDiv = document.getElementById('sous-div');
-
-                    document.getElementById('ajouter-real-act-saison').addEventListener('click', function(){
-                        infos.style.display = 'block';
-                        totalRealAjout = document.getElementById('nb-real').value;
-                    })
-
-                    let nbReal = 1;
-
-                    sousDiv.childNodes[1].innerText = 'Réalisateur n°' + nbReal;
-
-                    document.getElementById('valider').addEventListener('click', function(){
-                        if(nbReal<totalRealAjout){
-
-                            let nom = document.getElementById('nom-ajout').value;
-                            let image = document.getElementById('img-ajout').value;
-
-                            let url = "dashboard.php";
-                            fetchBD(url, nom, image);
-                            
-                            document.getElementById('nom-ajout').value = '';
-                            document.getElementById('img-ajout').value = '';
-
-                            nbReal++;
-                            sousDiv.childNodes[1].innerText = 'Réalisateur n°' + nbReal;
-
-                        }else{
-                            infos.style.display = 'none';
-                        }
-                    })
-                </script>
-
                 <label>Affiche (URL de l'image) :</label>
                 <input type="text" name="affiche" required>
                 
