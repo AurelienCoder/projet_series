@@ -33,7 +33,7 @@ class SerieRender{
 
                         <?php if(isset($_SESSION['nickname'])): ?>
 
-                            <a href="dashboard.php?idModif=<?= $this->id_serie; ?>" ><button class="category-btn" type="button" style="background-color: blue;">MODIFIER</button></a>
+                            <a href="dashboard.php?idModif=<?= $this->id_serie; ?>" ><button class="category-btn" type="button" style="background-color: blue; padding = 2px;">MODIFIER</button></a>
 
                             <a href="dashboard.php?idSupp=<?= $this->id_serie; ?>" ><button class="category-btn" type="button" style="background-color: red;" onclick="return confirm('Es-tu sûr de vouloir supprimer cette série ?');">SUPPRIMER</button></a>
                         <?php endif; ?>

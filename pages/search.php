@@ -8,7 +8,7 @@ Autoloader::register();
 <?php ob_start() ?>
 
 <!-- PAS ENCORE UTILISÉ -->
-<?php 
+<?php
     $tag = $_GET['tag'] ?? '';
     $serie = $_GET['serie'] ?? '';
     $saison = $_GET['saison'] ?? '';
@@ -23,14 +23,23 @@ Autoloader::register();
 
         //si l'utilisateur n'a pas encore fait de requête, alors on affiche le formulaire avec generateForm();
         if(!isset($_GET['search']) || $_GET['search'] == ""){
-            $search->generateForm(); 
-        }else{ //sinon, on affiche le résultat de sa recherche grâce à getSearch();
+            //$search->generateForm(); 
+        }else if(isset($_GET['search'])){ //sinon, on affiche le résultat de sa recherche grâce à getSearch();
             echo "<div id='home-title'></div>
 
             <div style='display:flex; overflow-x: auto;'>";
                 $search->getSearch(); 
             echo "</div>";
-        }?>
+        } else if(isset($_GET['acteur'])){
+            $serieDB = new \sdb\SerieDB();
+
+            $seriesActeur = $serieDB->getSpecialRequest($_GET['acteur']);
+            
+            foreach($seriesActeur as $serie){
+                echo $serie->getHTML();
+            }
+        }
+        ?>
 </div>
 
 <?php $code = ob_get_clean(); ?>

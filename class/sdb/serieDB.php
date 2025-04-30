@@ -8,7 +8,7 @@ use \PDO;
 /**
  * Cette classe récupère la base de données seriesdb et s'occupe de mettre en place les différentes requêtes
  */
-class serieDB{
+class SerieDB{
 
     private PDO $pdo;
 
@@ -69,9 +69,10 @@ class serieDB{
         return $results;
     }
 
-    public function getSpecialRequest($titre= null, $tag=null, $acteur=null){
+    public function getSpecialRequest(string $acteur){
         
-        if($titre != null){
+        /*
+                if($titre != null){
             $sql= "SELECT * FROM serie WHERE $titre = serie.titre_serie";
         }
 
@@ -90,7 +91,28 @@ class serieDB{
             ";
         }
 
+        if($titre != null){
+            $sql= "SELECT * FROM serie WHERE $titre = serie.titre_serie";
+        }
+
+        else if($tag != null){
+            $sql= "SELECT * FROM serie WHERE $tag = tag.nom_tag
+            INNER JOIN serie_tag WHERE serie.id_serie = serie_tag.serie_id
+            INNER JOIN tag WHERE serie_tag.id_tag = tag.id_tag
+            ";
+        }*/
+
+        if($acteur != null){
+            $sql= "SELECT * FROM serie 
+            INNER JOIN saison ON serie.id_serie = saison.id_serie
+            INNER JOIN saison_acteur ON saison_acteur.id_saison = saison.id_saison
+            INNER JOIN acteur ON saison_acteur.id_acteur = acteur.id_acteur
+            WHERE :acteur = acteur.nom_acteur";
+        }
         $statement = $this->pdo->prepare($sql);
+
+        $statement->bindParam(':acteur', $acteur);
+
 
         $statement->execute() or die(var_dump($statement->errorInfo()));
 
@@ -111,12 +133,12 @@ class serieDB{
     public function getSerieById($id){
         $sql = "SELECT * FROM serie WHERE id_serie = :id";
         $statement = $this->pdo->prepare($sql);
-        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->bindParam(':id', $id);
         $statement->execute() or die(var_dump($statement->errorInfo()));
         $statement->setFetchMode(PDO::FETCH_CLASS, "\sdb\SerieRender");
 
         $serie = $statement->fetch();
-        return $serie ?: null;
+        return $serie;
     }
 
     public function addSerie($titre, $affiche, $synopsis){
