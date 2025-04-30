@@ -16,13 +16,9 @@ series.forEach( (serie, i)=> {
     let tag;
 
     //on parcourt le tableau des titres
-
-    //exemple titresAjoutes = ['Breaking Bad', 'TheLastKingdom']
-    //        titresAjoutes = [      0       ,         1       ]
     for(let idTitreAjoute=0; idTitreAjoute<titresAjoutes.length; idTitreAjoute++){
         //si un titre a déjà été ajouté alors il y a un doublon
 
-        //exemple avec titre = Breaking Bad
         if(titre == titresAjoutes[idTitreAjoute]){
             //on stocke dans index l'endroit où existe déjà la série
             index = idTitreAjoute;
