@@ -1,12 +1,13 @@
 //VOIR COURS JS DE M. BOURGUIN -> Fetch & POST
 //Question : on est d'accord que fetch fait partie de l'AJAX ? ce n'est pas uniquement XMLHttpRequest ?
 function fetchBD(url, nom, image){
-    let data = 'nom=' + nom + '&image=' + image;//ajout des données pour le POST
+    let data = new FormData();
+    data.append('nom', nom);
+    data.append('image', image);
 
     let options = {
         method: 'POST',
-        headers: { Accept: 'application/json',
-    'Content-Type': 'application/x-www-form-urlencoded'},
+        headers: { Accept: 'application/json'},
         body: data
     }
     
