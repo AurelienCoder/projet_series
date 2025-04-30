@@ -65,10 +65,12 @@ class Dashboard{
                     </div>
                 </div>
 
+                <!-- A MODIFIER -->
                 <script>
-                    let totalActAjout;
                     let totalRealAjout;
-                    let totalNbSaison;
+
+                    const infos = document.getElementById("ajout-infos");
+                    const sousDiv = document.getElementById("sous-div");
 
                     document.getElementById('ajouter-real-act-saison').addEventListener('click', function(){
                         infos.style.display = "block";
@@ -78,32 +80,24 @@ class Dashboard{
                         totalNbSaison = document.getElementById('nb-saison').value;
                     })
 
+                    let nbReal = 1;
+
+                    sousDiv.childNodes[1].innerText = "Réalisateur n°" + nbReal;
+
                     document.getElementById('valider').addEventListener('click', function(){
-                        const infos = document.getElementById("ajout-infos");
-                        const sousDiv = document.getElementById("sous-div");
-
-                        if(k<nb_act){
-                            sousDiv.childNodes[1].innerText = "Acteur n°" + k;
-                        }else if(k<nb_real){
-
-                        }else if(k<nb_saison){
-
-                        }
-
-                        for(let i=0; i<nb_real; i++){
-                            sousDiv.childNodes[1].innerText = "Réalisateur : ";
-                        }
-
-                        for(let i=0; i<nb_saison; i++){
-                            sousDiv.childNodes[1].innerText = "Saison :";
+                        if(nbReal<totalRealAjout){
+                            nbReal++;
+                            sousDiv.childNodes[1].innerText = "Réalisateur n°" + nbReal;
+                            //validerActeur(nbReal);
+                        }else{
+                            infos.style.display = "none";
                         }
                     })
-                    function validerActeur(){
+
+                    function validerReal(){
                         /* AJOUTER ACTEUR A BASE DE DONNEES */
-                        k++;
                     }
 
-                    infos.style.display = "none";
 
                 </script>
 
