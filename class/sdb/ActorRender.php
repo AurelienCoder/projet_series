@@ -9,7 +9,6 @@ use sdb\SerieDB;
  * et elle transforme le tout en HTML
  */
 class ActorRender{
-    
     /* PROBLEME : on a du rajouter ces attributs sinon les erreurs suivantes se déclarent :
     Deprecated: Creation of dynamic property sdb\SerieRender::$id_acteur is deprecated in C:
     ... */
