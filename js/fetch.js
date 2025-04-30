@@ -5,16 +5,13 @@ function fetchBD(url, nom, image){
 
     let options = {
         method: 'POST',
-        headers: { Accept: 'application/json' },
+        headers: { Accept: 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'},
         body: data
     }
     
     fetch(url, options).then(response => {
-        if (response.ok) {
-            response.json().then(data => {
-                display.innerHTML = data.id
-            })
-        } else {
+        if(!response.ok){
             alert("ERREUR avec la requête.", response.statusText);
         }
     }).catch(error => {

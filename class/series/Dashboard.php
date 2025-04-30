@@ -35,8 +35,6 @@ class Dashboard{
             $image = $_POST['image'];
 
             $this->serieDB->addReal($nom, $image);
-
-            echo json_encode(['success' => true, 'message' => 'real ajouté']);
             exit;
         }?>
 
@@ -49,17 +47,17 @@ class Dashboard{
                 <div style="display: flex">
                     <div>
                         <label>Nombre de Réalisateurs : </label>
-                        <input id="nb-real" type="number" name="titre" min="1" max ="5"></input>
+                        <input id="nb-real" type="number" min="1" max ="5"></input>
                     </div>
 
                     <div>
                         <label>Nombre d'acteurs : </label>
-                        <input id="nb-act" type="number" name="titre" min="1" max ="5"></input>
+                        <input id="nb-act" type="number" min="1" max ="5"></input>
                     </div>
 
                     <div>
                         <label>Nombre de saisons : </label>
-                        <input id="nb-saison" type="number" name="titre" min="1" max ="5"></input>
+                        <input id="nb-saison" type="number" min="1" max ="5"></input>
                     </div>
                     <button type="submit"  class="category-btn" id="ajouter-real-act-saison">Ajouter</button>
                 </div>
@@ -86,9 +84,6 @@ class Dashboard{
                     let infos = document.getElementById('ajout-infos');
                     let sousDiv = document.getElementById('sous-div');
 
-                    let nom = document.getElementById('nom-ajout').value;
-                    let image = document.getElementById('img-ajout').value;
-
                     document.getElementById('ajouter-real-act-saison').addEventListener('click', function(){
                         infos.style.display = 'block';
                         totalRealAjout = document.getElementById('nb-real').value;
@@ -100,6 +95,10 @@ class Dashboard{
 
                     document.getElementById('valider').addEventListener('click', function(){
                         if(nbReal<totalRealAjout){
+
+                            let nom = document.getElementById('nom-ajout').value;
+                            let image = document.getElementById('img-ajout').value;
+
                             let url = "dashboard.php";
                             fetchBD(url, nom, image);
                             
