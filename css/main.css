@@ -46,7 +46,6 @@ button.favorite.styled{
   padding: 0.5rem;
   border-radius: 10px;
   width: 250px;
-  text-align: center;
   box-shadow: 0 4px 8px rgba(0,0,0,0.8);
 }
 
@@ -119,32 +118,6 @@ outline: 2px solid #f00;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #page-serie {
   max-width: 800px;
   margin: 0 auto;
@@ -153,6 +126,32 @@ outline: 2px solid #f00;
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .btn-retour {
   display: inline-block;

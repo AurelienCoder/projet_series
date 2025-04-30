@@ -17,7 +17,7 @@ Autoloader::register();
         <button class="category-btn" type="button">Science-fiction</button>
         <button class="category-btn" type="button">Action</button>
         <button class="category-btn" type="button">Aventure</button>
-        <button class="category-btn" type="button">Horreur</button>
+        <button class="category-btn" type="button">Thriller</button>
 
         <!-- si l'administrateur est connecté, alors on ajoute dans home les 2 boutons AJOUTER et Voir les statistiques -->
         <?php if(isset($_SESSION['nickname']) && $_SESSION['nickname'] == 'administrateur'): ?>
@@ -43,6 +43,8 @@ Autoloader::register();
 
     <!-- script qui en fonction du click sur les boutons du dessus, affiche les préférences, les séries liées au tag choisi  -->
     <script src="../js/tagSearch.js"></script>
+
+    <script src="../js/details.js"></script>
 </div>
 
 <?php $code = ob_get_clean(); ?>
