@@ -279,6 +279,16 @@ class SerieDB{
         $statement->execute() or die(var_dump($statement->errorInfo()));
     }
 
+    public function addReal($nom, $image){
+        $sql = "INSERT INTO realisateur (nom_real, photo_real) 
+                VALUES (:nom, :image)";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':nom', $nom);
+        $statement->bindParam(':image', $image);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
     public function updateSerie($id, $titre, $affiche, $synopsis){
 
         //METTRE UN GIGA SQL

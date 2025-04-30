@@ -61,13 +61,17 @@ class Search{
         $serieDB = new SerieDB();
 
         if($_GET['search'] == "realisateurs"){
-            echo "<script>document.getElementById('home-title').innerText = 'LES RÉALISATEURS'; </script>";
+            echo "<script>document.getElementById('home-title').innerText = 'LES RÉALISATEURS'; </script>
+                <div><input id='inputt' placeholder='rechercher un réalisateur...'></input></div>
+            ";
 
             $realisateurs = $serieDB->getAllRealisators();
             
             foreach($realisateurs as $realisateur){
                 echo $realisateur->getHTML();
             }
+            echo "<script src='../js/realSearch.js'></script>";
+
         }else if($_GET['search'] == "acteurs"){
             echo "<script>document.getElementById('home-title').innerText = 'LES ACTEURS'; </script>";
 

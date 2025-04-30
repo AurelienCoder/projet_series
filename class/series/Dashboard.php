@@ -95,10 +95,8 @@ class Dashboard{
                     })
 
                     function validerReal(){
-                        /* AJOUTER ACTEUR A BASE DE DONNEES */
+                        <?php $this->serieDB->addReal(document.getElementById('nom-act'),text);?>
                     }
-
-
                 </script>
 
                 <label>Affiche (URL de l'image) :</label>
