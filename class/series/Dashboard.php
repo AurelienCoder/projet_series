@@ -46,6 +46,8 @@ class Dashboard{
 
     public function supprimerSerie($id){        
         $this->serieDB->deleteSerie($id);
+        header('Location: home.php');
+        exit;
     }
 
     public function modifierSerie($id){
@@ -60,7 +62,7 @@ class Dashboard{
             $synopsis = $_POST['synopsis'] ?? '';
         
             $this->serieDB->updateSerie($id, $titre, $affiche, $synopsis);
-            header('Location: dashboard.php');
+            header('Location: home.php');
             exit;
         }?>
 

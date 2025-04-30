@@ -24,8 +24,6 @@ Autoloader::register();
         //si l'utilisateur n'a pas encore fait de requête, alors on affiche le formulaire avec generateForm();
         if(!isset($_GET['search']) || $_GET['search'] == ""){
             $search->generateForm(); 
-
-            PETASSE
         }else if(isset($_GET['search'])){ //sinon, on affiche le résultat de sa recherche grâce à getSearch();
             echo "<div id='home-title'></div>
 

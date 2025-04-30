@@ -6,21 +6,9 @@
 </div>
 
   <div>
-    <form style="color: black" action="search.php" method="get">
-            <!-- à modifier -->
-
-      <select name="search" class="search-input">
-        <a href="search.php/search?"></a>
-        <option value="series">Les séries</option>
-        <option value="acteurs">Les acteurs</option>
-        <option value="realisateurs">Les réalisateurs</option>
-      </select>
-
-      <button type="submit" class="search-button">
-        <i class="fas fa-search"></i>
-      </button>
-    </form>
-
+        <a href="search.php?search=series">Les séries</a>
+        <a href="search.php?search=acteurs">Les acteurs</a>
+        <a href="search.php?search=realisateurs">Les réalisateurs</a>
       <a href="search.php" id="options-header">▶ Plus d'options de recherche</a>
 </div>
   <?php             
