@@ -63,7 +63,7 @@ document.getElementById('valider').addEventListener('click', function(){
     let getNomInput = document.getElementById('nom-ajout').value;
     let getImageInput = document.getElementById('img-ajout').value;
 
-    let url = "dashboard.php";
+    let url = "dashboard.php?value=serie";
 
     if(numReal <= totalReal){
         fetchBD(url, getNomInput, getImageInput, 'real');
