@@ -33,7 +33,7 @@ Autoloader::register();
             $series = $serieDB->getAllSeries();
             
             foreach($series as $serie){
-                echo $serie->getHTML();
+                echo $serie->getHTMLSerie();
             }
         ?>
     </div>

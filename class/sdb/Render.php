@@ -1,0 +1,156 @@
+<?php
+
+namespace sdb;
+
+use sdb\SerieDB;
+
+/**
+ * Cette classe utilise les fonctions présentes dans serieDB : elle recupère les requêtes et elle transforme le tout en HTML
+ */
+class Render{
+    
+    /* PROBLEME : on a du rajouter ces attributs sinon les erreurs suivantes se déclarent :
+    Deprecated: Creation of dynamic property sdb\Render::$id_serie is deprecated in C:
+    Deprecated: Creation of dynamic property sdb\Render::$titre_serie is deprecated in C: 
+    ... */
+    private $id_serie;
+    private $titre_serie;
+    private $affiche_serie;
+    private $synopsis_serie;
+
+    private $id_tag;
+    private $nom_tag;
+
+    private $id_acteur;
+    private $nom_acteur;
+    private $photo_acteur;
+
+    private $id_real;
+    private $nom_real;
+    private $photo_real;
+
+    private $id_saison;
+    private $titre_saison;
+    private $numero_saison;
+    private $affiche_saison;
+
+    private $id_episode;
+    private $titre_episode;
+    private $synopsis_episode;
+    private $duree_episode;
+    
+
+    public function getHTMLSerie(){
+        ?>
+
+        <div class="series-list">
+                    <div class="model_serie">
+                        <div style="overflow: hidden">
+                            <img class="img-serie" src="<?= htmlspecialchars($this->affiche_serie); ?>" alt="<?php echo htmlspecialchars($this->affiche_serie); ?>">
+                        </div>
+
+                        <?php if(isset($_SESSION['nickname'])): ?>
+
+                            <a href="dashboard.php?modif=<?= $this->id_serie; ?>" ><button class="category-btn" type="button" style="background-color: blue; padding = 2px;">MODIFIER</button></a>
+
+                            <a href="dashboard.php?supp=<?= $this->id_serie; ?>" ><button class="category-btn" type="button" style="background-color: red;" onclick="return confirm('Es-tu sûr de vouloir supprimer cette série ?');">SUPPRIMER</button></a>
+                        <?php endif; ?>
+
+                        <h2 class="titre-serie"><?= htmlspecialchars($this->titre_serie); ?></h2>
+                        
+                        <span class="tag"><?= $this->nom_tag ?></span>
+
+                        <span class="synopsis" style="display:none"><?= $this->synopsis_serie ?></span>
+                    </div>
+            </div>
+    <?php }
+
+    public function getHTMLActor(){
+        ?>
+
+        <div class="series-list">
+                    <div class="model_serie">
+                        <div style="overflow: hidden">
+                            <img src="<?= htmlspecialchars($this->photo_acteur); ?>" alt="<?php echo htmlspecialchars($this->photo_acteur); ?>">
+                        </div>
+
+                        <?php if(isset($_SESSION['nickname'])): ?>
+                            <button>EDIT</button>
+                        <?php endif; ?>
+
+                        <h2><?= htmlspecialchars($this->nom_acteur); ?></h2>
+                        
+                    </div>
+            </div>
+    <?php }
+
+    public function getHTMLReal(){
+        ?>
+
+        <div class="series-list">
+                    <div class="model_serie">
+                        <div style="overflow: hidden">
+                            <img src="<?= htmlspecialchars($this->photo_real); ?>" alt="<?php echo htmlspecialchars($this->photo_real); ?>">
+                        </div>
+
+                        <!-- si nous sommes connectés en tant qu'admin, nous pouvons modifier chaque élement -->
+                        <?php if(isset($_SESSION['nickname'])): ?>
+                            <button>MODIFIER</button>
+                        <?php endif; ?>
+
+                        <h2><?= htmlspecialchars($this->nom_real); ?></h2>
+                        
+                    </div>
+            </div>
+    <?php }
+
+    public function getHTMLSaison(){
+        ?>
+
+    <div class="series-list">
+        <div class="model_serie">
+            <div style="overflow: hidden">
+                <img src="<?= htmlspecialchars($this->affiche_saison); ?>" alt="<?php echo htmlspecialchars($this->affiche_saison); ?>">
+            </div>
+
+            <h2><?= htmlspecialchars($this->titre_saison); ?></h2>
+            
+            <h2><?= htmlspecialchars($this->numero_saison); ?></h2>
+        </div>
+    </div>
+
+    <?php }
+
+    public function getHTMLEpisode(){
+        ?>
+    <div class="series-list">
+        <div class="model_serie">
+            <h2><?= htmlspecialchars($this->titre_episode); ?></h2>
+            
+            <span class="synopsis" style="display:none"><?= $this->synopsis_serie ?></span>
+
+            <h2><?= htmlspecialchars($this->duree_episode); ?></h2>
+        </div>
+    </div>
+    <?php }
+
+    public function getTitreSerie(){
+        return $this->titre_serie;
+    }
+
+    //getter pour l'ID si besoin
+    public function getIdSerie(){
+        return $this->id_serie;
+    }
+
+    // getter pour l'affiche si besoin
+    public function getAfficheSerie(){
+        return $this->affiche_serie;
+    }
+
+    //getter pour le synopsis si besoin
+    public function getSynopsisSerie(){
+        return $this->synopsis_serie;
+    }
+}
+?>

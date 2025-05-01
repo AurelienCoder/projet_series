@@ -15,14 +15,15 @@ class Search{
      */
     public function generateForm(){?>
         <form name="search" action="search.php" method="GET" class="search-form">
-            <div class="form-group">
-                <label for="tag">Tag :</label>
-                <input type="text" id="tag" name="tag" placeholder="Comédie...">
-            </div>
-
+            
             <div class="form-group">
                 <label for="serie">Nom de la série :</label>
                 <input type="text" id="serie" name="serie" placeholder="Nom de la série">
+            </div>
+
+            <div class="form-group">
+                <label for="tag">Tag :</label>
+                <input type="text" id="tag" name="tag" placeholder="Comédie...">
             </div>
 
             <div class="form-group">
@@ -69,14 +70,13 @@ class Search{
                 input.id = 'search-real';
                 input.placeholder = 'rechercher un réalisateur...';
                 document.getElementById('home-title').after(input);
-                input.addEventListener('change', function(){alert('test')});
             </script>
             <script src='../js/search.js'></script>
 
             <?php $realisateurs = $serieDB->getAllRealisators();
             
             foreach($realisateurs as $realisateur){
-                echo $realisateur->getHTML();
+                echo $realisateur->getHTMLReal();
             }
         }else if($_GET['search'] == "acteurs"){
             echo "<script>document.getElementById('home-title').innerText = 'LES ACTEURS'; </script>";
@@ -84,7 +84,7 @@ class Search{
             $acteurs = $serieDB->getAllActors();
             
             foreach($acteurs as $acteur){
-                echo $acteur->getHTML();
+                echo $acteur->getHTMLActor();
             }
         }else if($_GET['search'] == "series"){
             echo "<script>document.getElementById('home-title').innerText = 'LES SERIES'; </script>";
@@ -92,7 +92,7 @@ class Search{
             $series = $serieDB->getAllSeries();
             
             foreach($series as $serie){
-                echo $serie->getHTML();
+                echo $serie->getHTMLSerie();
             }
 
             echo "<script src='../js/doublons.js'></script>";

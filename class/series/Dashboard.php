@@ -56,7 +56,7 @@ class Dashboard{
             <h1>Ajouter une série</h1>
             <form method="POST">
                 <label>Titre :</label>
-                <input type="text" name="titre" required>
+                <input value="titre" type="text" name="titre" required>
 
                 <label>Genre :</label>
                 <input type="text" name="genre" required>

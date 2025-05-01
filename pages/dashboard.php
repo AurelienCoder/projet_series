@@ -10,12 +10,16 @@ Autoloader::register();
 <?php
     $dashboard = new \series\Dashboard();
 
-    if(isset($_GET['idSupp'])){
-        $dashboard->supprimerSerie($_GET['idSupp']);
-    }else if(isset($_GET['idModif'])){
-        $dashboard->modifierSerie($_GET['idModif']);
+    if($logged){
+        if(isset($_GET['supp'])){
+            $dashboard->supprimerSerie($_GET['supp']);
+        }else if(isset($_GET['modif'])){
+            $dashboard->modifierSerie($_GET['modif']);
+        }else{
+            $dashboard->ajouterSerie();
+        }
     }else{
-        $dashboard->ajouterSerie();
+        echo "<h1>VOUS N'AVEZ PAS ACCES A CETTE PAGE</h1>";
     }
 ?>
 

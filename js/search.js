@@ -41,7 +41,7 @@ input = document.getElementById('search-real');
 let reals = document.querySelectorAll('.model_serie');
 
 input.addEventListener('change', function(){
-
+alert('test');
     //on réinitialise l'affichage des réalisateurs
     reals.forEach(real => {
         real.style.display = 'initial';
@@ -49,6 +49,7 @@ input.addEventListener('change', function(){
 
     reals.forEach(real => {
         let serie_tag = real.getElementsByTagName('h2')[0].innerText;
+        alert(serie_tag);
 
         //variable récupérant les genres des boutons
 

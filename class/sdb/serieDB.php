@@ -42,7 +42,7 @@ class SerieDB{
 
         //IMPORTANT FETCH_ASSOC pour transformer en tableau
         //FETCH_CLASS pour transmettre les données vers une classe
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\SerieRender");
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
 
         return $results;
     }
@@ -54,16 +54,10 @@ class SerieDB{
 
         $statement->execute() or die(var_dump($statement->errorInfo()));
 
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\ActorRender");
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
 
         return $results;
     }
-
-   /* public function getRealistorFromSerie($id){
-
-        $sql = "FROM serie"
-
-    }*/
 
     public function getAllRealisators(){
         $sql = "SELECT * FROM realisateur";
@@ -72,59 +66,29 @@ class SerieDB{
 
         $statement->execute() or die(var_dump($statement->errorInfo()));
 
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\RealRender");
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
 
         return $results;
     }
 
-    
-    public function getTimeSerie($serie_id){
-        // Durée totale de la série
-        $sql = "SELECT SUM(episode.duree_episode) FROM episode
-        INNER JOIN saison_episode ON episode.id_episode = saison_episode.id_episod
-        INNER JOIN saison ON saison_episode.id_saison = saison.id_saison
+    public function getSaisons($id_serie){
+        // Afficher les saisons d'une série
+        $sql = "SELECT * FROM saison
         INNER JOIN serie ON saison.id_serie = serie.id_serie
-        WHERE serie.id_serie = :serie_id";
+        WHERE serie.id_serie = :id_serie";
 
         $statement = $this->pdo->prepare($sql);
-        $statement->bindParam(':serie_id', $serie_id);
+        $statement->bindParam(':id_serie', $id_serie);
         $statement->execute() or die(var_dump($statement->errorInfo()));
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\SerieRender");
-        return $results;
-    }
-
-    public function getTimeSaison($saison_id){
-        // Durée de chaque saison
-        $sql = "SELECT SUM(episode.duree_episode) FROM episode 
-        INNER JOIN saison_episode ON episode.id_episode = saison_episode.id_episode
-        INNER JOIN saison ON saison_episode.id_saison = saison.id_saison
-        WHERE saison.id_saison = :saison_id";
-
-        $statement = $this->pdo->prepare($sql);
-        $statement->bindParam(':saison_id', $saison_id);
-        $statement->execute() or die(var_dump($statement->errorInfo()));
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\SaisonRender");
-        return $results;
-    }
-
-
-    public function getTimeEpisode($epi_id){
-        // Durée d'un épisode
-        $sql = "SELECT episode.duree_episode FROM episode
-        WHERE episode.id_episode = :epi_id";
-
-        $statement = $this->pdo->prepare($sql);
-        $statement->bindParam(':epi_id', $epi_id);
-        $statement->execute() or die(var_dump($statement->errorInfo()));
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\EpisodeRender");
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
         return $results;
     }
 
     public function getActeurs($serie_id){
-        // Afficher tous les acteurs d'une série 
-        $sql = "SELECT * FROM acteur
-        INNER JOIN saison_acteur ON acteur.id_acteur = saison_acteur.id_acteur
-        INNER JOIN saison ON saison_acteur.id_acteur = saison.id_acteur
+        // Afficher tous les acteurs d'une série
+
+        $sql = "SELECT * FROM acteur INNER JOIN saison_acteur ON acteur.id_acteur = saison_acteur.id_acteur
+        INNER JOIN saison ON saison.id_saison = saison_acteur.id_saison
         INNER JOIN serie ON saison.id_serie = serie.id_serie
         WHERE serie.id_serie = :serie_id";
 
@@ -152,45 +116,6 @@ class SerieDB{
         return $results;
     }
 
-    public function getNbSaison($serie_id){
-        // Afficher le nombre de saison
-        $sql = "SELECT COUNT(*) FROM saison
-        INNER JOIN serie on saison.id_serie = serie.id_serie
-        WHERE saison.id_serie = :serie_id";
-
-        $statement = $this->pdo->prepare($sql);
-        $statement->bindParam(':serie_id', $serie_id);
-        $statement->execute() or die(var_dump($statement->errorInfo()));
-        return $statement->fetchColumn();
-    }
-
-    public function getNbEpisode($saison_id){
-        // Afficher le nombre d'épisodes par saisons
-        $sql = "SELECT COUNT(*) FROM episode
-        INNER JOIN saison_episode ON episode.id_episode = saison_episode.id_episode
-        WHERE saison_episode.id_saison = :id_saison";
-
-        $statement = $this->pdo->prepare($sql);
-        $statement->bindParam(':saison_id', $saison_id);
-        $statement->execute() or die(var_dump($statement->errorInfo()));
-        return $statement->fetchColumn();
-    }
-
-
-    public function getSaisons($id_serie){
-        // Afficher les saisons d'une série
-        $sql = "SELECT * FROM saison
-        INNER JOIN serie ON saison.id_serie = serie.id_serie
-        WHERE serie.id_serie = :id_serie";
-
-        $statement = $this->pdo->prepare($sql);
-        $statement->bindParam(':id_serie', $id_serie);
-        $statement->execute() or die(var_dump($statement->errorInfo()));
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\SaisonRender");
-        return $results;
-    }
-        
-
     public function getEpisodes($saison_id){
         // Afficher les épisodes d'une saison
         $sql = "SELECT * FROM episode
@@ -205,68 +130,12 @@ class SerieDB{
         return $results;
     }
 
-    
-    public function getSpecialRequest(string $acteur){
-        
-        /*
-                if($titre != null){
-            $sql= "SELECT * FROM serie ON $titre = serie.titre_serie";
-        }
-
-        else if($tag != null){
-            $sql= "SELECT * FROM serie WHERE $tag = tag.nom_tag
-            INNER JOIN serie_tag ON serie.id_serie = serie_tag.serie_id
-            INNER JOIN tag ON serie_tag.id_tag = tag.id_tag
-            ";
-        }
-
-        else if($acteur != null){
-            $sql= "SELECT * FROM serie WHERE $acteur = acteur.nom_acteur
-            INNER JOIN saison ON serie.id_serie = saison.id_serie
-            INNER JOIN saison_acteur ON saison saison.id_saison = saison_acteur.id_saison
-            INNER JOIN acteur ON saison_acteur.id_acteur = acteur.id_acteur
-            ";
-        }
-
-        if($titre != null){
-            $sql= "SELECT * FROM serie WHERE $titre = serie.titre_serie";
-        }
-
-        else if($tag != null){
-            $sql= "SELECT * FROM serie WHERE $tag = tag.nom_tag
-            INNER JOIN serie_tag ON serie.id_serie = serie_tag.serie_id
-            INNER JOIN tag ON serie_tag.id_tag = tag.id_tag
-            ";
-        }*/
-
-        if($acteur != null){
-            $sql= "SELECT * FROM serie 
-            INNER JOIN saison ON serie.id_serie = saison.id_serie
-            INNER JOIN saison_acteur ON saison_acteur.id_saison = saison.id_saison
-            INNER JOIN acteur ON saison_acteur.id_acteur = acteur.id_acteur
-            WHERE :acteur = acteur.nom_acteur";
-        }
+    public function getIdBySerie($serie){
+        $sql = "SELECT id_serie FROM serie WHERE titre_serie = :titre_serie";
         $statement = $this->pdo->prepare($sql);
-
-        $statement->bindParam(':acteur', $acteur);
-
-
+        $statement->bindParam(':titre_serie', $serie);
         $statement->execute() or die(var_dump($statement->errorInfo()));
-
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\SerieRender");
-
-        return $results;
-    }
-
-    public function getSerieById($id){
-        $sql = "SELECT * FROM serie WHERE id_serie = :id";
-        $statement = $this->pdo->prepare($sql);
-        $statement->bindParam(':id', $id);
-        $statement->execute() or die(var_dump($statement->errorInfo()));
-        $statement->setFetchMode(PDO::FETCH_CLASS, "\sdb\SerieRender");
-
-        $serie = $statement->fetch();
-        return $serie;
+        return $statement->fetchColumn();
     }
     
     public function getSaisonByNum($num){
@@ -301,12 +170,9 @@ class SerieDB{
         $statement = $this->pdo->prepare($sql);
         $statement->execute() or die(var_dump($statement->errorInfo()));
 
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\SerieRender");
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
         return $results;
     }
-
-
-
 
 
     /* LES FONCTIONS CI-DESSOUS REGROUPENT LES REQUETES POUR MODIFIER LA BD : AJOUTER, MODIFIER, SUPPRIMER... */
@@ -410,6 +276,7 @@ class SerieDB{
         $statement = $this->pdo->prepare($sql);
         $statement->execute() or die(var_dump($statement->errorInfo()));
 
+        //POURQUOI ON UTILISE FETCH COLUMN?
         return $statement->fetchColumn();
     }
 
@@ -418,6 +285,69 @@ class SerieDB{
         $statement = $this->pdo->prepare($sql);
         $statement->execute() or die(var_dump($statement->errorInfo()));
 
+        return $statement->fetchColumn();
+    }
+
+    
+    public function getTimeSerie($serie_id){
+        // Durée totale de la série
+        $sql = "SELECT SUM(episode.duree_episode) FROM episode
+        INNER JOIN saison_episode ON episode.id_episode = saison_episode.id_episod
+        INNER JOIN saison ON saison_episode.id_saison = saison.id_saison
+        INNER JOIN serie ON saison.id_serie = serie.id_serie
+        WHERE serie.id_serie = :serie_id";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':serie_id', $serie_id);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        return $statement->fetchColumn();
+    }
+
+    public function getTimeSaison($saison_id){
+        // Durée de chaque saison
+        $sql = "SELECT SUM(episode.duree_episode) FROM episode 
+        INNER JOIN saison_episode ON episode.id_episode = saison_episode.id_episode
+        INNER JOIN saison ON saison_episode.id_saison = saison.id_saison
+        WHERE saison.id_saison = :saison_id";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':saison_id', $saison_id);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        return $statement->fetchColumn();
+    }
+
+    public function getTimeEpisode($epi_id){
+        // Durée d'un épisode
+        $sql = "SELECT episode.duree_episode FROM episode
+        WHERE episode.id_episode = :epi_id";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':epi_id', $epi_id);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        return $statement->fetchColumn();
+    }
+
+    public function getNbSaison($serie_id){
+        // Afficher le nombre de saison
+        $sql = "SELECT COUNT(*) FROM saison
+        INNER JOIN serie on saison.id_serie = serie.id_serie
+        WHERE saison.id_serie = :serie_id";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':serie_id', $serie_id);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        return $statement->fetchColumn();
+    }
+
+    public function getNbEpisode($saison_id){
+        // Afficher le nombre d'épisodes par saisons
+        $sql = "SELECT COUNT(*) FROM episode
+        INNER JOIN saison_episode ON episode.id_episode = saison_episode.id_episode
+        WHERE saison_episode.id_saison = :id_saison";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':saison_id', $saison_id);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
         return $statement->fetchColumn();
     }
 }
