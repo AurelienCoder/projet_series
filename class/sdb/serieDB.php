@@ -87,7 +87,7 @@ class SerieDB{
     public function getActeurs($serie_id){
         // Afficher tous les acteurs d'une série
 
-        $sql = "SELECT * FROM acteur INNER JOIN saison_acteur ON acteur.id_acteur = saison_acteur.id_acteur
+        $sql = "SELECT DISTINCT nom_acteur, photo_acteur FROM acteur INNER JOIN saison_acteur ON acteur.id_acteur = saison_acteur.id_acteur
         INNER JOIN saison ON saison.id_saison = saison_acteur.id_saison
         INNER JOIN serie ON saison.id_serie = serie.id_serie
         WHERE serie.id_serie = :serie_id";
@@ -101,12 +101,12 @@ class SerieDB{
 
     public function getReal($serie_id){
         // Afficher tous les real d'une série
-        $sql = "SELECT * FROM realisateur
+        $sql = "SELECT DISTINCT nom_real, photo_real FROM realisateur
         INNER JOIN episode_realisateur ON realisateur.id_real = episode_realisateur.id_real
         INNER JOIN episode ON episode_realisateur.id_episode = episode.id_episode
         INNER JOIN saison_episode ON episode.id_episode = saison_episode.id_episode
         INNER JOIN saison ON saison_episode.id_saison = saison.id_saison
-        INNER JOIN serie ON saison.id_serie = saison.id_serie
+        INNER JOIN serie ON saison.id_serie = serie.id_serie
         WHERE serie.id_serie = :serie_id";
 
         $statement = $this->pdo->prepare($sql);

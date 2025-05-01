@@ -30,13 +30,31 @@ Autoloader::register();
             echo "</div>";
         } else if(isset($_GET['serie'])){
 
-            echo "<div id='home-title'></div>
+            echo "
+            <div id='home-title'></div>
 
             <div style='display:flex; overflow-x: auto;'>";
-                $saisons = $serieDB->getActeurs($serieDB->getIdBySerie($_GET['serie']));
+                $acteurs = $serieDB->getActeurs($serieDB->getIdBySerie($_GET['serie']));
+
+                foreach($acteurs as $acteur){
+                    echo $acteur->getHTMLActor();
+                }
+            echo "</div>";
+
+            echo "<div style='display:flex; overflow-x: auto;'>";
+                $realisateurs = $serieDB->getReal($serieDB->getIdBySerie($_GET['serie']));
+
+                foreach($realisateurs as $realisateur){
+                    echo $realisateur->getHTMLReal();
+                }
+            echo "</div>";
+            
+            echo "<div style='display:flex; overflow-x: auto;'>";
+
+                $saisons = $serieDB->getSaisons($serieDB->getIdBySerie($_GET['serie']));
 
                 foreach($saisons as $saison){
-                    echo $saison->getHTMLActor();
+                    echo $saison->getHTMLSaison();
                 }
             echo "</div>";
         }else{

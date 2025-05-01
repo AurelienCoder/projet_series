@@ -23,7 +23,6 @@ class Template{
                     display: flex;
                     flex-direction: column;
                     color: black;
-                    overflow: hidden;
                 }
 
                 body{
@@ -32,7 +31,6 @@ class Template{
                     background-size: 100%;
                     background-attachment : fixed;
                     color: black;
-
                 }
 
                 header{
