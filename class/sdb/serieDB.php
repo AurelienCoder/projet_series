@@ -267,9 +267,23 @@ class SerieDB{
         $statement->execute() or die(var_dump($statement->errorInfo()));
     }
 
+    //utilisée
+    public function deleteAct($id){
+        $sql = "DELETE FROM acteur WHERE id_acteur= :id";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id', $id);
 
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
 
+    //utilisée
+    public function deleteReal($id){
+        $sql = "DELETE FROM realisateur WHERE id_real = :id";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id', $id);
 
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
 
     /* LES FONCTIONS CI-DESSOUS REGROUPENT LES REQUETES POUR COMPTER LE TOTAL DES SERIES, GENRES...*/
 

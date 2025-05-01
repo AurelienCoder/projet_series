@@ -11,12 +11,23 @@ Autoloader::register();
     $dashboard = new \series\Dashboard();
 
     if($logged){
-        if(isset($_GET['supp'])){
-            $dashboard->supprimerSerie($_GET['supp']);
-        }else if(isset($_GET['modif'])){
-            $dashboard->modifierSerie($_GET['modif']);
-        }else{
-            $dashboard->ajouterSerie();
+
+        if(isset($_GET['value']) && $_GET['value'] == 'serie' ){
+            if(isset($_GET['supp'])){
+                $dashboard->supprimerSerie($_GET['supp']);
+            }else if(isset($_GET['modif'])){
+                $dashboard->modifierSerie($_GET['modif']);
+            }else{
+                $dashboard->ajouterSerie();
+            }
+        }else if(isset($_GET['value']) && $_GET['value'] == 'act' ){
+            if(isset($_GET['supp'])){
+                $dashboard->supprimerAct($_GET['supp']);
+            }
+        }else if(isset($_GET['value']) && $_GET['value'] == 'real' ){
+            if(isset($_GET['supp'])){
+                $dashboard->supprimerReal($_GET['supp']);
+            }
         }
     }else{
         echo "<h1>VOUS N'AVEZ PAS ACCES A CETTE PAGE</h1>";

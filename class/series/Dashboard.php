@@ -153,5 +153,23 @@ class Dashboard{
             </form>
         </section>
    <?php }
+
+    /**
+     * méthode qui supprime un acteur
+     */
+    public function supprimerAct($id){
+        $this->serieDB->deleteAct($id);
+        header('Location: search.php?search=acteurs');
+        exit;
+    }
+
+    /**
+     * méthode qui supprime un réalisateur
+     */
+    public function supprimerReal($id){
+        $this->serieDB->deleteReal($id);
+        header('Location: search.php?search=realisateurs');
+        exit;
+    }
 }
 ?>

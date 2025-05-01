@@ -50,9 +50,9 @@ class Render{
 
                         <?php if(isset($_SESSION['nickname'])): ?>
 
-                            <a href="dashboard.php?modif=<?= $this->id_serie; ?>" ><button class="category-btn" type="button" style="background-color: blue; padding = 2px;">MODIFIER</button></a>
+                            <a href="dashboard.php?value=serie&modif=<?= $this->id_serie; ?>" ><button class="category-btn" type="button" style="background-color: blue; padding = 2px;">MODIFIER</button></a>
 
-                            <a href="dashboard.php?supp=<?= $this->id_serie; ?>" ><button class="category-btn" type="button" style="background-color: red;" onclick="return confirm('Es-tu sûr de vouloir supprimer cette série ?');">SUPPRIMER</button></a>
+                            <a href="dashboard.php?value=serie&supp=<?= $this->id_serie; ?>" ><button class="category-btn" type="button" style="background-color: red;" onclick="return confirm('Es-tu sûr de vouloir supprimer cette série ?');">SUPPRIMER</button></a>
                         <?php endif; ?>
 
                         <h2 class="titre-serie"><?= htmlspecialchars($this->titre_serie); ?></h2>
@@ -74,7 +74,7 @@ class Render{
                         </div>
 
                         <?php if(isset($_SESSION['nickname'])): ?>
-                            <button>EDIT</button>
+                            <a href="dashboard.php?value=act&supp=<?= $this->id_acteur; ?>" ><button class="category-btn" type="button" style="background-color: red;" onclick="return confirm('Es-tu sûr de vouloir supprimer cette série ?');">SUPPRIMER</button></a>
                         <?php endif; ?>
 
                         <h2><?= htmlspecialchars($this->nom_acteur); ?></h2>
@@ -94,7 +94,7 @@ class Render{
 
                         <!-- si nous sommes connectés en tant qu'admin, nous pouvons modifier chaque élement -->
                         <?php if(isset($_SESSION['nickname'])): ?>
-                            <button>MODIFIER</button>
+                            <a href="dashboard.php?value=real&supp=<?= $this->id_real; ?>" ><button class="category-btn" type="button" style="background-color: red;" onclick="return confirm('Es-tu sûr de vouloir supprimer cette série ?');">SUPPRIMER</button></a>
                         <?php endif; ?>
 
                         <h2><?= htmlspecialchars($this->nom_real); ?></h2>
@@ -115,11 +115,11 @@ class Render{
 
             <h2><?= htmlspecialchars($this->titre_saison); ?></h2>
             
+            <h2>Nombre d'épisodes : <?= $serieDB->getNbEpisode($this->numero_saison) ?> épisodes</h2>
+
             <h2>Durée d'une saison : <?php
                 echo round($serieDB->getTimeSaison($this->numero_saison)/60,1) ?> heures
             </h2>
-
-            <h2>Nombre d'épisodes : <?= $serieDB->getNbEpisode($this->numero_saison) ?> épisodes</h2>
         </div>
     </div>
 

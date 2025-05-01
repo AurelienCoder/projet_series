@@ -34,21 +34,21 @@ Autoloader::register();
             }
             echo "</div>";
 
-            echo " <h1>Les acteurs de " . $serie . "</h1><div id='home-title'></div> ";
-            echo "<div style='display:flex; overflow-x: auto;'>";
-            $acteurs = $serieDB->getActeurs($serieID);
-
-            foreach($acteurs as $acteur){
-                echo $acteur->getHTMLActor();
-            }
-            echo "</div>";
-
             echo " <h1>Les réalisateurs de " . $serie . "</h1><div id='home-title'></div> ";
             echo "<div style='display:flex; overflow-x: auto;'>";
             $realisateurs = $serieDB->getReal($serieID);
 
             foreach($realisateurs as $realisateur){
                 echo $realisateur->getHTMLReal();
+            }
+            echo "</div>";
+            
+            echo " <h1>Les acteurs de " . $serie . "</h1><div id='home-title'></div> ";
+            echo "<div style='display:flex; overflow-x: auto;'>";
+            $acteurs = $serieDB->getActeurs($serieID);
+
+            foreach($acteurs as $acteur){
+                echo $acteur->getHTMLActor();
             }
             echo "</div>";
         }else{
