@@ -1,10 +1,10 @@
 //VOIR COURS JS DE M. BOURGUIN -> Fetch & POST
 //Question : on est d'accord que fetch fait partie de l'AJAX ?
-function fetchBD(url, nom, image, value){
+function fetchBD(url, nom, image, type){
     let data = new FormData();
     data.append('nom', nom);
     data.append('image', image);
-    data.append('value', value);
+    data.append('type', type);
 
     let options = {
         method: 'POST',

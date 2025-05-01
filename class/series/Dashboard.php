@@ -43,9 +43,9 @@ class Dashboard{
             $nom = $_POST['nom'];
             $image = $_POST['image'];
 
-            if($_POST['value'] == 'real'){
+            if($_POST['type'] == 'real'){
                 $this->serieDB->addReal($nom, $image);
-            }else if($_POST['value'] == 'act'){
+            }else if($_POST['type'] == 'act'){
                 $this->serieDB->addAct($nom, $image);
             }
             exit;
