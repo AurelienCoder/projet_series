@@ -43,7 +43,11 @@ class Dashboard{
             $nom = $_POST['nom'];
             $image = $_POST['image'];
 
-            $this->serieDB->addReal($nom, $image);
+            if($_POST['value'] == 'real'){
+                $this->serieDB->addReal($nom, $image);
+            }else if($_POST['value'] == 'act'){
+                $this->serieDB->addAct($nom, $image);
+            }
             exit;
         }?>
 
@@ -72,7 +76,9 @@ class Dashboard{
                         <label>Nombre de saisons : </label>
                         <input id="nb-saison" type="number" min="1" max ="5"></input>
                     </div>
-                    <button type="submit"  class="category-btn" id="ajouter-real-act-saison">Ajouter</button>
+
+                    <!-- BOUTON POUR OUVRIR LA DIV PERMETTANT D'AJOUTER DES REALISATEURS/ACTEURS/SAISONS -->
+                    <button  class="category-btn" id="ajouter-real-act-saison">Ajouter</button>
                 </div>
 
                 <label>Affiche (URL de l'image) :</label>
@@ -81,20 +87,23 @@ class Dashboard{
                 <label>Synopsis :</label>
                 <textarea name="synopsis" required></textarea>
 
-                <button type="submit" class="btn-valider">Ajouter</button>
+                <!-- BOUTON POUR AJOUTER UNE SERIE DANS LA BD -->
+                <button type="submit" class="btn-valider">Valider</button>
             </form>
         </section>
 
         <!-- div qui permet d'ajouter des acteurs, des réalisateurs ou des saisons -->
         <div id="ajout-infos">
             <div id="sous-div">
-                <h3>Ajouter</h3>
+                <h3>Ajouter un réalisateur/acteur/saison</h3>
                 <label>Nom :</label>
                 <input type="text" id="nom-ajout" placeholder="">
                 <label>Image :</label>
                 <input type="text" id="img-ajout" placeholder="">
 
                 <!-- A MODIFIER : AJOUTER EPISODES -->
+
+                <!-- BOUTON POUR AJOUTER UN REAL/ACTEUR/SAISON DANS LA BD -->
                 <button id="valider" style="margin-top: 10px;">Valider</button>
             </div>
         </div>

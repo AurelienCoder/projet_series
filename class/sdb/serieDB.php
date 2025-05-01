@@ -177,14 +177,14 @@ class SerieDB{
     }
 
 
-    public function getSaisons($saison_id){
+    public function getSaisons($id_serie){
         // Afficher les saisons d'une série
         $sql = "SELECT * FROM saison
         INNER JOIN serie ON saison.id_serie = serie.id_serie
         WHERE serie.id_serie = :id_serie";
 
         $statement = $this->pdo->prepare($sql);
-        $statement->bindParam(':saison_id', $saison_id);
+        $statement->bindParam(':id_serie', $id_serie);
         $statement->execute() or die(var_dump($statement->errorInfo()));
         $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\SaisonRender");
         return $results;
@@ -324,6 +324,16 @@ class SerieDB{
 
     public function addReal($nom, $img){
         $sql = "INSERT INTO realisateur (nom_real, photo_real) 
+                VALUES (:nom, :img)";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':nom', $nom);
+        $statement->bindParam(':img', $img);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
+    public function addAct($nom, $img){
+        $sql = "INSERT INTO acteur (nom_acteur, photo_acteur) 
                 VALUES (:nom, :img)";
         $statement = $this->pdo->prepare($sql);
         $statement->bindParam(':nom', $nom);

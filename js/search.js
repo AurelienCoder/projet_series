@@ -36,7 +36,7 @@ buttons.forEach(button => {
 //utilisé dans search.php : un script qui sélectionne les réalisateurs correspondant au texte choisi dans l'input
 
 //on récupère l'ensemble des boutons
-const input = document.getElementById('inputt');
+input = document.getElementById('search-real');
 
 let reals = document.querySelectorAll('.model_serie');
 

@@ -60,18 +60,24 @@ class Search{
     public function getSearch(){
         $serieDB = new SerieDB();
 
-        if($_GET['search'] == "realisateurs"){
-            echo "<script>document.getElementById('home-title').innerText = 'LES RÉALISATEURS'; </script>
-                <div><input id='inputt' placeholder='rechercher un réalisateur...'></input></div>
-            ";
+        if($_GET['search'] == "realisateurs"){?>
+            
+            <script>
+                document.getElementById('home-title').innerText = 'LES RÉALISATEURS';
 
-            $realisateurs = $serieDB->getAllRealisators();
+                input = document.createElement('input');
+                input.id = 'search-real';
+                input.placeholder = 'rechercher un réalisateur...';
+                document.getElementById('home-title').after(input);
+                input.addEventListener('change', function(){alert('test')});
+            </script>
+            <script src='../js/search.js'></script>
+
+            <?php $realisateurs = $serieDB->getAllRealisators();
             
             foreach($realisateurs as $realisateur){
                 echo $realisateur->getHTML();
             }
-            echo "<script src='../js/search.js'></script>";
-
         }else if($_GET['search'] == "acteurs"){
             echo "<script>document.getElementById('home-title').innerText = 'LES ACTEURS'; </script>";
 
