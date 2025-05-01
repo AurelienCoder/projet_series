@@ -58,22 +58,20 @@ class Search{
      * 
      * NE PREND EN COMPTE UNIQUEMENT LES SERIES OU LES REALISATEURS OU LES ACTEURS
      */
-    public function getSearch(){
-        $serieDB = new SerieDB();
+    public function getSearch(){ ?>
+        <script>
+            let input = document.createElement('input');
+            input.id = 'search-input';
+            input.placeholder = 'rechercher...';
+            document.getElementById('home-title').after(input);
+        </script>
 
-        if($_GET['search'] == "realisateurs"){?>
-            
-            <script>
-                document.getElementById('home-title').innerText = 'LES RÉALISATEURS';
+        <?php $serieDB = new SerieDB();
 
-                input = document.createElement('input');
-                input.id = 'search-real';
-                input.placeholder = 'rechercher un réalisateur...';
-                document.getElementById('home-title').after(input);
-            </script>
-            <script src='../js/search.js'></script>
+        if($_GET['search'] == "realisateurs"){
+            echo "<script>document.getElementById('home-title').innerText = 'LES RÉALISATEURS'</script>";
 
-            <?php $realisateurs = $serieDB->getAllRealisators();
+            $realisateurs = $serieDB->getAllRealisators();
             
             foreach($realisateurs as $realisateur){
                 echo $realisateur->getHTMLReal();
@@ -97,6 +95,8 @@ class Search{
 
             echo "<script src='../js/doublons.js'></script>";
         }
+
+        echo "<script src='../js/search.js'></script>";
     }
 }
 ?>

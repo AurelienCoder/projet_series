@@ -11,13 +11,13 @@ Autoloader::register();
     <div id="home-title">LES SERIES DU MOMENT</div>
 
     <div class="home-button-div" style="margin-top: 10px;">
-        <button class="category-btn" type="button">Tout</button>
-        <button class="category-btn" type="button">Drame</button>
-        <button class="category-btn" type="button">Historique</button>
-        <button class="category-btn" type="button">Science-fiction</button>
-        <button class="category-btn" type="button">Action</button>
-        <button class="category-btn" type="button">Aventure</button>
-        <button class="category-btn" type="button">Thriller</button>
+        <input class="category-btn" type="checkbox"/><label>Tout</label>
+        <input class="category-btn" type="checkbox"/><label>Drame</label>
+        <input class="category-btn" type="checkbox"/><label>Historique</label>
+        <input class="category-btn" type="checkbox"/><label>Science-fiction</label>
+        <input class="category-btn" type="checkbox"/><label>Action</label>
+        <input class="category-btn" type="checkbox"/><label>Aventure</label>
+        <input class="category-btn" type="checkbox"/><label>Thriller</label>
 
         <!-- si l'administrateur est connecté, alors on ajoute dans home les 2 boutons AJOUTER et Voir les statistiques -->
         <?php if(isset($_SESSION['nickname']) && $_SESSION['nickname'] == 'administrateur'): ?>

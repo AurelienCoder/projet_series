@@ -48,9 +48,9 @@ document.getElementById('ajouter-real-act-saison').addEventListener('click', fun
     
         infos.style.display = 'block';
         
-        if(totalReal>0){
+        if(totalReal > 0){
           h3.innerText = "Ajouter le réalisateur n°1";
-        }else if(totalAct>0){
+        }else if(totalAct > 0){
             h3.innerText = "Ajouter l'acteur n°1";
         }else{
             h3.innerText = "Ajouter la saison n°1";
@@ -65,24 +65,24 @@ document.getElementById('valider').addEventListener('click', function(){
 
     let url = "dashboard.php";
 
-    if(numReal<=totalReal){
+    if(numReal <= totalReal){
         fetchBD(url, getNomInput, getImageInput, 'real');
         numReal++;
 
-        if(numReal<=totalReal){
+        if(numReal <= totalReal){
             h3.innerText = 'Ajouter le réalisateur n°' + numReal;
-        }else if(numAct<=totalAct){
+        }else if(numAct <= totalAct){
             h3.innerText = "Ajouter l'acteur n°" + numAct;
-        }else if(numSaison<=totalSaison){
+        }else if(numSaison <= totalSaison){
             h3.innerText = "Ajouter la saison n°" + numSaison;
         }else{
             infos.style.display = 'none';
         }
-    }else if(numAct<=totalAct){
+    }else if(numAct <= totalAct){
         fetchBD(url, getNomInput, getImageInput, 'act');
         numAct++;
 
-        if(numAct<=totalAct){
+        if(numAct <= totalAct){
             h3.innerText = "Ajouter l'acteur n°" + numAct;
         }else if(numSaison <= totalSaison){
             h3.innerText = "Ajouter la saison n°" + numSaison;

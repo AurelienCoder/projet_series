@@ -36,7 +36,7 @@ Autoloader::register();
                 $saisons = $serieDB->getActeurs($serieDB->getIdBySerie($_GET['serie']));
 
                 foreach($saisons as $saison){
-                    echo $saison->getHTMLSaison();
+                    echo $saison->getHTMLActor();
                 }
             echo "</div>";
         }else{
