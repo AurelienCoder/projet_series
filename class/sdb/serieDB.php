@@ -95,7 +95,7 @@ class SerieDB{
         $statement = $this->pdo->prepare($sql);
         $statement->bindParam(':serie_id', $serie_id);
         $statement->execute() or die(var_dump($statement->errorInfo()));
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\ActorRender");
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
         return $results;
     }
 
@@ -112,7 +112,7 @@ class SerieDB{
         $statement = $this->pdo->prepare($sql);
         $statement->bindParam(':serie_id', $serie_id);
         $statement->execute() or die(var_dump($statement->errorInfo()));
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\RealRender");
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
         return $results;
     }
 
@@ -126,7 +126,7 @@ class SerieDB{
         $statement = $this->pdo->prepare($sql);
         $statement->bindParam(':saison_id', $saison_id);
         $statement->execute() or die(var_dump($statement->errorInfo()));
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\EpisodeRender");
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
         return $results;
     }
 
@@ -143,7 +143,7 @@ class SerieDB{
         $statement = $this->pdo->prepare($sql);
         $statement->execute() or die(var_dump($statement->errorInfo()));
 
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\SaisonRender");
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
         return $results;
     }
 
@@ -157,7 +157,7 @@ class SerieDB{
         $statement = $this->pdo->prepare($sql);
         $statement->execute() or die(var_dump($statement->errorInfo()));
 
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\EpisodeRender");
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
         return $results;
     }
 
