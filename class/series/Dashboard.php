@@ -54,6 +54,9 @@ class Dashboard{
                 <label>Titre :</label>
                 <input type="text" name="titre" required>
 
+                <label>Genre :</label>
+                <input type="text" name="genre" required>
+
                 <div style="display: flex">
                     <div>
                         <label>Nombre de Réalisateurs : </label>

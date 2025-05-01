@@ -29,33 +29,29 @@ let sousDiv = document.getElementById('sous-div');
 document.getElementById('ajouter-real-act-saison').addEventListener('click', function(){
     infos.style.display = 'block';
     totalRealAjout = document.getElementById('nb-real').value;
-})
-
-document.getElementById('ajouter-real-act-saison').addEventListener('click', function(){
-    infos.style.display = 'block';
     totalActAjout = document.getElementById('nb-act').value;                    
 })
 
-
-let nbReal = 1;
-
-sousDiv.childNodes[1].innerText = 'Réalisateur n°' + nbReal;
+let nbReal = 0;
+let nbAct = 0;
 
 document.getElementById('valider').addEventListener('click', function(){
+
+    let nom = document.getElementById('nom-ajout').value;
+    let image = document.getElementById('img-ajout').value;
+
+    let url = "dashboard.php";
+    fetchBD(url, nom, image);
+
+    document.getElementById('nom-ajout').value = '';
+    document.getElementById('img-ajout').value = '';
+
     if(nbReal<totalRealAjout){
-
-        let nom = document.getElementById('nom-ajout').value;
-        let image = document.getElementById('img-ajout').value;
-
-        let url = "dashboard.php";
-        fetchBD(url, nom, image);
-        
-        document.getElementById('nom-ajout').value = '';
-        document.getElementById('img-ajout').value = '';
-
         nbReal++;
         sousDiv.childNodes[1].innerText = 'Réalisateur n°' + nbReal;
-
+    }else if(nbReal>=totalRealAjout && nbAct<totalActAjout){
+        nbAct++;
+        sousDiv.childNodes[1].innerText = 'Acteur n°' + nbAct;
     }else{
         infos.style.display = 'none';
     }
