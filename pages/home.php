@@ -44,6 +44,7 @@ Autoloader::register();
     <!-- script qui en fonction du click sur les boutons du dessus, affiche les préférences, les séries liées au tag choisi  -->
     <script src="../js/search.js"></script>
 
+    <!-- script qui affiche les informations d'une série lorsque l'on clique dessus  -->
     <script src="../js/details.js"></script>
 </div>
 

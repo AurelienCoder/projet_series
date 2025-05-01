@@ -38,7 +38,6 @@ class Render{
     private $titre_episode;
     private $synopsis_episode;
     private $duree_episode;
-    
 
     public function getHTMLSerie(){
         ?>
@@ -105,6 +104,7 @@ class Render{
     <?php }
 
     public function getHTMLSaison(){
+        $serieDB = new SerieDB();
         ?>
 
     <div class="series-list">
@@ -115,7 +115,11 @@ class Render{
 
             <h2><?= htmlspecialchars($this->titre_saison); ?></h2>
             
-            <h2><?= htmlspecialchars($this->numero_saison); ?></h2>
+            <h2>Durée d'une saison : <?php
+                echo round($serieDB->getTimeSaison($this->numero_saison)/60,1) ?> heures
+            </h2>
+
+            <h2>Nombre d'épisodes : <?= $serieDB->getNbEpisode($this->numero_saison) ?> épisodes</h2>
         </div>
     </div>
 
