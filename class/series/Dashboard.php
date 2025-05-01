@@ -141,13 +141,14 @@ class Dashboard{
             <h1>Modifier une série</h1>
             <form method="POST">
                 <label>Titre :</label>
-                <input type="text" name="titre" value="<?= htmlspecialchars($serie->getTitreSerie()); ?>" required>
+                <!--après avoir tout fusionner dans une classe Render, j'ai eu un problème et j'ai du ajouté [0] -->
+                <input type="text" name="titre" value="<?= htmlspecialchars($serie[0]->getTitreSerie()); ?>" required>
         
                 <label>Affiche (URL de l'image) :</label>
-                <input type="text" name="affiche" value="<?= htmlspecialchars($serie->getAfficheSerie()); ?>" required>
+                <input type="text" name="affiche" value="<?= htmlspecialchars($serie[0]->getAfficheSerie()); ?>" required>
         
                 <label>Synopsis :</label>
-                <textarea name="synopsis" required><?= htmlspecialchars($serie->getSynopsisSerie()); ?></textarea>
+                <textarea name="synopsis" required><?= htmlspecialchars($serie[0]->getSynopsisSerie()); ?></textarea>
         
                 <button type="submit" class="btn-valider">Enregistrer</button>
             </form>

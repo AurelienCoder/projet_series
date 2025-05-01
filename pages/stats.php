@@ -27,8 +27,6 @@ ob_start();
 
 <br>
 
-<a href="home.php" class="btn-ret">Retour au menu</a>
-
 <?php
 $content = ob_get_clean();
 Template::render($content);
