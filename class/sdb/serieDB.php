@@ -148,6 +148,16 @@ class SerieDB{
         $statement->execute() or die(var_dump($statement->errorInfo()));
         return $statement->fetchColumn();
     }
+
+    //utilisée
+    public function getSerieById($id){
+        $sql = "SELECT * FROM serie WHERE id_serie = :id";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id', $id);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
+        return $results;
+    }
     
     public function getSaisonByNum($num){
         $sql= "SELECT * FROM saison WHERE numero_saison = :num";
