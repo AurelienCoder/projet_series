@@ -34,6 +34,9 @@ class SerieDB{
     //IMPORTANT Nous ne sommes pas obligés de spécifier le type de retour
 
     //utilisée
+    /**
+     * getAllSeries récupère toutes les séries +  leurs genres associés
+     */
     public function getAllSeries(){
         $sql = "SELECT * FROM serie INNER JOIN serie_tag, tag 
         WHERE serie.id_serie = serie_tag.id_serie AND tag.id_tag = serie_tag.id_tag
@@ -215,6 +218,19 @@ class SerieDB{
         $statement = $this->pdo->prepare($sql);
         $statement->bindParam(':nom', $nom);
         $statement->bindParam(':img', $img);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
+    //utilisée
+    public function addSaison($titre, $numero, $affiche, $id_serie){
+        $sql = "INSERT INTO saison (titre_saison, affiche_saison, numero_saison, id_serie)
+                VALUES(:titre, :affiche, :numero, :id_serie)";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':titre', $titre);
+        $statement->bindParam(':affiche', $affiche);
+        $statement->bindParam(':numero', $numero);
+        $statement->bindParam(':id_serie', $id_serie);
 
         $statement->execute() or die(var_dump($statement->errorInfo()));
     }

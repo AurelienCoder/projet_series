@@ -1,3 +1,5 @@
+//script qui s'occupe d'ouvrir une page pour obtenir plus d'informations quand on clique sur une série
+
 series = document.querySelectorAll('.model_serie');
 
 series.forEach((serie, index) => {

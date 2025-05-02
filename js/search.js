@@ -1,4 +1,7 @@
-//utilisé dans home.php : un script qui sélectionne les séries ayant le tag choisi lors du click sur l'une des checkboxes
+/*un script qui :
+- sélectionne les séries ayant le tag choisi lors du click sur l'une des checkboxes dans home.php
+- sélectionne les réalisateurs/séries/acteurs correspondant au texte choisi dans l'input "rechercher..." dans search.php
+*/
 
 //on récupère l'ensemble des checkboxes
 const checkboxes = document.querySelectorAll('.category-btn');
@@ -57,9 +60,6 @@ checkboxes.forEach( (checkbox,index) => {
         }
     })
 })
-
-
-//utilisé dans search.php : un script qui sélectionne les réalisateurs correspondant au texte choisi dans l'input
 
 //on récupère l'ensemble des boutons
 

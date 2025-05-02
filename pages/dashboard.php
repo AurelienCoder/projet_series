@@ -11,7 +11,7 @@ Autoloader::register();
     $dashboard = new \series\Dashboard();
 
     if($logged){
-
+        //si value = serie, alors ça veut dire que l'on souhaite ajouter/modifier ou supprimer une série
         if(isset($_GET['value']) && $_GET['value'] == 'serie' ){
             if(isset($_GET['supp'])){
                 $dashboard->supprimerSerie($_GET['supp']);

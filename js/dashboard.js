@@ -1,5 +1,4 @@
 //VOIR COURS JS DE M. BOURGUIN -> Fetch & POST
-//Question : on est d'accord que fetch fait partie de l'AJAX ?
 function fetchBD(url, nom, image, type){
     let data = new FormData();
     data.append('nom', nom);
@@ -42,19 +41,11 @@ document.getElementById('ajouter-real-act-saison').addEventListener('click', fun
     if(titreSerieInput.value == ''){
         alert("Veuillez d'abord choisir un titre !");
     } else{
-        totalReal = document.getElementById('nb-real').value;
-        totalAct = document.getElementById('nb-act').value;   
         totalSaison = document.getElementById('nb-saison').value;   
     
         infos.style.display = 'block';
+        h3.innerText = "Ajouter la saison n°1";
         
-        if(totalReal > 0){
-          h3.innerText = "Ajouter le réalisateur n°1";
-        }else if(totalAct > 0){
-            h3.innerText = "Ajouter l'acteur n°1";
-        }else{
-            h3.innerText = "Ajouter la saison n°1";
-        }
     }
 })
 
@@ -65,26 +56,11 @@ document.getElementById('valider').addEventListener('click', function(){
 
     let url = "dashboard.php?value=serie";
 
-    if(numReal <= totalReal){
-        fetchBD(url, getNomInput, getImageInput, 'real');
-        numReal++;
-
-        if(numReal <= totalReal){
-            h3.innerText = 'Ajouter le réalisateur n°' + numReal;
-        }else if(numAct <= totalAct){
-            h3.innerText = "Ajouter l'acteur n°" + numAct;
-        }else if(numSaison <= totalSaison){
-            h3.innerText = "Ajouter la saison n°" + numSaison;
-        }else{
-            infos.style.display = 'none';
-        }
-    }else if(numAct <= totalAct){
-        fetchBD(url, getNomInput, getImageInput, 'act');
-        numAct++;
-
-        if(numAct <= totalAct){
-            h3.innerText = "Ajouter l'acteur n°" + numAct;
-        }else if(numSaison <= totalSaison){
+    if(numSaison <= totalSaison){
+        fetchBD(url, getNomInput, getImageInput, 'saison');
+        numSaison++;
+        
+        if(numSaison <= totalSaison){
             h3.innerText = "Ajouter la saison n°" + numSaison;
         }else{
             infos.style.display = 'none';

@@ -14,7 +14,7 @@ class Dashboard{
 
     public function __construct(){
         $this->serieDB = new SerieDB();
-    }  
+    }
 
     /**
      * méthode pour ajouter une série
@@ -33,11 +33,21 @@ class Dashboard{
             exit;
         }
 
-        //mais on doit aussi ajouter les noms et images des acteurs/réalisateurs :
+        //mais on doit aussi ajouter les noms et images des acteurs/réalisateurs ainsi que les saisons
         //je récupère donc leurs noms et leurs photos envoyés en POST avec AJAX (fetch)
-        if(isset($_POST['nom']) && isset($_POST['image'])){
 
-            //obligatoire sinon ça ne fonctionne pas
+        //obligatoire sinon ça ne fonctionne pas
+
+        //les saisons
+        if(isset($_POST['titre']) && isset($_POST['numero']) && isset($_POST['affiche']) && isset($_POST['id_serie'])){
+            header('Content-Type: application/json');
+
+            $this->serieDB->addSaison($_POST['titre'], $_POST['numero'], $_POST['affiche'], $_POST['id_serie']);
+            exit;
+        }
+
+        //les acteurs/réalisateurs
+        if(isset($_POST['nom']) && isset($_POST['image'])){
             header('Content-Type: application/json');
 
             $nom = $_POST['nom'];
@@ -51,6 +61,13 @@ class Dashboard{
             exit;
         }?>
 
+
+<!--                     <div>
+                        <label>Nombre de Réalisateurs : </label>
+                        <input id="nb-real" type="number" min="1" max ="5"></input>
+                    </div>
+ -->
+                    
         <!-- formulaire principal -->
         <section class="form-ajouter">
             <h1>Ajouter une série</h1>
@@ -61,24 +78,14 @@ class Dashboard{
                 <label>Genre :</label>
                 <input type="text" name="genre" required>
 
-                <div style="display: flex">
-                    <div>
-                        <label>Nombre de Réalisateurs : </label>
-                        <input id="nb-real" type="number" min="1" max ="5"></input>
-                    </div>
-
-                    <div>
-                        <label>Nombre d'acteurs : </label>
-                        <input id="nb-act" type="number" min="1" max ="5"></input>
-                    </div>
-
+                <div style="display: flex; justify-content: space-between;">
                     <div>
                         <label>Nombre de saisons : </label>
-                        <input id="nb-saison" type="number" min="1" max ="5"></input>
                     </div>
+                    <input id="nb-saison" type="number" min="1" max ="5"></input>
 
-                    <!-- BOUTON POUR OUVRIR LA DIV PERMETTANT D'AJOUTER DES REALISATEURS/ACTEURS/SAISONS -->
-                    <button  class="category-btn" id="ajouter-real-act-saison">Ajouter</button>
+                    <!-- BOUTON POUR OUVRIR LA DIV PERMETTANT D'AJOUTER LES SAISONS -->
+                    <button  class="category-btn" id="ajouter-real-act-saison">Ajouter les saisons</button>
                 </div>
 
                 <label>Affiche (URL de l'image) :</label>
@@ -92,16 +99,26 @@ class Dashboard{
             </form>
         </section>
 
-        <!-- div qui permet d'ajouter des acteurs, des réalisateurs ou des saisons -->
+        <!-- div qui permet d'ajouter des saisons -->
         <div id="ajout-infos">
             <div id="sous-div">
-                <h3>Ajouter un réalisateur/acteur/saison</h3>
-                <label>Nom :</label>
-                <input type="text" id="nom-ajout" placeholder="">
-                <label>Image :</label>
-                <input type="text" id="img-ajout" placeholder="">
-
-                <!-- A MODIFIER : AJOUTER EPISODES -->
+                <h3>Ajouter une saison</h3>
+                <div>
+                    <label>Titre de la saison :</label>
+                    <input type="text" id="nom-ajout" placeholder="">
+                </div>
+                <br>
+                <div>
+                    <label>Affiche de la saison :</label>
+                    <input type="text" id="img-ajout" placeholder="">
+                </div>
+                <br>
+                <div>
+                    <label>Nombre d'acteurs : </label>
+                    <input id="nb-act" type="number" min="1" max ="5"></input>
+                    <!-- BOUTON POUR OUVRIR LA DIV PERMETTANT D'AJOUTER LES ACTEURS -->
+                    <button  class="category-btn" id="ajouter-real-act-saison">Ajouter les acteurs</button>
+                </div>
 
                 <!-- BOUTON POUR AJOUTER UN REAL/ACTEUR/SAISON DANS LA BD -->
                 <button id="valider" style="margin-top: 10px;">Valider</button>
