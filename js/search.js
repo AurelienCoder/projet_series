@@ -14,8 +14,6 @@ let labels = document.querySelectorAll('label');
 checkboxes.forEach( (checkbox,index) => {
     checkbox.addEventListener('change', function(){
 
-
-
         if(checkbox.checked){
             //on réinitialise l'affichage des séries
             series.forEach(serie => {

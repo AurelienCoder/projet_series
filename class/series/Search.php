@@ -69,7 +69,7 @@ class Search{
 
         <?php $serieDB = new SerieDB();
 
-        if($_GET['search'] == "realisateurs"){
+        if($_GET['search'] == "realisateurs"){//affiche tous les réalisateurs
             echo "<script>document.getElementById('home-title').innerText = 'LES RÉALISATEURS'</script>";
 
             $realisateurs = $serieDB->getAllRealisators();
@@ -77,7 +77,7 @@ class Search{
             foreach($realisateurs as $realisateur){
                 echo $realisateur->getHTMLReal();
             }
-        }else if($_GET['search'] == "acteurs"){
+        }else if($_GET['search'] == "acteurs"){//affiche tous les acteurs
             echo "<script>document.getElementById('home-title').innerText = 'LES ACTEURS'; </script>";
 
             $acteurs = $serieDB->getAllActors();
@@ -85,7 +85,7 @@ class Search{
             foreach($acteurs as $acteur){
                 echo $acteur->getHTMLActor();
             }
-        }else if($_GET['search'] == "series"){
+        }else if($_GET['search'] == "series"){//affiche toutes les séries
             echo "<script>document.getElementById('home-title').innerText = 'LES SERIES'; </script>";
 
             $series = $serieDB->getAllSeries();
@@ -100,6 +100,9 @@ class Search{
         echo "<script src='../js/search.js'></script>";
     }
 
+    /**
+     * cette méthode renvoie des informations sur une série particulière
+     */
     public function serieSearch(){
         $serieDB = new SerieDB();
         //affiche les saisons d'une série
