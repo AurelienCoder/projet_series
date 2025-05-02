@@ -11,9 +11,7 @@ let labels = document.querySelectorAll('label');
 checkboxes.forEach( (checkbox,index) => {
     checkbox.addEventListener('change', function(){
 
-        for(let i=0; i<checkboxes.length; i++){
-            if(i != index)checkboxes[i].checked = false;
-        }
+
 
         if(checkbox.checked){
             //on réinitialise l'affichage des séries
@@ -22,19 +20,37 @@ checkboxes.forEach( (checkbox,index) => {
             })
     
             series.forEach(serie => {
-                //variable récupérant les genres des séries
-                let serie_tag = serie.getElementsByTagName('span')[0].innerText;
-    
-                //variable récupérant les genres des checkboxes
-                let checkbox_tag = labels[index].innerText;
-    
-                //on doit transformer le genre des checkboxes en expression RegExp car match ne prend en compte que des RegExp
-                let regex = new RegExp(checkbox_tag);
-    
-                //et maintenant on regarde si la série matche avec le regex
-                if(checkbox_tag != 'Tout'){
-                    if(serie_tag.match(regex) == null){
-                        serie.style.display = 'none';
+
+                //si l'index == 0 alors ça veut dire que l'on clique sur 'Tout'
+                if(index == 0){
+                    //si la case "tout" est cochée, alors on enlève les check de toutes les autres checkboxes sauf celle de "tout"
+                    for(let i=0; i<checkboxes.length; i++){
+                        if(i != index)checkboxes[i].checked = false;
+                    }
+                } else{
+                    //si on clique un genre, on enlève le check sur 'Tout'
+                    checkboxes[0].checked = false;
+
+                    //variable récupérant les genres des séries
+                    let serie_tag = serie.getElementsByTagName('span')[0].innerText;
+        
+                    //variable récupérant les genres des checkboxes
+                    let checkbox_tag = '';
+                    
+                    for(let i=0; i<checkboxes.length; i++){
+                        if(checkboxes[i].checked) checkbox_tag += labels[i].innerText;
+                    }
+
+                    //alert(checkbox_tag);
+        
+                    //on doit transformer le genre des checkboxes en expression RegExp car match ne prend en compte que des RegExp
+                    let regex = new RegExp(checkbox_tag);
+        
+                    //et maintenant on regarde si la série matche avec le regex
+                    if(checkbox_tag != 'Tout'){
+                        if(serie_tag.match(regex) == null){
+                            serie.style.display = 'none';
+                        }
                     }
                 }
             })
