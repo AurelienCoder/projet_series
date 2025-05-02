@@ -16,6 +16,15 @@ series.forEach((serie, index) => {
         img.src = document.getElementsByClassName('img-serie')[index].src;
         img.alt = document.getElementsByClassName('img-serie')[index].alt;
 
+        let h3 = document.querySelector('#alert #reals');
+        h3.innerText = document.getElementsByClassName('reals')[index].innerText;
+    
+        h3 = document.querySelector('#alert #nb-saisons');
+        h3.innerText = document.getElementsByClassName('nb-saisons')[index].innerText;
+           
+        h3 = document.querySelector('#alert #duree');
+        h3.innerText = document.getElementsByClassName('duree')[index].innerText;
+
         let p = document.querySelector('#alert p');
         p.innerText = document.getElementsByClassName('synopsis')[index].innerText;
 

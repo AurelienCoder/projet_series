@@ -39,6 +39,13 @@ class Render{
     private $synopsis_episode;
     private $duree_episode;
 
+    private $serieDB;
+
+    public function __construct(){
+        $this->serieDB = new SerieDB();
+    }
+
+
     public function getHTMLSerie(){
         ?>
 
@@ -59,7 +66,18 @@ class Render{
                         
                         <span class="tag"><?= $this->nom_tag ?></span>
 
-                        <span class="synopsis" style="display:none"><?= $this->synopsis_serie ?></span>
+                        <div  style="display: none">
+                            <span class="synopsis"><?= $this->synopsis_serie ?></span>
+                            <span class="reals">Les réalisateurs : <?php         
+                                $realisateurs = $this->serieDB->getReal($this->id_serie);
+                                foreach($realisateurs as $realisateur){
+                                    echo $realisateur->getNomReal() . ", ";
+                                } 
+                            ?></span>
+                            <span class="nb-saisons"> Nombre de saisons : <?=  $this->serieDB->getNbSaison($this->id_serie) ?></span>
+                            <span class="duree">Durée : <?= round($this->serieDB->getTimeSerie($this->id_serie)/60,1) ?> heures</span>
+
+                        </div>
                     </div>
             </div>
     <?php }
@@ -156,5 +174,10 @@ class Render{
     public function getSynopsisSerie(){
         return $this->synopsis_serie;
     }
+
+        //getter pour le real
+        public function getNomReal(){
+            return $this->nom_real;
+        }
 }
 ?>

@@ -133,9 +133,9 @@ class Template{
                         </div>
 
                         <div style="margin-left: 50px;">
-                            <h3>Les réalisateurs :</h3>
-                            <h3>Nombre de saisons :</h3>
-                            <h3>Durée :</h3>
+                            <h3 id="reals">Les réalisateurs :</h3>
+                            <h3 id="nb-saisons">Nombre de saisons :</h3>
+                            <h3 id="duree">Durée :</h3>
                             <button>Plus d'infos</button>
                         </div>
                     </div>
