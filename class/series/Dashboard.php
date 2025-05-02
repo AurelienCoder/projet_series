@@ -105,30 +105,11 @@ class Dashboard{
                     <label>Affiche de la saison :</label>
                     <input type="text" id="img-ajout" placeholder="">
                 </div>
-                <br>
-                <div>
-                    <label>Nombre d'acteurs : </label>
-                    <input id="nb-act" type="number" min="1" max ="5"></input>
-
-                    <!-- BOUTON POUR OUVRIR LA DIV PERMETTANT D'AJOUTER UN ACTEUR A LA FOIS -->
-                    <button  class="category-btn" id="ajouter-real-act-saison">Ajouter les acteurs</button>
-                </div>
-                <br>
-                <div>
-                    <label>Nombre d'épisodes : </label>
-                        <input id="nb-act" type="number" min="1" max ="5"></input>
-
-                        <!-- BOUTON POUR OUVRIR LA DIV PERMETTANT D'AJOUTER UN EPISODE A LA FOIS -->
-                        <button  class="category-btn" id="ajouter-real-act-saison">Ajouter les épisodes</button>
-                </div>
-
-                <!-- BOUTON POUR VALIDER ET AJOUTER UNE SAISON DANS LA BD -->
-                <button id="valider" style="margin-top: 10px;">Valider la saison</button>
 
                 <!-- DIV PERMETTANT D'AJOUTER UN ACTEUR A LA FOIS -->
                 <hr>
                 <div id="sous-div2">
-                    <h3>Ajouter l'acteur n°1</h3>
+                    <h3>Ajouter l'acteur n°1 (saison 1)</h3>
                     <div>
                         <label>Nom de l'acteur : </label>
                         <input type="text" id="" placeholder="">
@@ -145,14 +126,13 @@ class Dashboard{
                 <!-- DIV PERMETTANT D'AJOUTER UN EPISODE A LA FOIS -->
                 <hr>
                 <div id="sous-div2">
-                    <h3>Ajouter l'épisode n°1</h3>
+                    <h3>Ajouter l'épisode n°1 (saison 1)</h3>
                     <div>
                         <label>Titre de l'épisode : </label>
                         <input type="text" id="" placeholder="">
                     </div>
                     <br>
                     <div>
-                        <label>Réalisateur : </label>
                         <div>
                         <label>Nom du réalisateur : </label>
                         <input type="text" id="" placeholder="">
@@ -163,12 +143,11 @@ class Dashboard{
                         <input type="text" id="" placeholder="">
                     </div>
 
-                            <!-- BOUTON POUR OUVRIR LA DIV PERMETTANT D'AJOUTER UN EPISODE A LA FOIS -->
-                            <button  class="category-btn" id="ajouter-real-act-saison">Ajouter le réalisateur</button>
-                    </div>
-                    <!-- BOUTON POUR VALIDER ET AJOUTER UN ACTEUR DANS LA BD -->
-                    <button id="valider" style="margin-top: 10px;">Valider l'acteur</button>
+                    <button id="valider" style="margin-top: 10px;">Valider l'épisode</button>
                 </div>
+
+                <!-- BOUTON POUR VALIDER ET AJOUTER UNE SAISON DANS LA BD -->
+                <button id="valider" style="margin-top: 10px;">Valider la saison</button>
             </div>
         </div>
 
