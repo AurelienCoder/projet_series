@@ -129,6 +129,32 @@ class SerieDB{
         return $results;
     }
 
+    //utilisée
+    public function getRealId($nom_real){
+        $sql = "SELECT id_real FROM realisateur WHERE nom_real = :nom_real";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':nom_real', $nom_real);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        return $statement->fetchColumn();
+    }
+
+    public function getSeriesByReal($real_id){
+        // Afficher toutes les séries d'un real
+        $sql = "SELECT DISTINCT titre_serie, affiche_serie, synopsis_serie FROM serie
+        INNER JOIN saison ON saison.id_serie = serie.id_serie
+        INNER JOIN saison_episode ON saison_episode.id_saison = saison.id_saison
+        INNER JOIN episode ON episode.id_episode = saison_episode.id_episode
+        INNER JOIN episode_realisateur ON episode_realisateur.id_episode = episode.id_episode
+        INNER JOIN realisateur ON  realisateur.id_real = episode_realisateur.id_real
+        WHERE realisateur.id_real = :real_id";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':real_id', $real_id);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
+        return $results;
+    }
+
     public function getEpisodes($saison_id){
         // Afficher les épisodes d'une saison
         $sql = "SELECT * FROM episode

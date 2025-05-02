@@ -114,6 +114,7 @@ outline: 2px solid #f00;
   background-color: rgba(0,0,0,0.5);
   color: white;
   padding: 50px;
+  display: none;
 }
 
 

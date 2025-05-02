@@ -18,8 +18,10 @@ Autoloader::register();
             <div style='display:flex; overflow-x: auto;'>";
                 $search->generalSearch(); 
             echo "</div>";
-        } else if(isset($_GET['serie'])){
+        }else if(isset($_GET['serie']) && $_GET['serie'] != ''){
             $search->serieSearch(); 
+        }else if(isset($_GET['real']) && $_GET['real'] != ''){
+            $search->realSearch(); 
         }else{
             //si l'utilisateur n'a pas encore fait de requête, alors on affiche le formulaire avec generateForm();
             $search->generateForm(); 

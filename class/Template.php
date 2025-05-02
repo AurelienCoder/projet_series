@@ -121,6 +121,36 @@ class Template{
         <body>
             <?php include "header.php" ?>
 
+            <!-- cette div affiche des informations quand on clique sur une série dans home.php, search.php -->
+            <div id="alert">
+                <section style="color: black;" id="page-serie" onclick="display()">
+                    <div style="display:flex;">
+                        <div>
+                            <h1 style="font-family: 'ELEGANT', sans-serif; text-align: center;">TITRE SERIE</h1>
+                            <div style="overflow: hidden; margin-bottom: 20px;">
+                                <img src="" alt="" style="width: 150px; height: auto;">
+                            </div>
+                        </div>
+
+                        <div style="margin-left: 50px;">
+                            <h3>Les réalisateurs :</h3>
+                            <h3>Nombre de saisons :</h3>
+                            <h3>Durée :</h3>
+                            <button>Plus d'infos</button>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 10px;">
+                        <p> SYNOPSIS </p>
+                    </div>
+                    
+                    <div style="margin-top: 20px;">
+                        <a href="home.php" style="color: black;">Retour à la liste</a>
+                    </div>
+                </section>
+            </div>
+            <script></script>
+
             <div id="injected-content">
                 <?php echo $content ?>
             </div>

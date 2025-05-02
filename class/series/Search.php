@@ -38,12 +38,12 @@ class Search{
 
             <div class="form-group">
                 <label for="realisateur">Réalisateur :</label>
-                <input type="text" id="realisateur" name="realisateur" placeholder="Nom du réalisateur">
+                <input type="text" id="real" name="real" placeholder="Nom du réalisateur">
             </div>
 
             <div class="form-group">
                 <label for="acteur">Acteur :</label>
-                <input type="text" id="acteur" name="acteur" placeholder="Nom de l'acteur">
+                <input type="text" id="act" name="act" placeholder="Nom de l'acteur">
             </div>
 
             <div class="form-group">
@@ -137,6 +137,24 @@ class Search{
 
         foreach($acteurs as $acteur){
             echo $acteur->getHTMLActor();
+        }
+        echo "</div>";
+    }
+
+    public function realSearch(){
+        $serieDB = new SerieDB();
+        //affiche les saisons d'une série
+        $real = $_GET['real'];
+
+        $realID = $serieDB->getRealId($real);
+
+        echo " <h1>Les séries réalisées par " . $real  . "</h1><div id='home-title'></div> ";
+
+        echo "<div style='display:flex; overflow-x: auto;'>";
+        $series = $serieDB->getSeriesByReal($realID);
+
+        foreach($series as $serie){
+            echo $serie->getHTMLSerie();
         }
         echo "</div>";
     }
