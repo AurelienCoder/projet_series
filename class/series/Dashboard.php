@@ -60,13 +60,6 @@ class Dashboard{
             }
             exit;
         }?>
-
-
-<!--                     <div>
-                        <label>Nombre de Réalisateurs : </label>
-                        <input id="nb-real" type="number" min="1" max ="5"></input>
-                    </div>
- -->
                     
         <!-- formulaire principal -->
         <section class="form-ajouter">

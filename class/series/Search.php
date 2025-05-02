@@ -64,13 +64,13 @@ class Search{
             let input = document.createElement('input');
             input.id = 'search-input';
             input.placeholder = 'rechercher...';
-            document.getElementById('home-title').after(input);
+            document.getElementById('title').after(input);
         </script>
 
         <?php $serieDB = new SerieDB();
 
         if($_GET['search'] == "realisateurs"){//affiche tous les réalisateurs
-            echo "<script>document.getElementById('home-title').innerText = 'LES RÉALISATEURS'</script>";
+            echo "<script>document.getElementById('title').innerText = 'LES RÉALISATEURS'</script>";
 
             $realisateurs = $serieDB->getAllRealisators();
             
@@ -78,7 +78,7 @@ class Search{
                 echo $realisateur->getHTMLReal();
             }
         }else if($_GET['search'] == "acteurs"){//affiche tous les acteurs
-            echo "<script>document.getElementById('home-title').innerText = 'LES ACTEURS'; </script>";
+            echo "<script>document.getElementById('title').innerText = 'LES ACTEURS'; </script>";
 
             $acteurs = $serieDB->getAllActors();
             
@@ -86,7 +86,7 @@ class Search{
                 echo $acteur->getHTMLActor();
             }
         }else if($_GET['search'] == "series"){//affiche toutes les séries
-            echo "<script>document.getElementById('home-title').innerText = 'LES SERIES'; </script>";
+            echo "<script>document.getElementById('title').innerText = 'LES SERIES'; </script>";
 
             $series = $serieDB->getAllSeries();
             
@@ -111,7 +111,7 @@ class Search{
         $serieID = $serieDB->getIdBySerie($serie);
         echo "<h1>La série " . $serie . " - Durée : " . round($serieDB->getTimeSerie($serieID)/60,1) . " heures</h1>";
 
-        echo " <h1>Les saisons de " . $serie . " - " . $serieDB->getNbSaison($serieID) . " saisons</h1><div id='home-title'></div>";
+        echo " <h1>Les saisons de " . $serie . " - " . $serieDB->getNbSaison($serieID) . " saisons</h1><div id='title'></div>";
         echo "<div style='display:flex; overflow-x: auto;'>";
         $saisons = $serieDB->getSaisons($serieID);
 
@@ -121,7 +121,7 @@ class Search{
         echo "</div>";
 
         //affiche les réalisateurs d'une série
-        echo " <h1>Les réalisateurs de " . $serie . "</h1><div id='home-title'></div> ";
+        echo " <h1>Les réalisateurs de " . $serie . "</h1><div id='title'></div> ";
         echo "<div style='display:flex; overflow-x: auto;'>";
         $realisateurs = $serieDB->getReal($serieID);
 
@@ -131,7 +131,7 @@ class Search{
         echo "</div>";
         
         //affiche les acteurs d'une série
-        echo " <h1>Les acteurs de " . $serie . "</h1><div id='home-title'></div> ";
+        echo " <h1>Les acteurs de " . $serie . "</h1><div id='title'></div> ";
         echo "<div style='display:flex; overflow-x: auto;'>";
         $acteurs = $serieDB->getActeurs($serieID);
 
@@ -148,7 +148,7 @@ class Search{
 
         $realID = $serieDB->getRealId($real);
 
-        echo " <h1>Les séries réalisées par " . $real  . "</h1><div id='home-title'></div> ";
+        echo " <h1>Les séries réalisées par " . $real  . "</h1><div id='title'></div> ";
 
         echo "<div style='display:flex; overflow-x: auto;'>";
         $series = $serieDB->getSeriesByReal($realID);
@@ -166,7 +166,7 @@ class Search{
 
         $actID = $serieDB->getActId($act);
 
-        echo " <h1>Les séries jouées par " . $act  . "</h1><div id='home-title'></div> ";
+        echo " <h1>Les séries jouées par " . $act  . "</h1><div id='title'></div> ";
 
         echo "<div style='display:flex; overflow-x: auto;'>";
         $series = $serieDB->getSeriesByAct($actID);

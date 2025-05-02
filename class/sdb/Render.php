@@ -50,75 +50,77 @@ class Render{
         ?>
 
         <div class="series-list">
-                    <div class="model_serie">
-                        <div style="overflow: hidden">
-                            <img class="img-serie" src="<?= htmlspecialchars($this->affiche_serie); ?>" alt="<?php echo htmlspecialchars($this->affiche_serie); ?>">
-                        </div>
+            <div class="model_serie">
+                <div style="overflow: hidden">
+                    <img class="img-serie" src="<?= htmlspecialchars($this->affiche_serie); ?>" alt="<?php echo htmlspecialchars($this->affiche_serie); ?>">
+                </div>
 
-                        <?php if(isset($_SESSION['nickname'])): ?>
+                <?php if(isset($_SESSION['nickname'])): ?>
 
-                            <a href="dashboard.php?value=serie&modif=<?= $this->id_serie; ?>" ><button class="category-btn" type="button" style="background-color: blue; padding = 2px;">MODIFIER</button></a>
+                    <a href="dashboard.php?value=serie&modif=<?= $this->id_serie; ?>" ><button class="category-btn" type="button" style="background-color: blue; padding = 2px;">MODIFIER</button></a>
 
-                            <a href="dashboard.php?value=serie&supp=<?= $this->id_serie; ?>" ><button class="category-btn" type="button" style="background-color: red;" onclick="return confirm('Es-tu sûr de vouloir supprimer cette série ?');">SUPPRIMER</button></a>
-                        <?php endif; ?>
+                    <a href="dashboard.php?value=serie&supp=<?= $this->id_serie; ?>" ><button class="category-btn" type="button" style="background-color: red;" onclick="return confirm('Es-tu sûr de vouloir supprimer cette série ?');">SUPPRIMER</button></a>
+                <?php endif; ?>
 
-                        <h2 class="titre-serie"><?= htmlspecialchars($this->titre_serie); ?></h2>
-                        
-                        <span class="tag"><?= $this->nom_tag ?></span>
+                <h2 class="titre-serie"><?= htmlspecialchars($this->titre_serie); ?></h2>
+                
+                <span class="tag"><?= $this->nom_tag ?></span>
 
-                        <div  style="display: none">
-                            <span class="synopsis"><?= $this->synopsis_serie ?></span>
-                            <span class="reals">Les réalisateurs : <?php         
-                                $realisateurs = $this->serieDB->getReal($this->id_serie);
-                                foreach($realisateurs as $realisateur){
-                                    echo $realisateur->getNomReal() . ", ";
-                                } 
-                            ?></span>
-                            <span class="nb-saisons"> Nombre de saisons : <?=  $this->serieDB->getNbSaison($this->id_serie) ?></span>
-                            <span class="duree">Durée : <?= round($this->serieDB->getTimeSerie($this->id_serie)/60,1) ?> heures</span>
+                <div  style="display: none">
+                    <span class="synopsis"><?= $this->synopsis_serie ?></span>
+                    <span class="reals">Les réalisateurs : <?php         
+                        $realisateurs = $this->serieDB->getReal($this->id_serie);
+                        foreach($realisateurs as $realisateur){
+                            echo $realisateur->getNomReal() . ", ";
+                        } 
+                    ?></span>
+                    <span class="nb-saisons"> Nombre de saisons : <?=  $this->serieDB->getNbSaison($this->id_serie) ?></span>
+                    <span class="duree">Durée : <?= round($this->serieDB->getTimeSerie($this->id_serie)/60,1) ?> heures</span>
 
-                        </div>
-                    </div>
+                </div>
             </div>
+        </div>
     <?php }
 
     public function getHTMLActor(){
         ?>
 
         <div class="series-list">
-                    <div class="model_serie">
-                        <div style="overflow: hidden">
-                            <img src="<?= htmlspecialchars($this->photo_acteur); ?>" alt="<?php echo htmlspecialchars($this->photo_acteur); ?>">
-                        </div>
+            <div class="model_serie">
+                <div style="overflow: hidden">
+                    <img src="<?= htmlspecialchars($this->photo_acteur); ?>" alt="<?php echo htmlspecialchars($this->photo_acteur); ?>">
+                </div>
 
-                        <?php if(isset($_SESSION['nickname'])): ?>
-                            <a href="dashboard.php?value=act&supp=<?= $this->id_acteur; ?>" ><button class="category-btn" type="button" style="background-color: red;" onclick="return confirm('Es-tu sûr de vouloir supprimer cette série ?');">SUPPRIMER</button></a>
-                        <?php endif; ?>
+                <?php if(isset($_SESSION['nickname'])): ?>
+                    <a href="dashboard.php?value=act&supp=<?= $this->id_acteur; ?>" ><button class="category-btn" type="button" style="background-color: red;" onclick="return confirm('Es-tu sûr de vouloir supprimer cette série ?');">SUPPRIMER</button></a>
+                <?php endif; ?>
 
-                        <h2><?= htmlspecialchars($this->nom_acteur); ?></h2>
-                        
-                    </div>
+                <h2><?= htmlspecialchars($this->nom_acteur); ?></h2>
+                
             </div>
+        </div>
+        <script src="../js/details.js"></script>
     <?php }
 
     public function getHTMLReal(){
         ?>
 
         <div class="series-list">
-                    <div class="model_serie">
-                        <div style="overflow: hidden">
-                            <img src="<?= htmlspecialchars($this->photo_real); ?>" alt="<?php echo htmlspecialchars($this->photo_real); ?>">
-                        </div>
+            <div class="model_serie">
+                <div style="overflow: hidden">
+                    <img src="<?= htmlspecialchars($this->photo_real); ?>" alt="<?php echo htmlspecialchars($this->photo_real); ?>">
+                </div>
 
-                        <!-- si nous sommes connectés en tant qu'admin, nous pouvons modifier chaque élement -->
-                        <?php if(isset($_SESSION['nickname'])): ?>
-                            <a href="dashboard.php?value=real&supp=<?= $this->id_real; ?>" ><button class="category-btn" type="button" style="background-color: red;" onclick="return confirm('Es-tu sûr de vouloir supprimer cette série ?');">SUPPRIMER</button></a>
-                        <?php endif; ?>
+                <!-- si nous sommes connectés en tant qu'admin, nous pouvons modifier chaque élement -->
+                <?php if(isset($_SESSION['nickname'])): ?>
+                    <a href="dashboard.php?value=real&supp=<?= $this->id_real; ?>" ><button class="category-btn" type="button" style="background-color: red;" onclick="return confirm('Es-tu sûr de vouloir supprimer cette série ?');">SUPPRIMER</button></a>
+                <?php endif; ?>
 
-                        <h2><?= htmlspecialchars($this->nom_real); ?></h2>
-                        
-                    </div>
+                <h2><?= htmlspecialchars($this->nom_real); ?></h2>
+                
             </div>
+        </div>
+        <script src="../js/details.js"></script>
     <?php }
 
     public function getHTMLSaison(){

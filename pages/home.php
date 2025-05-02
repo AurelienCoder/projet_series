@@ -8,7 +8,7 @@ Autoloader::register();
 <?php ob_start() ?>
 
 <div style="margin-top: 10px; margin-bottom: 30px;">
-    <div id="home-title">LES SERIES DU MOMENT</div>
+    <div id="title">LES SERIES DU MOMENT</div>
 
     <div class="home-button-div" style="margin-top: 10px;">
         <input class="category-btn" type="checkbox"/><label>Tout</label>

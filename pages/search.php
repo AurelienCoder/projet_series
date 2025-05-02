@@ -13,7 +13,7 @@ Autoloader::register();
         $serieDB = new \sdb\SerieDB();
 
         if(isset($_GET['search'])){ //$_GET['search'] est utilisé pour afficher soit TOUS les acteurs ou TOUS les réalisateurs ou TOUTES les séries
-            echo "<div id='home-title'></div>
+            echo "<div id='title'></div>
 
             <div style='display:flex; overflow-x: auto;'>";
                 $search->generalSearch(); 
@@ -23,7 +23,7 @@ Autoloader::register();
         }else if(isset($_GET['real']) && $_GET['real'] != ''){
             $search->realSearch(); 
         }else if(isset($_GET['act']) && $_GET['act'] != ''){
-            $search->actSearch(); 
+            $search->actSearch();
         }else{
             //si l'utilisateur n'a pas encore fait de requête, alors on affiche le formulaire avec generateForm();
             $search->generateForm(); 
