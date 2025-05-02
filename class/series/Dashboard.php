@@ -61,7 +61,7 @@ class Dashboard{
             exit;
         }?>
                     
-        <!-- formulaire principal -->
+        <!-- FORMULAIRE PRINCIPAL -->
         <section class="form-ajouter">
             <h1>Ajouter une série</h1>
             <form method="POST">
@@ -77,7 +77,7 @@ class Dashboard{
                     </div>
                     <input id="nb-saison" type="number" min="1" max ="5"></input>
 
-                    <!-- BOUTON POUR OUVRIR LA DIV PERMETTANT D'AJOUTER LES SAISONS -->
+                    <!-- BOUTON POUR OUVRIR LA DIV PERMETTANT D'AJOUTER UNE SAISON A LA FOIS -->
                     <button  class="category-btn" id="ajouter-real-act-saison">Ajouter les saisons</button>
                 </div>
 
@@ -92,9 +92,9 @@ class Dashboard{
             </form>
         </section>
 
-        <!-- div qui permet d'ajouter des saisons -->
+        <!-- DIV QUI PERMET D'AJOUTER UNE SAISON A LA FOIS -->
         <div id="ajout-infos">
-            <div id="sous-div">
+            <div id="sous-div"  style="margin-top: 0px">
                 <h3>Ajouter une saison</h3>
                 <div>
                     <label>Titre de la saison :</label>
@@ -109,12 +109,66 @@ class Dashboard{
                 <div>
                     <label>Nombre d'acteurs : </label>
                     <input id="nb-act" type="number" min="1" max ="5"></input>
-                    <!-- BOUTON POUR OUVRIR LA DIV PERMETTANT D'AJOUTER LES ACTEURS -->
+
+                    <!-- BOUTON POUR OUVRIR LA DIV PERMETTANT D'AJOUTER UN ACTEUR A LA FOIS -->
                     <button  class="category-btn" id="ajouter-real-act-saison">Ajouter les acteurs</button>
                 </div>
+                <br>
+                <div>
+                    <label>Nombre d'épisodes : </label>
+                        <input id="nb-act" type="number" min="1" max ="5"></input>
 
-                <!-- BOUTON POUR AJOUTER UN REAL/ACTEUR/SAISON DANS LA BD -->
-                <button id="valider" style="margin-top: 10px;">Valider</button>
+                        <!-- BOUTON POUR OUVRIR LA DIV PERMETTANT D'AJOUTER UN EPISODE A LA FOIS -->
+                        <button  class="category-btn" id="ajouter-real-act-saison">Ajouter les épisodes</button>
+                </div>
+
+                <!-- BOUTON POUR VALIDER ET AJOUTER UNE SAISON DANS LA BD -->
+                <button id="valider" style="margin-top: 10px;">Valider la saison</button>
+
+                <!-- DIV PERMETTANT D'AJOUTER UN ACTEUR A LA FOIS -->
+                <hr>
+                <div id="sous-div2">
+                    <h3>Ajouter l'acteur n°1</h3>
+                    <div>
+                        <label>Nom de l'acteur : </label>
+                        <input type="text" id="" placeholder="">
+                    </div>
+                    <br>
+                    <div>
+                        <label>Image de l'acteur : </label>
+                        <input type="text" id="" placeholder="">
+                    </div>
+                    <!-- BOUTON POUR VALIDER ET AJOUTER UN ACTEUR DANS LA BD -->
+                    <button id="valider" style="margin-top: 10px;">Valider l'acteur</button>
+                </div>
+
+                <!-- DIV PERMETTANT D'AJOUTER UN EPISODE A LA FOIS -->
+                <hr>
+                <div id="sous-div2">
+                    <h3>Ajouter l'épisode n°1</h3>
+                    <div>
+                        <label>Titre de l'épisode : </label>
+                        <input type="text" id="" placeholder="">
+                    </div>
+                    <br>
+                    <div>
+                        <label>Réalisateur : </label>
+                        <div>
+                        <label>Nom du réalisateur : </label>
+                        <input type="text" id="" placeholder="">
+                    </div>
+                    <br>
+                    <div>
+                        <label>Image du réalisateur : </label>
+                        <input type="text" id="" placeholder="">
+                    </div>
+
+                            <!-- BOUTON POUR OUVRIR LA DIV PERMETTANT D'AJOUTER UN EPISODE A LA FOIS -->
+                            <button  class="category-btn" id="ajouter-real-act-saison">Ajouter le réalisateur</button>
+                    </div>
+                    <!-- BOUTON POUR VALIDER ET AJOUTER UN ACTEUR DANS LA BD -->
+                    <button id="valider" style="margin-top: 10px;">Valider l'acteur</button>
+                </div>
             </div>
         </div>
 

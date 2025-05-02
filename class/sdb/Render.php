@@ -135,10 +135,10 @@ class Render{
 
             <h2><?= htmlspecialchars($this->titre_saison); ?></h2>
             
-            <h2>Nombre d'épisodes : <?= $serieDB->getNbEpisode($this->numero_saison) ?> épisodes</h2>
+            <h2>Nombre d'épisodes : <?= $this->serieDB->getNbEpisode($this->numero_saison) ?> épisodes</h2>
 
             <h2>Durée d'une saison : <?php
-                echo round($serieDB->getTimeSaison($this->numero_saison)/60,1) ?> heures
+                echo round($this->serieDB->getTimeSaison($this->numero_saison)/60,1) ?> heures
             </h2>
         </div>
     </div>
