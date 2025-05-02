@@ -155,6 +155,30 @@ class SerieDB{
         return $results;
     }
 
+        
+    //utilisée
+    public function getActId($nom_act){
+        $sql = "SELECT id_acteur FROM acteur WHERE nom_acteur = :nom_act";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':nom_act', $nom_act);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        return $statement->fetchColumn();
+    }
+
+    public function getSeriesByAct($act_id){
+        // Afficher toutes les séries d'un real
+        $sql = "SELECT DISTINCT titre_serie, affiche_serie, synopsis_serie FROM serie
+        INNER JOIN saison ON saison.id_serie = serie.id_serie
+        INNER JOIN saison_acteur ON saison_acteur.id_saison = saison.id_saison
+        INNER JOIN acteur ON acteur.id_acteur = :act_id AND acteur.id_acteur = saison_acteur.id_acteur";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':act_id', $act_id);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
+        return $results;
+    }
+    
     public function getEpisodes($saison_id){
         // Afficher les épisodes d'une saison
         $sql = "SELECT * FROM episode

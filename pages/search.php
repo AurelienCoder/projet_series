@@ -22,6 +22,8 @@ Autoloader::register();
             $search->serieSearch(); 
         }else if(isset($_GET['real']) && $_GET['real'] != ''){
             $search->realSearch(); 
+        }else if(isset($_GET['act']) && $_GET['act'] != ''){
+            $search->actSearch(); 
         }else{
             //si l'utilisateur n'a pas encore fait de requête, alors on affiche le formulaire avec generateForm();
             $search->generateForm(); 

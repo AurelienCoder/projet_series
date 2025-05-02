@@ -143,7 +143,7 @@ class Search{
 
     public function realSearch(){
         $serieDB = new SerieDB();
-        //affiche les saisons d'une série
+
         $real = $_GET['real'];
 
         $realID = $serieDB->getRealId($real);
@@ -152,6 +152,24 @@ class Search{
 
         echo "<div style='display:flex; overflow-x: auto;'>";
         $series = $serieDB->getSeriesByReal($realID);
+
+        foreach($series as $serie){
+            echo $serie->getHTMLSerie();
+        }
+        echo "</div>";
+    }
+
+    public function actSearch(){
+        $serieDB = new SerieDB();
+
+        $act = $_GET['act'];
+
+        $actID = $serieDB->getActId($act);
+
+        echo " <h1>Les séries jouées par " . $act  . "</h1><div id='home-title'></div> ";
+
+        echo "<div style='display:flex; overflow-x: auto;'>";
+        $series = $serieDB->getSeriesByAct($actID);
 
         foreach($series as $serie){
             echo $serie->getHTMLSerie();
