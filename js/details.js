@@ -10,13 +10,13 @@ divs.forEach((div, index) => {
             window.location.href = 'search.php?act=' + document.querySelectorAll('h2')[index].innerText;
         }else if(getTitle == 'LES RÉALISATEURS'){
             window.location.href = 'search.php?real=' + document.querySelectorAll('h2')[index].innerText;
-        }else{
+        }else if(getTitle == 'LES SERIES DU MOMENT' || getTitle == 'LES SERIES'){
             //Ces élements se trouvent dans la classe TEMPLATE
             let container = document.getElementById('alert');
             container.style.display = 'initial';
             container.style.width = window.innerWidth + 'px';
             container.style.height = window.innerHeight + 'px';
-    
+
             let h1 = document.querySelector('#alert h1');
             h1.innerText = document.getElementsByClassName('titre-serie')[index].innerText;
     
