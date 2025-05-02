@@ -36,10 +36,9 @@ class Dashboard{
         //mais on doit aussi ajouter les noms et images des acteurs/réalisateurs ainsi que les saisons
         //je récupère donc leurs noms et leurs photos envoyés en POST avec AJAX (fetch)
 
-        //obligatoire sinon ça ne fonctionne pas
-
         //les saisons
         if(isset($_POST['titre']) && isset($_POST['numero']) && isset($_POST['affiche']) && isset($_POST['id_serie'])){
+            //obligatoire sinon ça ne fonctionne pas
             header('Content-Type: application/json');
 
             $this->serieDB->addSaison($_POST['titre'], $_POST['numero'], $_POST['affiche'], $_POST['id_serie']);
@@ -48,6 +47,7 @@ class Dashboard{
 
         //les acteurs/réalisateurs
         if(isset($_POST['nom']) && isset($_POST['image'])){
+            //obligatoire sinon ça ne fonctionne pas
             header('Content-Type: application/json');
 
             $nom = $_POST['nom'];

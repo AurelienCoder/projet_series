@@ -1,9 +1,9 @@
 //script qui s'occupe d'ouvrir une fenêtre pour obtenir plus d'informations quand on clique sur une série, un acteur ou un réalisateur
 
-series = document.querySelectorAll('.model_serie');
+divs = document.querySelectorAll('.model_serie');
 
-series.forEach((serie, index) => {
-    serie.addEventListener('click', function(){
+divs.forEach((div, index) => {
+    div.addEventListener('click', function(){
         let getTitle = document.getElementById('title').innerText;
 
         if(getTitle == 'LES ACTEURS'){
@@ -11,6 +11,7 @@ series.forEach((serie, index) => {
         }else if(getTitle == 'LES RÉALISATEURS'){
             window.location.href = 'search.php?real=' + document.querySelectorAll('h2')[index].innerText;
         }else{
+            //Ces élements se trouvent dans la classe TEMPLATE
             let container = document.getElementById('alert');
             container.style.display = 'initial';
             container.style.width = window.innerWidth + 'px';

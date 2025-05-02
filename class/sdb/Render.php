@@ -80,6 +80,7 @@ class Render{
                 </div>
             </div>
         </div>
+        <script src="../js/details.js"></script>
     <?php }
 
     public function getHTMLActor(){
@@ -124,7 +125,6 @@ class Render{
     <?php }
 
     public function getHTMLSaison(){
-        $serieDB = new SerieDB();
         ?>
 
     <div class="series-list">
