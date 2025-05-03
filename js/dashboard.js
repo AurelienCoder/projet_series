@@ -1,7 +1,7 @@
 //VOIR COURS JS DE M. BOURGUIN -> Fetch & POST
 
 //AJOUTER UNE SERIE
-function fetchSerie(url, idSerie, titre, img, synopsis, type){
+function fetchSerie(url, idSerie, titre, img, synopsis){
     
     let data = new FormData();
     data.append('id_serie', idSerie);
