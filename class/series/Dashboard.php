@@ -159,15 +159,20 @@ class Dashboard{
                         <input type="number" id="duree-ep" required>
                     </div>
                     <br>
-                    <div>
+                    <!-- BOUTON POUR AJOUTER LES REALISATEURS -->
+                    <button class="valider btn-valider" style="margin-top: 10px;">Ajouter les réalisateurs de cet épisode</button>
+
+                    <div id="ajouter-real" style="display: none">
                         <div>
-                        <label>Nom du réalisateur : </label>
-                        <input type="text" id="nom-real" required>
-                    </div>
-                    <br>
-                    <div>
-                        <label>Image du réalisateur (URL) : </label>
-                        <input type="text" id="img-real" required>
+                            <div>
+                            <label>Nom du réalisateur : </label>
+                            <input type="text" id="nom-real" required>
+                        </div>
+                        <br>
+                        <div>
+                            <label>Image du réalisateur (URL) : </label>
+                            <input type="text" id="img-real" required>
+                        </div>
                     </div>
 
                     <!-- BOUTON POUR VALIDER ET AJOUTER UN ÉPISODE DANS LA BD -->

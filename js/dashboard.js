@@ -13,6 +13,8 @@ let idEp = document.getElementById('id-ep').innerText;
 //mais ça ne correspond pas aux identifiants uniques 
 let numSaison = 1;
 let numAct = 1;
+let numEp = 1;
+let numReal = 1;
 
 //correspond aux boutons "Acteur suivant", "Episode suivant", "Saison suivante"...
 //serie = [0], tag = [1], saison = [2], act = [3]
@@ -140,9 +142,8 @@ function formDataEpisode(idEp, titre, synopsis, duree){
     fetchPOST(data);
 }
 
-//AJOUTER UN EPISODE DANS LA BD
+//AJOUTER UN REALISATEUR DANS LA BD
 valider[4].addEventListener('click', function(){
-    alert('test');
     let titre = document.getElementById('titre-ep').value;
     let synopsis = document.getElementById('synopsis-ep').value;
     let duree = document.getElementById('duree-ep').value;
@@ -150,10 +151,22 @@ valider[4].addEventListener('click', function(){
     let imgReal = document.getElementById('img-real');
     formDataEpisode(idEp, titre, synopsis, duree);
     fetchPOST(data);
+
+    document.getElementById('ajouter-real').style.display = 'initial';
+    valider[4].style.display = 'none';
+})
+
+//AJOUTER UN EPISODE DANS LA BD
+valider[5].addEventListener('click', function(){
+    numEp++;
+    idEp++;
+    numReal = 1;
+    document.querySelector('#sous-div2 h3').innerText = "Ajouter l'acteur n°" + numAct + " (saison " + numSaison + ")";
+    h3.innerText = "Ajouter la saison n°" + numSaison;
 })
 
 //SAISIR LA SAISON SUIVANTE
-valider[5].addEventListener('click', function(){
+valider[6].addEventListener('click', function(){
     numSaison++;
     idSaison++;
     numAct = 1;
