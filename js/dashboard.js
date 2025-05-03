@@ -15,9 +15,16 @@ let numSaison = 1;
 let numAct = 1;
 let numEp = 1;
 let numReal = 1;
+let numTag = 1;
 
 //correspond aux boutons "Acteur suivant", "Episode suivant", "Saison suivante"...
-//serie = [0], tag = [1], saison = [2], act = [3]
+/*[0] = valider la serie et commencer à ajouter les genres
+  [1] = les genres
+  [2] = valider la saison et commencer à ajouter les acteurs/épisodes
+  [3] = passer à l'acteur suivant
+  [4] = valider l'épisode et commencer à ajouter les réalisateurs de cet épisode
+
+*/
 let valider = document.querySelectorAll('.valider');
 
 //VOIR COURS JS DE M. BOURGUIN -> Fetch & POST
@@ -49,14 +56,14 @@ function formDataSerie(idSerie, titre, img, synopsis){
     fetchPOST(data);
 }
 
-//AJOUTER UNE SERIE DANS LA BD + OUVRIR DIV POUR AJOUTER LES SAISONS
+//AJOUTER UNE SERIE DANS LA BD + OUVRIR DIV POUR AJOUTER LES TAGS
 valider[0].addEventListener('click', function(){
     let titre = document.getElementById('titre-serie').value;
     let img = document.getElementById('img-serie').value;
     let synopsis = document.getElementById('synopsis-serie').value;
     
     formDataSerie(idSerie, titre, img, synopsis);
-    //OUVRIR LA DIV POUR COMMENCER A AJOUTER LES SAISONS
+
     let titreSerieInput = document.querySelector("input[name='titre']");
 
     if(titreSerieInput.value == ''){
@@ -80,6 +87,8 @@ valider[1].addEventListener('click', function(){
     let nomTag = document.getElementById('nom-tag');
     formDataTag(idSerie, nomTag.value);
     nomTag.value = '';
+    numTag++;
+    document.querySelector('#sous-div label').innerText = 'Tag n°' + numTag + ' (un à la fois svp)';
 })
 
 //AJOUTER UNE SAISON
@@ -142,27 +151,35 @@ function formDataEpisode(idEp, titre, synopsis, duree){
     fetchPOST(data);
 }
 
-//AJOUTER UN REALISATEUR DANS LA BD
+//VALIDER L'EPISODE ET COMMENCER A AJOUTER LES REALISATEURS DANS LA BD
 valider[4].addEventListener('click', function(){
     let titre = document.getElementById('titre-ep').value;
     let synopsis = document.getElementById('synopsis-ep').value;
     let duree = document.getElementById('duree-ep').value;
-    let nomReal = document.getElementById('nom-real');
-    let imgReal = document.getElementById('img-real');
     formDataEpisode(idEp, titre, synopsis, duree);
-    fetchPOST(data);
-
-    document.getElementById('ajouter-real').style.display = 'initial';
     valider[4].style.display = 'none';
+    document.getElementById('ajouter-real').style.display = 'initial';
 })
+
+//AJOUTER UN REALISATEUR
+function formDataAct(nom, img, idReal, idEpisode){
+    let data = new FormData();
+    data.append('nom', nom);
+    data.append('image', img);
+    data.append('id_real', idReal);
+    data.append('id_saison', idEpisode);
+    fetchPOST(data);
+}
 
 //AJOUTER UN EPISODE DANS LA BD
 valider[5].addEventListener('click', function(){
     numEp++;
     idEp++;
     numReal = 1;
-    document.querySelector('#sous-div2 h3').innerText = "Ajouter l'acteur n°" + numAct + " (saison " + numSaison + ")";
+    document.querySelector('#sous-div3 h3').innerText = "Ajouter l'épisode n°" + numEp + " (saison " + numSaison + ")";
     h3.innerText = "Ajouter la saison n°" + numSaison;
+    valider[4].style.display = 'initial';
+    document.getElementById('ajouter-real').style.display = 'none';
 })
 
 //SAISIR LA SAISON SUIVANTE
@@ -170,7 +187,10 @@ valider[6].addEventListener('click', function(){
     numSaison++;
     idSaison++;
     numAct = 1;
+    numEp = 1;
+    numReal = 1;
     document.querySelector('#sous-div2 h3').innerText = "Ajouter l'acteur n°" + numAct + " (saison " + numSaison + ")";
+    document.querySelector('#sous-div3 h3').innerText = "Ajouter l'épisode n°" + numEp + " (saison " + numSaison + ")";
     h3.innerText = "Ajouter la saison n°" + numSaison;
     document.getElementById('sous-div').scrollTop = 0;
 })

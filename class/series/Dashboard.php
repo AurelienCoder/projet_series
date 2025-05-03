@@ -95,17 +95,17 @@ class Dashboard{
                 <label>Synopsis :</label>
                 <textarea id="synopsis-serie" name="synopsis" required></textarea>
 
-                <!-- BOUTON POUR AJOUTER UNE SERIE DANS LA BD + OUVRIR LA DIV POUR AJOUTER LES SAISONS -->
-                <button type="submit" class="valider btn-valider">Valider la série et ajouter ses saisons</button>
+                <!-- BOUTON POUR AJOUTER UNE SERIE DANS LA BD + OUVRIR LA DIV POUR AJOUTER LES TAGS -->
+                <button type="submit" class="valider btn-valider">Valider la série et ajouter ses tags</button>
             </form>
         </section>
 
         <!-- DIV QUI PERMET D'AJOUTER UNE SAISON A LA FOIS -->
         <div id="ajout-infos">
             <div id="sous-div" style="margin-top: 80px; height: 500px; overflow: scroll;">
-                <label>Genre (un à la fois svp)</label>
+                <label>Tag n°1 (un à la fois svp)</label>
                 <input id="nom-tag" type="text" name="genre" required>
-                <button class="valider btn-valider">Ajouter le genre</button>
+                <button class="valider btn-valider">Ajouter le tag</button>
                 <hr>
                 <h3>Ajouter une saison</h3> <span id="id-saison" style="display: none"><?= $this->serieDB->countSaisons()+1 ?></span>
                 <div>
@@ -142,7 +142,7 @@ class Dashboard{
 
                 <!-- DIV PERMETTANT D'AJOUTER UN EPISODE A LA FOIS -->
                 <hr>
-                <div id="sous-div2">
+                <div id="sous-div3">
                     <h3>Ajouter l'épisode n°1 (saison 1)</h3><span id="id-ep" style="display: none"><?= $this->serieDB->countEpisodes()+1 ?></span>
                     <div>
                         <label>Titre de l'épisode : </label>
@@ -160,7 +160,7 @@ class Dashboard{
                     </div>
                     <br>
                     <!-- BOUTON POUR AJOUTER LES REALISATEURS -->
-                    <button class="valider btn-valider" style="margin-top: 10px;">Ajouter les réalisateurs de cet épisode</button>
+                    <button class="valider btn-valider" style="margin-top: 10px;">Valider l'épisode et ajouter les réalisateurs</button>
 
                     <div id="ajouter-real" style="display: none">
                         <div>
