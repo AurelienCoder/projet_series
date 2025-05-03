@@ -7,6 +7,7 @@ let h3 = sousDiv.querySelector('h3');
 let idSerie = document.querySelector('h1 span').innerText;
 let idSaison = document.getElementById('id-saison').innerText;
 let idAct = document.getElementById('id-act').innerText;
+let idEp = document.getElementById('id-ep').innerText;
 
 //variables pour se réperer dans le formulaire : saison n°1, n°2 de la série... acteur n°1, n°2 de la saison
 //mais ça ne correspond pas aux identifiants uniques 
@@ -102,6 +103,7 @@ valider[2].addEventListener('click', function(){
 
     titre.value = '';
     img.value = '';
+    valider[2].style.display = 'none';
 })
 
 //AJOUTER UN ACTEUR
@@ -141,9 +143,9 @@ function formDataEpisode(idEp, titre, synopsis, duree){
 //AJOUTER UN EPISODE DANS LA BD
 valider[4].addEventListener('click', function(){
     alert('test');
-    let titre = document.getElementById('titre-ep');
-    let synopsis = document.getElementById('synopsis-ep');
-    let duree = document.getElementById('duree-ep');
+    let titre = document.getElementById('titre-ep').value;
+    let synopsis = document.getElementById('synopsis-ep').value;
+    let duree = document.getElementById('duree-ep').value;
     let nomReal = document.getElementById('nom-real');
     let imgReal = document.getElementById('img-real');
     formDataEpisode(idEp, titre, synopsis, duree);

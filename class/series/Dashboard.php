@@ -78,10 +78,10 @@ class Dashboard{
             $synopsis = $_POST['synopsis_ep'];
             $duree = $_POST['duree_ep'];
 
-            $this->serieDB->
+            $this->serieDB->addEp($id, $titre, $synopsis, $duree);
             exit;
         }?>
-                    
+
         <!-- FORMULAIRE PRINCIPAL -->
         <section class="form-ajouter">
             <h1>Ajouter la série n°<span><?= $this->serieDB->countSeries()+1 ?></span></h1>
@@ -143,7 +143,7 @@ class Dashboard{
                 <!-- DIV PERMETTANT D'AJOUTER UN EPISODE A LA FOIS -->
                 <hr>
                 <div id="sous-div2">
-                    <h3>Ajouter l'épisode n°1 (saison 1)</h3>
+                    <h3>Ajouter l'épisode n°1 (saison 1)</h3><span id="id-ep" style="display: none"><?= $this->serieDB->countEpisodes()+1 ?></span>
                     <div>
                         <label>Titre de l'épisode : </label>
                         <input type="text" id="titre-ep" required>
@@ -155,8 +155,8 @@ class Dashboard{
                     </div>
                     <br>
                     <div>
-                        <label>Durée de l'épisode : </label>
-                        <input type="text" id="duree-ep" required>
+                        <label>Durée de l'épisode (secondes) :</label>
+                        <input type="number" id="duree-ep" required>
                     </div>
                     <br>
                     <div>

@@ -450,6 +450,15 @@ class SerieDB{
     }
 
     //utilisée
+    public function countEpisodes(): int{
+        $sql = "SELECT COUNT(*) FROM episode";
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+
+        return $statement->fetchColumn();
+    }
+
+    //utilisée
     public function getTimeSerie($serie_id){
         // Durée totale de la série
         $sql = "SELECT SUM(episode.duree_episode) FROM episode
