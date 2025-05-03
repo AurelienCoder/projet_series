@@ -74,29 +74,34 @@ class Dashboard{
             exit;
         }
         
-        //LES ACTEURS D'UNE SAISON
+        //LES REALISATEURS D'UNE SAISON
         if(isset($_POST['nom_real']) && isset($_POST['image_real'])){
             //obligatoire sinon ça ne fonctionne pas
             header('Content-Type: application/json');
 
+            $id_ep = $_POST['id_ep'];
             $id_real = $_POST['id_real'];
             $nom = $_POST['nom_real'];
             $image = $_POST['image_real'];
-            
+
             $this->serieDB->addReal($id_real, $nom, $image);
+            $this->serieDB->addEpisodeRealisateurJointure($id_ep, $id_real);
             exit;
         }
+
         //LES EPISODES D'UNE SAISON
         if(isset($_POST['id_ep'])){
             //obligatoire sinon ça ne fonctionne pas
             header('Content-Type: application/json');
 
-            $id = $_POST['id_ep'];
+            $id_saison = $_POST['id_saison'];
+            $id_ep = $_POST['id_ep'];
             $titre = $_POST['titre_ep'];
             $synopsis = $_POST['synopsis_ep'];
             $duree = $_POST['duree_ep'];
 
-            $this->serieDB->addEp($id, $titre, $synopsis, $duree);
+            $this->serieDB->addEp($id_ep, $titre, $synopsis, $duree);
+            $this->serieDB->addSaisonEpisodeJointure($id_saison, $id_ep);
             exit;
         }?>
 

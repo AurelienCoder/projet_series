@@ -318,6 +318,26 @@ class SerieDB{
 
         $statement->execute() or die(var_dump($statement->errorInfo()));
     }
+
+    public function addSaisonEpisodeJointure($id_saison, $id_ep){
+        $sql = "INSERT INTO saison_episode (id_saison, id_episode) 
+                VALUES (:id_saison, :id_ep)";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id_saison', $id_saison);
+        $statement->bindParam(':id_ep', $id_ep);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
+    public function addEpisodeRealisateurJointure($id_ep, $id_real){
+        $sql = "INSERT INTO episode_realisateur (id_episode, id_real) 
+                VALUES (:id_ep, :id_real)";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id_ep', $id_ep);
+        $statement->bindParam(':id_real', $id_real);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
     
     //utilisée
     public function addSerieTagJointure($id_serie, $id_tag){

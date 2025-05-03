@@ -143,8 +143,9 @@ valider[3].addEventListener('click', function(){
 })
 
 //AJOUTER UN EPISODE
-function formDataEpisode(idEp, titre, synopsis, duree){
+function formDataEpisode(idSaison, idEp, titre, synopsis, duree){
     let data = new FormData();
+    data.append('id_saison', idSaison);
     data.append('id_ep', idEp);
     data.append('titre_ep', titre);
     data.append('synopsis_ep', synopsis);
@@ -157,7 +158,7 @@ valider[4].addEventListener('click', function(){
     let titre = document.getElementById('titre-ep').value;
     let synopsis = document.getElementById('synopsis-ep').value;
     let duree = document.getElementById('duree-ep').value;
-    formDataEpisode(idEp, titre, synopsis, duree);
+    formDataEpisode(idSaison, idEp, titre, synopsis, duree);
     valider[4].style.display = 'none';
     document.getElementById('ajouter-real').style.display = 'initial';
 })
