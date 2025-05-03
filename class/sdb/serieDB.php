@@ -285,6 +285,18 @@ class SerieDB{
         $statement->execute() or die(var_dump($statement->errorInfo()));
     }
 
+    public function addEp($id_ep, $titre_ep, $synopsis_ep, $duree_ep){
+        $sql = "INSERT INTO episode (id_episode, titre_episode, synopsis_episode, duree_episode)
+                VALUES (:id_ep, :titre_ep, :synopsis_ep, :duree_ep)";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id_ep', $id_ep);
+        $statement->bindParam(':titre_ep', $titre_ep);
+        $statement->bindParam(':synopsis_ep', $synopsis_ep);
+        $statement->bindParam(':duree_ep', $duree_ep);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
     //utilisée
     public function addSaisonActJointure($id_saison, $id_act){
         $sql = "INSERT INTO saison_acteur (id_saison, id_acteur) 

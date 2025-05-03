@@ -52,7 +52,7 @@ class Dashboard{
             exit;
         }
 
-        //LES ACTEURS
+        //LES ACTEURS D'UNE SAISON
         if(isset($_POST['nom']) && isset($_POST['image'])){
             //obligatoire sinon ça ne fonctionne pas
             header('Content-Type: application/json');
@@ -65,6 +65,20 @@ class Dashboard{
             
             $this->serieDB->addAct($id_act, $nom, $image);
             $this->serieDB->addSaisonActJointure($id_saison, $id_act);
+            exit;
+        }
+        
+        //LES EPISODES D'UNE SAISON
+        if(isset($_POST['id_ep'])){
+            //obligatoire sinon ça ne fonctionne pas
+            header('Content-Type: application/json');
+
+            $id = $_POST['id_ep'];
+            $titre = $_POST['titre_ep'];
+            $synopsis = $_POST['synopsis_ep'];
+            $duree = $_POST['duree_ep'];
+
+            $this->serieDB->
             exit;
         }?>
                     
@@ -96,12 +110,12 @@ class Dashboard{
                 <h3>Ajouter une saison</h3> <span id="id-saison" style="display: none"><?= $this->serieDB->countSaisons()+1 ?></span>
                 <div>
                     <label>Titre de la saison :</label>
-                    <input type="text" id="titre-saison" placeholder="">
+                    <input type="text" id="titre-saison">
                 </div>
                 <br>
                 <div>
                     <label>Affiche de la saison (URL) :</label>
-                    <input type="text" id="img-saison" placeholder="">
+                    <input type="text" id="img-saison">
                 </div>
 
                 <button type="submit" class="valider btn-valider">Ajouter les acteurs/épisodes de cette saison</button>
@@ -114,12 +128,12 @@ class Dashboard{
                     </h3>
                     <div>
                         <label>Nom de l'acteur : </label>
-                        <input value="act" type="text" id="nom-act" placeholder="">
+                        <input value="act" type="text" id="nom-act" required>
                     </div>
                     <br>
                     <div>
                         <label>Image de l'acteur (URL) : </label>
-                        <input value="img" type="text" id="img-act" placeholder="">
+                        <input value="img" type="text" id="img-act" required>
                     </div>
 
                     <!-- BOUTON POUR VALIDER ET AJOUTER UN ACTEUR DANS LA BD -->
@@ -132,28 +146,28 @@ class Dashboard{
                     <h3>Ajouter l'épisode n°1 (saison 1)</h3>
                     <div>
                         <label>Titre de l'épisode : </label>
-                        <input type="text" id="" placeholder="">
+                        <input type="text" id="titre-ep" required>
                     </div>
                     <br>
                     <div>
                         <label>Synopsis de l'épisode : </label>
-                        <input type="text" id="" placeholder="">
+                        <input type="text" id="synopsis-ep" required>
                     </div>
                     <br>
                     <div>
                         <label>Durée de l'épisode : </label>
-                        <input type="text" id="" placeholder="">
+                        <input type="text" id="duree-ep" required>
                     </div>
                     <br>
                     <div>
                         <div>
                         <label>Nom du réalisateur : </label>
-                        <input type="text" id="" placeholder="">
+                        <input type="text" id="nom-real" required>
                     </div>
                     <br>
                     <div>
                         <label>Image du réalisateur (URL) : </label>
-                        <input type="text" id="" placeholder="">
+                        <input type="text" id="img-real" required>
                     </div>
 
                     <!-- BOUTON POUR VALIDER ET AJOUTER UN ÉPISODE DANS LA BD -->

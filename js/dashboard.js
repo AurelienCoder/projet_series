@@ -94,11 +94,14 @@ function formDataSaison(idSaison, titre, num, img, idSerie){
 valider[2].addEventListener('click', function(){
     document.getElementById('ajouter-act-real-ep').style.display = 'initial';
 
-    let titre = document.getElementById('titre-saison').value;
-    let img = document.getElementById('img-saison').value;
+    let titre = document.getElementById('titre-saison');
+    let img = document.getElementById('img-saison');
 
-    formDataSaison(idSaison, titre, numSaison, img, idSerie);
+    formDataSaison(idSaison, titre.value, numSaison, img.value, idSerie);
     document.querySelector('#sous-div2 h3').innerText = "Ajouter l'acteur n°" + numAct + " (saison " + numSaison + ")";
+
+    titre.value = '';
+    img.value = '';
 })
 
 //AJOUTER UN ACTEUR
@@ -111,20 +114,40 @@ function formDataAct(nom, img, idAct, idSaison){
     fetchPOST(data);
 }
 
-
 //AJOUTER UN ACTEUR DANS LA BD
 valider[3].addEventListener('click', function(){
-    let nom = document.getElementById('nom-act').value;
-    let img = document.getElementById('img-act').value;
+    let nom = document.getElementById('nom-act');
+    let img = document.getElementById('img-act');
 
-    formDataAct(nom, img, idAct, idSaison);
+    formDataAct(nom.value, img.value, idAct, idSaison);
+    numAct++;
     idAct++;
     document.querySelector('#sous-div2 h3').innerText = "Ajouter l'acteur n°" + numAct + " (saison " + numSaison + ")";
+
+    nom.value = '';
+    img.value = '';
 })
 
+//AJOUTER UN EPISODE
+function formDataEpisode(idEp, titre, synopsis, duree){
+    let data = new FormData();
+    data.append('id_ep', idEp);
+    data.append('titre_ep', titre);
+    data.append('synopsis_ep', synopsis);
+    data.append('duree_ep', duree);
+    fetchPOST(data);
+}
 
 //AJOUTER UN EPISODE DANS LA BD
 valider[4].addEventListener('click', function(){
+    alert('test');
+    let titre = document.getElementById('titre-ep');
+    let synopsis = document.getElementById('synopsis-ep');
+    let duree = document.getElementById('duree-ep');
+    let nomReal = document.getElementById('nom-real');
+    let imgReal = document.getElementById('img-real');
+    formDataEpisode(idEp, titre, synopsis, duree);
+    fetchPOST(data);
 })
 
 //SAISIR LA SAISON SUIVANTE
