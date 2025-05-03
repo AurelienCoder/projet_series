@@ -169,7 +169,7 @@ function formDataReal(nom, img, idReal, idEp){
     data.append('nom_real', nom);
     data.append('image_real', img);
     data.append('id_real', idReal);
-    data.append('id_saison', idEp);
+    data.append('id_ep', idEp);
     fetchPOST(data);
 }
 
