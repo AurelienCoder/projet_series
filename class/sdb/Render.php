@@ -45,7 +45,6 @@ class Render{
         $this->serieDB = new SerieDB();
     }
 
-
     public function getHTMLSerie(){
         ?>
 
@@ -71,7 +70,7 @@ class Render{
                     <span class="reals">Les réalisateurs : <?php         
                         $realisateurs = $this->serieDB->getReal($this->id_serie);
                         foreach($realisateurs as $realisateur){
-                            echo $realisateur->getNomReal() . ", ";
+                            echo $realisateur->nom_real . ", ";
                         } 
                     ?></span>
                     <span class="nb-saisons"> Nombre de saisons : <?=  $this->serieDB->getNbSaison($this->id_serie) ?></span>
@@ -158,28 +157,19 @@ class Render{
     </div>
     <?php }
 
+    //utilisée dans dashboard.php pour modifier la série
     public function getTitreSerie(){
         return $this->titre_serie;
     }
 
-    //getter pour l'ID si besoin
-    public function getIdSerie(){
-        return $this->id_serie;
-    }
-
-    // getter pour l'affiche si besoin
+    //utilisée dans dashboard.php pour modifier la série
     public function getAfficheSerie(){
         return $this->affiche_serie;
     }
 
-    //getter pour le synopsis si besoin
+    //utilisée dans dashboard.php pour modifier la série
     public function getSynopsisSerie(){
         return $this->synopsis_serie;
     }
-
-        //getter pour le real
-        public function getNomReal(){
-            return $this->nom_real;
-        }
 }
 ?>

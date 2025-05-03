@@ -3,6 +3,9 @@ session_start();
 $logged = isset($_SESSION['nickname']);
 require_once "../class/Autoloader.php";
 Autoloader::register();
+
+//on déconnecte automatiquement la session administrateur au bout d'1 heure (au cas où il oublierait de se déconnecter)
+if(isset($_SESSION['time']) && time() > $_SESSION['time'] + 3600) session_destroy();
 ?>
 
 <?php ob_start() ?>

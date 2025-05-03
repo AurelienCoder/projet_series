@@ -7,6 +7,7 @@ $serieDB = new \sdb\SerieDB();
 
 $nbSeries = $serieDB->countSeries();
 $nbTags = $serieDB->countTags();
+$nbActs = $serieDB->countActs();
 
 ob_start();
 ?>
@@ -22,6 +23,11 @@ ob_start();
     <div style="padding: 20px; background-color: #f0f0f0; border-radius: 10px;">
         <h2>Nombre total de tags</h2>
         <p style="font-size: 30px;"><?= htmlspecialchars($nbTags) ?></p>
+    </div>
+
+    <div style="padding: 20px; background-color: #f0f0f0; border-radius: 10px;">
+        <h2>Nombre total d'acteurs</h2>
+        <p style="font-size: 30px;"><?= htmlspecialchars($nbActs) ?></p>
     </div>
 </div>
 

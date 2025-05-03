@@ -21,31 +21,28 @@ class Dashboard{
      */
     public function ajouterSerie(){
 
-        //dans une série on ajoute le titre, l'affiche et le synopsis 
-        if(isset($_POST['titre']) && isset($_POST['affiche']) && isset($_POST['synopsis'])){
-
-            $titre = $_POST['titre'];
-            $affiche = $_POST['affiche'];
-            $synopsis = $_POST['synopsis'];
-
-            $this->serieDB->addSerie($titre, $affiche, $synopsis); 
-            header('Location: home.php');
-            exit;
-        }
-
         //mais on doit aussi ajouter les noms et images des acteurs/réalisateurs ainsi que les saisons
         //je récupère donc leurs noms et leurs photos envoyés en POST avec AJAX (fetch)
 
-        //les saisons
-        if(isset($_POST['titre']) && isset($_POST['numero']) && isset($_POST['affiche']) && isset($_POST['id_serie'])){
+        //LA SERIE
+        if(isset($_POST['id_serie']) && isset($_POST['titre_serie']) && isset($_POST['affiche_serie']) && isset($_POST['synopsis_serie'])){
             //obligatoire sinon ça ne fonctionne pas
             header('Content-Type: application/json');
 
-            $this->serieDB->addSaison($_POST['titre'], $_POST['numero'], $_POST['affiche'], $_POST['id_serie']);
+            $this->serieDB->addSerie($_POST['id_serie'], $_POST['titre_serie'], $_POST['affiche_serie'], $_POST['synopsis_serie']);
             exit;
         }
 
-        //les acteurs/réalisateurs
+        //LES SAISONS DE LA SERIE
+        if(isset($_POST['id_saison']) && isset($_POST['titre_saison']) && isset($_POST['num_saison']) && isset($_POST['affiche_saison']) && isset($_POST['id_serie'])){
+            //obligatoire sinon ça ne fonctionne pas
+            header('Content-Type: application/json');
+
+            $this->serieDB->addSaison($_POST['id_saison'], $_POST['titre_saison'], $_POST['num_saison'], $_POST['affiche_saison'], $_POST['id_serie']);
+            exit;
+        }
+
+        //LES ACTEURS
         if(isset($_POST['nom']) && isset($_POST['image'])){
             //obligatoire sinon ça ne fonctionne pas
             header('Content-Type: application/json');
@@ -53,74 +50,70 @@ class Dashboard{
             $nom = $_POST['nom'];
             $image = $_POST['image'];
 
-            if($_POST['type'] == 'real'){
-                $this->serieDB->addReal($nom, $image);
-            }else if($_POST['type'] == 'act'){
-                $this->serieDB->addAct($nom, $image);
-            }
+            $id_saison = $_POST['id_saison'];
+            $id_act = $_POST['id_act'];
+            
+            $this->serieDB->addAct($id_act, $nom, $image);
+            $this->serieDB->addSaisonActJointure($id_saison, $id_act);
             exit;
         }?>
                     
         <!-- FORMULAIRE PRINCIPAL -->
         <section class="form-ajouter">
-            <h1>Ajouter une série</h1>
+            <h1>Ajouter la série n°<span><?= $this->serieDB->countSeries()+1?></span></h1>
             <form method="POST">
                 <label>Titre :</label>
-                <input value="titre" type="text" name="titre" required>
+                <input id="titre-serie" value="titre" type="text" name="titre" required>
 
-                <label>Genre :</label>
+                <label>Genre (un à la fois)</label>
                 <input type="text" name="genre" required>
+                <button  class="valider">Genre suivant</button>
 
-                <div style="display: flex; justify-content: space-between;">
-                    <div>
-                        <label>Nombre de saisons : </label>
-                    </div>
-                    <input id="nb-saison" type="number" min="1" max ="5"></input>
-
-                    <!-- BOUTON POUR OUVRIR LA DIV PERMETTANT D'AJOUTER UNE SAISON A LA FOIS -->
-                    <button  class="category-btn" id="ajouter-real-act-saison">Ajouter les saisons</button>
-                </div>
-
-                <label>Affiche (URL de l'image) :</label>
-                <input type="text" name="affiche" required>
+                <label>Affiche (URL) :</label>
+                <input value="URL" id="img-serie" type="text" name="affiche" required>
                 
                 <label>Synopsis :</label>
-                <textarea name="synopsis" required></textarea>
+                <textarea id="synopsis-serie" name="synopsis" required></textarea>
 
-                <!-- BOUTON POUR AJOUTER UNE SERIE DANS LA BD -->
-                <button type="submit" class="btn-valider">Valider</button>
+                <!-- BOUTON POUR AJOUTER UNE SERIE DANS LA BD + OUVRIR LA DIV POUR AJOUTER LES SAISONS -->
+                <button type="submit" class="valider btn-valider">Valider la série et ajouter ses saisons</button>
             </form>
         </section>
 
         <!-- DIV QUI PERMET D'AJOUTER UNE SAISON A LA FOIS -->
         <div id="ajout-infos">
             <div id="sous-div"  style="margin-top: 0px">
-                <h3>Ajouter une saison</h3>
+                <h3>Ajouter une saison</h3> <span id="id-saison" style="display: none"><?= $this->serieDB->countSaisons()+1?></span>
                 <div>
                     <label>Titre de la saison :</label>
-                    <input type="text" id="nom-ajout" placeholder="">
+                    <input value="TITRE11SAISON" type="text" id="titre-saison" placeholder="">
                 </div>
                 <br>
                 <div>
-                    <label>Affiche de la saison :</label>
-                    <input type="text" id="img-ajout" placeholder="">
+                    <label>Affiche de la saison (URL) :</label>
+                    <input value="AFFICHETITIREZI" type="text" id="img-saison" placeholder="">
                 </div>
 
+                <button type="submit" class="valider btn-valider">Valider la saison et ajouter ses acteurs/épisodes</button>
+
+            <div id="ajouter-act-real-ep" style="display:none">
                 <!-- DIV PERMETTANT D'AJOUTER UN ACTEUR A LA FOIS -->
                 <hr>
                 <div id="sous-div2">
-                    <h3>Ajouter l'acteur n°1 (saison 1)</h3>
+                    <h3>Ajouter l'acteur n°1 (saison 1) [n°<span id="id-act"><?= $this->serieDB->countActs()+1?></span> dans la BD]
+                    </h3>
                     <div>
                         <label>Nom de l'acteur : </label>
-                        <input type="text" id="" placeholder="">
+                        <input value="act" type="text" id="nom-act" placeholder="">
                     </div>
                     <br>
                     <div>
-                        <label>Image de l'acteur : </label>
-                        <input type="text" id="" placeholder="">
+                        <label>Image de l'acteur (URL) : </label>
+                        <input value="img" type="text" id="img-act" placeholder="">
                     </div>
+
                     <!-- BOUTON POUR VALIDER ET AJOUTER UN ACTEUR DANS LA BD -->
-                    <button id="valider" style="margin-top: 10px;">Valider l'acteur</button>
+                    <button class="valider" style="margin-top: 10px;">Acteur suivant</button>
                 </div>
 
                 <!-- DIV PERMETTANT D'AJOUTER UN EPISODE A LA FOIS -->
@@ -133,21 +126,35 @@ class Dashboard{
                     </div>
                     <br>
                     <div>
+                        <label>Synopsis de l'épisode : </label>
+                        <input type="text" id="" placeholder="">
+                    </div>
+                    <br>
+                    <div>
+                        <label>Durée de l'épisode : </label>
+                        <input type="text" id="" placeholder="">
+                    </div>
+                    <br>
+                    <div>
                         <div>
                         <label>Nom du réalisateur : </label>
                         <input type="text" id="" placeholder="">
                     </div>
                     <br>
                     <div>
-                        <label>Image du réalisateur : </label>
+                        <label>Image du réalisateur (URL) : </label>
                         <input type="text" id="" placeholder="">
                     </div>
 
-                    <button id="valider" style="margin-top: 10px;">Valider l'épisode</button>
+                    <!-- BOUTON POUR VALIDER ET AJOUTER UN ÉPISODE DANS LA BD -->
+                    <button class="valider" style="margin-top: 10px;">Épisode suivant</button>
                 </div>
 
                 <!-- BOUTON POUR VALIDER ET AJOUTER UNE SAISON DANS LA BD -->
-                <button id="valider" style="margin-top: 10px;">Valider la saison</button>
+                <button class="valider" style="margin-top: 10px;">Saison suivante</button>
+
+                <button id="terminer">Terminer</button>
+    </div>
             </div>
         </div>
 
@@ -168,6 +175,11 @@ class Dashboard{
      * méthode qui modifie une série
      */
     public function modifierSerie($id){
+        /*
+        j'ai besoin de récuperer les données d'une série selon son ID. J'utilise donc getSerieByid(). Grâce à cette fonction,
+        j'obtiens une instance de la classe Render contenant les attributs : $titre_serie, $affiche_serie,, $synopsis_serie,
+        que je récupère en utilisant les Getters : getTitreSerie(),getAfficheSerie(),getSynopsisSerie()...
+        */
         $serie = $this->serieDB->getSerieById($id);
         
         if(isset($_POST['titre']) && isset($_POST['affiche']) && isset($_POST['synopsis'])){

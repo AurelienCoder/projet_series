@@ -239,10 +239,13 @@ class SerieDB{
     /* LES FONCTIONS CI-DESSOUS REGROUPENT LES REQUETES POUR MODIFIER LA BD : AJOUTER, MODIFIER, SUPPRIMER... */
 
     //utilisée
-    public function addSerie($titre, $affiche, $synopsis){
-        $sql = "INSERT INTO serie (titre_serie, affiche_serie, synopsis_serie) 
-                VALUES (:titre, :affiche, :synopsis)";
+    /*
+    */
+    public function addSerie($id_serie, $titre, $affiche, $synopsis){
+        $sql = "INSERT INTO serie (id_serie, titre_serie, affiche_serie, synopsis_serie) 
+                VALUES (:id_serie, :titre, :affiche, :synopsis)";
         $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id_serie', $id_serie);
         $statement->bindParam(':titre', $titre);
         $statement->bindParam(':affiche', $affiche);
         $statement->bindParam(':synopsis', $synopsis);
@@ -262,10 +265,11 @@ class SerieDB{
     }
 
     //utilisée
-    public function addAct($nom, $img){
-        $sql = "INSERT INTO acteur (nom_acteur, photo_acteur) 
-                VALUES (:nom, :img)";
+    public function addAct($id_act, $nom, $img){
+        $sql = "INSERT INTO acteur (id_acteur, nom_acteur, photo_acteur) 
+                VALUES (:id_act, :nom, :img)";
         $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id_act', $id_act);
         $statement->bindParam(':nom', $nom);
         $statement->bindParam(':img', $img);
 
@@ -273,13 +277,25 @@ class SerieDB{
     }
 
     //utilisée
-    public function addSaison($titre, $numero, $affiche, $id_serie){
-        $sql = "INSERT INTO saison (titre_saison, affiche_saison, numero_saison, id_serie)
-                VALUES(:titre, :affiche, :numero, :id_serie)";
+    public function addSaisonActJointure($id_saison, $id_act){
+        $sql = "INSERT INTO saison_acteur (id_saison, id_acteur) 
+                VALUES (:id_saison, :id_act)";
         $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id_saison', $id_saison);
+        $statement->bindParam(':id_act', $id_act);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
+    //utilisée
+    public function addSaison($id_saison, $titre, $numero, $affiche, $id_serie){
+        $sql = "INSERT INTO saison (id_saison, titre_saison, numero_saison, affiche_saison, id_serie)
+                VALUES (:id_saison, :titre, :numero, :affiche, :id_serie)";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id_saison', $id_saison);
         $statement->bindParam(':titre', $titre);
-        $statement->bindParam(':affiche', $affiche);
         $statement->bindParam(':numero', $numero);
+        $statement->bindParam(':affiche', $affiche);
         $statement->bindParam(':id_serie', $id_serie);
 
         $statement->execute() or die(var_dump($statement->errorInfo()));
@@ -376,6 +392,24 @@ class SerieDB{
     //utilisée
     public function countTags(): int{
         $sql = "SELECT COUNT(*) FROM tag";
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+
+        return $statement->fetchColumn();
+    }
+
+    //utilisée
+    public function countActs(): int{
+        $sql = "SELECT COUNT(*) FROM acteur";
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+
+        return $statement->fetchColumn();
+    }
+
+    //utilisée
+    public function countSaisons(): int{
+        $sql = "SELECT COUNT(*) FROM saison";
         $statement = $this->pdo->prepare($sql);
         $statement->execute() or die(var_dump($statement->errorInfo()));
 

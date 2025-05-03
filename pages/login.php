@@ -15,6 +15,7 @@ if(isset($_POST['username']) and isset($_POST['password'])){
     $response = $logger->log(trim($username), trim($password));
 
     if($response['granted']){
+        $_SESSION['time'] = time();
         $_SESSION['nickname'] = $response['nick'];
         header("Location: home.php");
         exit();
