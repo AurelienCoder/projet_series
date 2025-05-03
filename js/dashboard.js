@@ -37,9 +37,6 @@ function fetchPOST(data){
 }
 
 //AJOUTER UNE SERIE
-let titre = document.getElementById('titre-serie').value;
-let img = document.getElementById('img-serie').value;
-let synopsis = document.getElementById('synopsis-serie').value;
 
 function formDataSerie(idSerie, titre, img, synopsis){
     let data = new FormData();
@@ -52,6 +49,10 @@ function formDataSerie(idSerie, titre, img, synopsis){
 
 //AJOUTER UNE SERIE DANS LA BD + OUVRIR DIV POUR AJOUTER LES SAISONS
 valider[0].addEventListener('click', function(){
+    let titre = document.getElementById('titre-serie').value;
+    let img = document.getElementById('img-serie').value;
+    let synopsis = document.getElementById('synopsis-serie').value;
+    
     formDataSerie(idSerie, titre, img, synopsis);
     //OUVRIR LA DIV POUR COMMENCER A AJOUTER LES SAISONS
     let titreSerieInput = document.querySelector("input[name='titre']");
