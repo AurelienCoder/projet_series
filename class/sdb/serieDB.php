@@ -212,6 +212,15 @@ class SerieDB{
         return $results;
     }
     
+    //utilisée
+    public function getIdByTag($tag){
+        $sql = "SELECT id_tag FROM tag WHERE nom_tag = :tag";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':tag', $tag);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        return $statement->fetchColumn();
+    }
+        
     public function getSaisonByNum($num){
         $sql= "SELECT * FROM saison WHERE numero_saison = :num";
         $statement = $this->pdo->prepare($sql);
@@ -286,6 +295,18 @@ class SerieDB{
 
         $statement->execute() or die(var_dump($statement->errorInfo()));
     }
+    
+    //utilisée
+    public function addSerieTagJointure($id_serie, $id_tag){
+        $sql = "INSERT INTO serie_tag (id_serie, id_tag) 
+                VALUES (:id_serie, :id_tag)";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id_serie', $id_serie);
+        $statement->bindParam(':id_tag', $id_tag);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
 
     //utilisée
     public function addSaison($id_saison, $titre, $numero, $affiche, $id_serie){

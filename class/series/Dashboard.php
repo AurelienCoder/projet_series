@@ -33,6 +33,16 @@ class Dashboard{
             exit;
         }
 
+        //LES TAGS DE LA SERIE
+        if(isset($_POST['nom_tag']) && isset($_POST['id_serie'])){
+            //obligatoire sinon ça ne fonctionne pas
+            header('Content-Type: application/json');
+            var_dump($_POST['nom_tag']);
+            $idTag = $this->serieDB->getIdByTag($_POST['nom_tag']);
+            $this->serieDB->addSerieTagJointure($_POST['id_serie'], $idTag);
+            exit;
+        }
+
         //LES SAISONS DE LA SERIE
         if(isset($_POST['id_saison']) && isset($_POST['titre_saison']) && isset($_POST['num_saison']) && isset($_POST['affiche_saison']) && isset($_POST['id_serie'])){
             //obligatoire sinon ça ne fonctionne pas
@@ -60,14 +70,10 @@ class Dashboard{
                     
         <!-- FORMULAIRE PRINCIPAL -->
         <section class="form-ajouter">
-            <h1>Ajouter la série n°<span><?= $this->serieDB->countSeries()+1?></span></h1>
+            <h1>Ajouter la série n°<span><?= $this->serieDB->countSeries()+1 ?></span></h1>
             <form method="POST">
                 <label>Titre :</label>
                 <input id="titre-serie" value="titre" type="text" name="titre" required>
-
-                <label>Genre (un à la fois)</label>
-                <input type="text" name="genre" required>
-                <button  class="valider">Genre suivant</button>
 
                 <label>Affiche (URL) :</label>
                 <input value="URL" id="img-serie" type="text" name="affiche" required>
@@ -82,25 +88,29 @@ class Dashboard{
 
         <!-- DIV QUI PERMET D'AJOUTER UNE SAISON A LA FOIS -->
         <div id="ajout-infos">
-            <div id="sous-div"  style="margin-top: 0px">
-                <h3>Ajouter une saison</h3> <span id="id-saison" style="display: none"><?= $this->serieDB->countSaisons()+1?></span>
+            <div id="sous-div" style="margin-top: 80px; height: 500px; overflow: scroll;">
+                <label>Genre (un à la fois)</label>
+                <input id="nom-tag" type="text" name="genre" required>
+                <button class="valider btn-valider">Ajouter le genre</button>
+                <hr>
+                <h3>Ajouter une saison</h3> <span id="id-saison" style="display: none"><?= $this->serieDB->countSaisons()+1 ?></span>
                 <div>
                     <label>Titre de la saison :</label>
-                    <input value="TITRE11SAISON" type="text" id="titre-saison" placeholder="">
+                    <input type="text" id="titre-saison" placeholder="">
                 </div>
                 <br>
                 <div>
                     <label>Affiche de la saison (URL) :</label>
-                    <input value="AFFICHETITIREZI" type="text" id="img-saison" placeholder="">
+                    <input type="text" id="img-saison" placeholder="">
                 </div>
 
-                <button type="submit" class="valider btn-valider">Valider la saison et ajouter ses acteurs/épisodes</button>
+                <button type="submit" class="valider btn-valider">Ajouter les acteurs/épisodes de cette saison</button>
 
             <div id="ajouter-act-real-ep" style="display:none">
                 <!-- DIV PERMETTANT D'AJOUTER UN ACTEUR A LA FOIS -->
                 <hr>
                 <div id="sous-div2">
-                    <h3>Ajouter l'acteur n°1 (saison 1) [n°<span id="id-act"><?= $this->serieDB->countActs()+1?></span> dans la BD]
+                    <h3>Ajouter l'acteur n°1 (saison 1) [n°<span id="id-act"><?= $this->serieDB->countActs()+1 ?></span> dans la BD]
                     </h3>
                     <div>
                         <label>Nom de l'acteur : </label>
@@ -113,7 +123,7 @@ class Dashboard{
                     </div>
 
                     <!-- BOUTON POUR VALIDER ET AJOUTER UN ACTEUR DANS LA BD -->
-                    <button class="valider" style="margin-top: 10px;">Acteur suivant</button>
+                    <button class="valider btn-valider" style="margin-top: 10px;">Acteur suivant</button>
                 </div>
 
                 <!-- DIV PERMETTANT D'AJOUTER UN EPISODE A LA FOIS -->
@@ -147,13 +157,14 @@ class Dashboard{
                     </div>
 
                     <!-- BOUTON POUR VALIDER ET AJOUTER UN ÉPISODE DANS LA BD -->
-                    <button class="valider" style="margin-top: 10px;">Épisode suivant</button>
+                    <button class="valider btn-valider" style="margin-top: 10px;">Épisode suivant</button>
                 </div>
 
+                <hr>
                 <!-- BOUTON POUR VALIDER ET AJOUTER UNE SAISON DANS LA BD -->
-                <button class="valider" style="margin-top: 10px;">Saison suivante</button>
+                <button class="valider btn-valider" style="margin-top: 10px;">Saison suivante</button>
 
-                <button id="terminer">Terminer</button>
+                <button id="terminer" class="btn-valider">Terminer</button>
     </div>
             </div>
         </div>
