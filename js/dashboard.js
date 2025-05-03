@@ -37,7 +37,6 @@ function fetchPOST(data){
 }
 
 //AJOUTER UNE SERIE
-
 function formDataSerie(idSerie, titre, img, synopsis){
     let data = new FormData();
     data.append('id_serie', idSerie);
@@ -75,8 +74,8 @@ function formDataTag(idSerie, nomTag){
 
 //AJOUTER UN TAG DANS LA BD
 valider[1].addEventListener('click', function(){
-    let nomTag = document.getElementById('nom-tag').value;
-    formDataTag(idSerie, nomTag);
+    let nomTag = document.getElementById('nom-tag');
+    formDataTag(idSerie, nomTag.value);
     nomTag.value = '';
 })
 

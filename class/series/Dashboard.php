@@ -89,7 +89,7 @@ class Dashboard{
         <!-- DIV QUI PERMET D'AJOUTER UNE SAISON A LA FOIS -->
         <div id="ajout-infos">
             <div id="sous-div" style="margin-top: 80px; height: 500px; overflow: scroll;">
-                <label>Genre (un à la fois)</label>
+                <label>Genre (un à la fois svp)</label>
                 <input id="nom-tag" type="text" name="genre" required>
                 <button class="valider btn-valider">Ajouter le genre</button>
                 <hr>
