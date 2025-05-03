@@ -7,6 +7,7 @@ let h3 = sousDiv.querySelector('h3');
 let idSerie = document.querySelector('h1 span').innerText;
 let idSaison = document.getElementById('id-saison').innerText;
 let idAct = document.getElementById('id-act').innerText;
+let idReal = document.getElementById('id-real').innerText;
 let idEp = document.getElementById('id-ep').innerText;
 
 //variables pour se réperer dans le formulaire : saison n°1, n°2 de la série... acteur n°1, n°2 de la saison
@@ -162,17 +163,21 @@ valider[4].addEventListener('click', function(){
 })
 
 //AJOUTER UN REALISATEUR
-function formDataAct(nom, img, idReal, idEpisode){
+function formDataReal(nom, img, idReal, idEp){
     let data = new FormData();
-    data.append('nom', nom);
-    data.append('image', img);
+    data.append('nom_real', nom);
+    data.append('image_real', img);
     data.append('id_real', idReal);
-    data.append('id_saison', idEpisode);
+    data.append('id_saison', idEp);
     fetchPOST(data);
 }
 
 //AJOUTER UN EPISODE DANS LA BD
 valider[5].addEventListener('click', function(){
+    let nom = document.getElementById('nom-real');
+    let img = document.getElementById('img-real');
+    formDataReal(nom.value, img.value, idReal, idEp);
+
     numEp++;
     idEp++;
     numReal = 1;
@@ -180,6 +185,8 @@ valider[5].addEventListener('click', function(){
     h3.innerText = "Ajouter la saison n°" + numSaison;
     valider[4].style.display = 'initial';
     document.getElementById('ajouter-real').style.display = 'none';
+    nom.value = '';
+    img.value = '';
 })
 
 //SAISIR LA SAISON SUIVANTE

@@ -28,6 +28,10 @@ Autoloader::register();
             if(isset($_GET['supp'])){
                 $dashboard->supprimerReal($_GET['supp']);
             }
+        }else if(isset($_GET['value']) && $_GET['value'] == 'tag' ){?>
+            <script>prompt("Saisir un tag :")</script>
+            
+            <?php //$dashboard->ajouterTag();
         }
     }else{
         echo "<h1>VOUS N'AVEZ PAS ACCES A CETTE PAGE</h1>";

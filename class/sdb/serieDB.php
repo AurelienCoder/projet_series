@@ -263,6 +263,17 @@ class SerieDB{
     }
 
     //utilisée
+    public function addTag($id_tag, $nom_tag){
+        $sql = "INSERT INTO tag (id_tag, nom_tag) 
+                VALUES (:id_tag, :nom_tag)";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id_tag', $id_tag);
+        $statement->bindParam(':nom_tag', $nom_tag);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
+    //utilisée
     public function addReal($nom, $img){
         $sql = "INSERT INTO realisateur (nom_real, photo_real) 
                 VALUES (:nom, :img)";
@@ -434,6 +445,15 @@ class SerieDB{
     //utilisée
     public function countActs(): int{
         $sql = "SELECT COUNT(*) FROM acteur";
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+
+        return $statement->fetchColumn();
+    }
+
+    //utilisée
+    public function countReals(): int{
+        $sql = "SELECT COUNT(*) FROM realisateur";
         $statement = $this->pdo->prepare($sql);
         $statement->execute() or die(var_dump($statement->errorInfo()));
 

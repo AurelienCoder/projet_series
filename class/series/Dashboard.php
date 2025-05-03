@@ -16,6 +16,12 @@ class Dashboard{
         $this->serieDB = new SerieDB();
     }
 
+    //A TERMINER
+    public function ajouterTag(){
+        $this->serieDB->addTag($this->serieDB->countTags()+1, 'TEST');
+        header('Location: home.php');
+        exit;
+    }
     /**
      * méthode pour ajouter une série
      */
@@ -68,6 +74,18 @@ class Dashboard{
             exit;
         }
         
+        //LES ACTEURS D'UNE SAISON
+        if(isset($_POST['nom_real']) && isset($_POST['image_real'])){
+            //obligatoire sinon ça ne fonctionne pas
+            header('Content-Type: application/json');
+
+            $id_real = $_POST['id_real'];
+            $nom = $_POST['nom_real'];
+            $image = $_POST['image_real'];
+            
+            $this->serieDB->addReal($id_real, $nom, $image);
+            exit;
+        }
         //LES EPISODES D'UNE SAISON
         if(isset($_POST['id_ep'])){
             //obligatoire sinon ça ne fonctionne pas
@@ -164,10 +182,10 @@ class Dashboard{
 
                     <div id="ajouter-real" style="display: none">
                         <div>
-                            <div>
-                            <label>Nom du réalisateur : </label>
-                            <input type="text" id="nom-real" required>
-                        </div>
+                            <div><span id="id-real" style="display: none"><?= $this->serieDB->countReals()+1 ?></span>
+                                <label>Nom du réalisateur : </label>
+                                <input type="text" id="nom-real" required>
+                            </div>
                         <br>
                         <div>
                             <label>Image du réalisateur (URL) : </label>

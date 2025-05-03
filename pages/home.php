@@ -25,6 +25,7 @@ if(isset($_SESSION['time']) && time() > $_SESSION['time'] + 3600) session_destro
         <!-- si l'administrateur est connecté, alors on ajoute dans home les 2 boutons AJOUTER et Voir les statistiques -->
         <?php if(isset($_SESSION['nickname']) && $_SESSION['nickname'] == 'administrateur'): ?>
             <a href="dashboard.php?value=serie"><button class="category-btn" type="button" style="background-color: green;">AJOUTER UNE SÉRIE</button></a>
+            <a href="dashboard.php?value=tag"><button class="category-btn" type="button" style="background-color: green;">AJOUTER UN TAG</button></a>
             <a href="stats.php" class="category-btn" style="background-color: black;">Voir les statistiques</a>
         <?php endif; ?>
     </div>
