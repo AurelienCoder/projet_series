@@ -13,22 +13,22 @@ ob_start();
 <div style="display: flex; gap: 20px;">
     <div style="padding: 20px; background-color: #f0f0f0; border-radius: 10px;">
         <h2>Nombre total de séries</h2>
-        <p style="font-size: 30px;"><?= htmlspecialchars($serieDB->countSeries()) ?></p>
+        <p style="font-size: 30px;"><?= $serieDB->countSeries() ?></p>
     </div>
 
     <div style="padding: 20px; background-color: #f0f0f0; border-radius: 10px;">
         <h2>Nombre total de tags</h2>
-        <p style="font-size: 30px;"><?= htmlspecialchars($serieDB->countTags()) ?></p>
+        <p style="font-size: 30px;"><?= $serieDB->countTags() ?></p>
     </div>
 
     <div style="padding: 20px; background-color: #f0f0f0; border-radius: 10px;">
         <h2>Nombre total d'acteurs</h2>
-        <p style="font-size: 30px;"><?= htmlspecialchars($serieDB->countActs()) ?></p>
+        <p style="font-size: 30px;"><?= $serieDB->countActs() ?></p>
     </div>
 
     <div style="padding: 20px; background-color: #f0f0f0; border-radius: 10px;">
         <h2>Nombre total de réalisateurs</h2>
-        <p style="font-size: 30px;"><?= htmlspecialchars($serieDB->countReals()) ?></p>
+        <p style="font-size: 30px;"><?= $serieDB->countReals() ?></p>
     </div>
 </div>
 

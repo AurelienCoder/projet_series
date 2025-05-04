@@ -21,18 +21,18 @@ class Logger{
         $user = "admin";
         $pwd = "1234";
 
-        $error = null ;
-        $nick = null ;
-        $granted = false ;
-        if (empty($username)){
-            $error = "username is empty" ;
-        }elseif (empty($password)){
-            $error = "password is empty" ;
-        }elseif ($user == $username and $pwd == $password){
+        $error = null;
+        $nick = null;
+        $granted = false;
+        if(empty($username)){
+            $error = "Le pseudo est vide";
+        }elseif(empty($password)){
+            $error = "Le mot de passe est vide";
+        }elseif($user == $username and $pwd == $password){
             $granted = true ;
-            $nick = htmlspecialchars("administrateur") ;
+            $nick = htmlspecialchars("administrateur");
         }else{
-            $error = "Authentification Failed" ;
+            $error = "Authentification échouée";
         }
         return array(
             'granted' => $granted,

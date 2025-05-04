@@ -19,12 +19,13 @@ let numReal = 1;
 let numTag = 1;
 
 //correspond aux boutons "Acteur suivant", "Episode suivant", "Saison suivante"...
-/*[0] = valider la serie et commencer à ajouter les genres
-  [1] = les genres
-  [2] = valider la saison et commencer à ajouter les acteurs/épisodes
-  [3] = passer à l'acteur suivant
-  [4] = valider l'épisode et commencer à ajouter les réalisateurs de cet épisode
-
+/*[0] = ajouter la série dans la BD et commencer à ajouter les tags
+  [1] = ajouter un tag dans la BD
+  [2] = ajouter une saison dans la BD et commencer à ajouter les acteurs/épisodes
+  [3] = ajouter un acteur dans la BD
+  [4] = ajouter un épisode dans la BD
+  [5] = ajouter le réalisateur de l'épisode dans la BD et passer à l'épisode suivante
+  [6] = passer à la saison suivante
 */
 let valider = document.querySelectorAll('.valider');
 
@@ -134,7 +135,7 @@ valider[1].addEventListener('click', function(){
     document.querySelector('#sous-div label').innerText = 'Tag n°' + numTag + ' (un à la fois svp)';
 })
 
-//AJOUTER UNE SAISON DANS LA BD + OUVRIR DIV POUR AJOUTER ACTEURS/REALS/EPISODES
+//AJOUTER UNE SAISON DANS LA BD + OUVRIR DIV POUR AJOUTER ACTEURS/EPISODES
 valider[2].addEventListener('click', function(){
     document.getElementById('ajouter-act-real-ep').style.display = 'initial';
 
@@ -163,7 +164,7 @@ valider[3].addEventListener('click', function(){
     img.value = '';
 })
 
-//VALIDER L'EPISODE ET COMMENCER A AJOUTER LES REALISATEURS DANS LA BD
+//AJOUTER UN EPISODE DANS LA BD
 valider[4].addEventListener('click', function(){
     let titre = document.getElementById('titre-ep').value;
     let synopsis = document.getElementById('synopsis-ep').value;
@@ -173,7 +174,7 @@ valider[4].addEventListener('click', function(){
     document.getElementById('ajouter-real').style.display = 'initial';
 })
 
-//AJOUTER UN EPISODE DANS LA BD
+//AJOUTER LE REALISATEUR DE L'EPISODE DANS LA BD
 valider[5].addEventListener('click', function(){
     let nom = document.getElementById('nom-real');
     let img = document.getElementById('img-real');
@@ -192,7 +193,7 @@ valider[5].addEventListener('click', function(){
     img.value = '';
 })
 
-//SAISIR LA SAISON SUIVANTE
+//PASSER A LA SAISON SUIVANTE
 valider[6].addEventListener('click', function(){
     document.getElementById('ajouter-act-real-ep').style.display = 'none';
     valider[2].style.display = 'initial';

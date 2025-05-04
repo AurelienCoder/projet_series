@@ -15,7 +15,7 @@
   <?php
     if(isset($_SESSION['nickname'])):
   ?>
-    <a href="logout.php" id="button-header">Logout (<?php echo htmlspecialchars($_SESSION['nickname']) ?>)</a>
+    <a href="logout.php" id="button-header">Logout (<?= htmlspecialchars($_SESSION['nickname']) ?>)</a>
   <?php else: ?>
     <a href="login.php" id="button-header">Login</a>
   <?php endif;?>

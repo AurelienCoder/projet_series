@@ -27,7 +27,7 @@ ob_start();
 if(!isset($response)):
     $logger->generateLoginForm();
 elseif (!$response['granted']):
-    echo "<div>" .$response['error']."</div>";
+    echo "<div><h1 style='color:white; text-align:center'>" .$response['error']."</h1></div>";
     $logger->generateLoginForm();
 endif;
 

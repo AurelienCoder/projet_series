@@ -5,8 +5,7 @@ namespace series;
 use sdb\SerieDB;
 
 /**
- * Cette classe permet de créer des formulaires pour ajouter, modifier des élements dans la base de données directement via le site
- * et les supprimer aussi
+ * Cette classe permet d'ajouter, modifier, supprimer des élements dans la base de données directement via le site
  */
 class Dashboard{
 
@@ -25,10 +24,119 @@ class Dashboard{
     /**
      * méthode pour ajouter une série
      */
-    public function ajouterSerie(){
+    public function ajouterSerie(){?>
 
-        //mais on doit aussi ajouter les noms et images des acteurs/réalisateurs ainsi que les saisons
-        //je récupère donc leurs noms et leurs photos envoyés en POST avec AJAX (fetch)
+        <!-- FORMULAIRE POUR AJOUTER UNE SERIE -->
+        <section class="form-ajouter">
+            <h1>Ajouter la série n°<span><?= $this->serieDB->countSeries()+1 ?></span></h1>
+            <form method="POST">
+                <label>Titre :</label>
+                <input id="titre-serie" value="titre" type="text" name="titre" required>
+
+                <label>Affiche (URL) :</label>
+                <input value="URL" id="img-serie" type="text" name="affiche" required>
+                
+                <label>Synopsis :</label>
+                <textarea id="synopsis-serie" name="synopsis" required></textarea>
+
+                <!-- [0] BOUTON POUR AJOUTER UNE SERIE DANS LA BD + OUVRIR LA DIV POUR AJOUTER LES TAGS -->
+                <button type="submit" class="valider btn-valider">Valider la série et ajouter ses tags</button>
+            </form>
+        </section>
+
+        <!-- FORMULAIRE QUI PERMET D'AJOUTER DES SAISONS/ACTEURS/EPISODES/REALISATEURS -->
+        <div id="ajout-infos">
+            <div id="sous-div" style="margin-top: 80px; height: 500px; overflow: scroll;">
+                <label>Tag n°1 (un à la fois svp)</label>
+                <input id="nom-tag" type="text" name="genre" required>
+                <!-- [1] BOUTON POUR AJOUTER UN TAG DANS LA BD -->
+                <button class="valider btn-valider">Ajouter le tag</button>
+                <hr>
+                <h3>Ajouter la saison n°1<span id="id-saison"><?= $this->serieDB->countSaisons()+1 ?></span></h3>
+                <div>
+                    <label>Titre de la saison :</label>
+                    <input type="text" id="titre-saison">
+                </div>
+                <br>
+                <div>
+                    <label>Affiche de la saison (URL) :</label>
+                    <input type="text" id="img-saison">
+                </div>
+                <!-- [2] BOUTON POUR AJOUTER LA SAISON DANS LA BD + COMMENCER A AJOUTER LES ACTEURS/EPISODES -->
+                <button type="submit" class="valider btn-valider">Ajouter les acteurs/épisodes de cette saison</button>
+
+                <div id="ajouter-act-real-ep" style="display:none">
+                    <!-- DIV PERMETTANT D'AJOUTER UN ACTEUR A LA FOIS -->
+                    <hr>
+                    <div id="sous-div2">
+                        <h3>Ajouter l'acteur n°1 (saison 1)<span id="id-act"><?= $this->serieDB->countActs()+1 ?></span>
+                        </h3>
+                        <div>
+                            <label>Nom de l'acteur : </label>
+                            <input value="act" type="text" id="nom-act" required>
+                        </div>
+                        <br>
+                        <div>
+                            <label>Image de l'acteur (URL) : </label>
+                            <input value="img" type="text" id="img-act" required>
+                        </div>
+
+                        <!-- [3] BOUTON POUR VALIDER ET AJOUTER UN ACTEUR DANS LA BD -->
+                        <button class="valider btn-valider" style="margin-top: 10px;">Acteur suivant</button>
+                    </div>
+
+                    <!-- DIV PERMETTANT D'AJOUTER UN EPISODE A LA FOIS -->
+                    <hr>
+                    <div id="sous-div3">
+                        <h3>Ajouter l'épisode n°1 (saison 1) #<span id="id-ep"><?= $this->serieDB->countEpisodes()+1 ?></span></h3>
+                        <div>
+                            <label>Titre de l'épisode : </label>
+                            <input type="text" id="titre-ep" required>
+                        </div>
+                        <br>
+                        <div>
+                            <label>Synopsis de l'épisode : </label>
+                            <input type="text" id="synopsis-ep" required>
+                        </div>
+                        <br>
+                        <div>
+                            <label>Durée de l'épisode (secondes) :</label>
+                            <input type="number" id="duree-ep" required>
+                        </div>
+                        <br>
+                        <!-- [4] BOUTON POUR AJOUTER L'EPISODE DANS LA BD ET COMMENCER A AJOUTER LES REALISATEURS -->
+                        <button class="valider btn-valider" style="margin-top: 10px;">Valider l'épisode et ajouter les réalisateurs</button>
+
+                        <div id="ajouter-real" style="display: none">
+                            <div>
+                                <div>
+                                    <label id="label-real">Nom du réalisateur : #<span id="id-real"><?= $this->serieDB->countReals()+1 ?></span></label>
+                                    <input type="text" id="nom-real" required>
+                                </div>
+                            <br>
+                            <div>
+                                <label>Image du réalisateur (URL) : </label>
+                                <input type="text" id="img-real" required>
+                            </div>
+                        </div>
+
+                        <!-- [5] BOUTON POUR AJOUTER SON REALISATEUR DANS LA BD -->
+                        <button class="valider btn-valider" style="margin-top: 10px;">Épisode suivant</button>
+                    </div>
+
+                    <hr>
+                    <!-- [6] BOUTON POUR PASSER A LA SAISON SUIVANTE -->
+                    <button class="valider btn-valider" style="margin-top: 10px;">Saison suivante</button>
+
+                    <button id="terminer" class="btn-valider">Terminer</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- script qui permet de transmettre les infos des acteurs/reals/saisons que l'on souhaite ajouter en utilisant fetch -->
+        <script src="../js/dashboard.js"></script>
+
+        <?php //je récupère les données saisies envoyés en POST avec AJAX (fetch)
 
         //LA SERIE
         if(isset($_POST['id_serie']) && isset($_POST['titre_serie']) && isset($_POST['affiche_serie']) && isset($_POST['synopsis_serie'])){
@@ -103,117 +211,8 @@ class Dashboard{
             $this->serieDB->addEp($id_ep, $titre, $synopsis, $duree);
             $this->serieDB->addSaisonEpisodeJointure($id_saison, $id_ep);
             exit;
-        }?>
-
-        <!-- FORMULAIRE PRINCIPAL -->
-        <section class="form-ajouter">
-            <h1>Ajouter la série n°<span><?= $this->serieDB->countSeries()+1 ?></span></h1>
-            <form method="POST">
-                <label>Titre :</label>
-                <input id="titre-serie" value="titre" type="text" name="titre" required>
-
-                <label>Affiche (URL) :</label>
-                <input value="URL" id="img-serie" type="text" name="affiche" required>
-                
-                <label>Synopsis :</label>
-                <textarea id="synopsis-serie" name="synopsis" required></textarea>
-
-                <!-- BOUTON POUR AJOUTER UNE SERIE DANS LA BD + OUVRIR LA DIV POUR AJOUTER LES TAGS -->
-                <button type="submit" class="valider btn-valider">Valider la série et ajouter ses tags</button>
-            </form>
-        </section>
-
-        <!-- DIV QUI PERMET D'AJOUTER UNE SAISON A LA FOIS -->
-        <div id="ajout-infos">
-            <div id="sous-div" style="margin-top: 80px; height: 500px; overflow: scroll;">
-                <label>Tag n°1 (un à la fois svp)</label>
-                <input id="nom-tag" type="text" name="genre" required>
-                <button class="valider btn-valider">Ajouter le tag</button>
-                <hr>
-                <h3>Ajouter la saison n°1<span id="id-saison"><?= $this->serieDB->countSaisons()+1 ?></span></h3>
-                <div>
-                    <label>Titre de la saison :</label>
-                    <input type="text" id="titre-saison">
-                </div>
-                <br>
-                <div>
-                    <label>Affiche de la saison (URL) :</label>
-                    <input type="text" id="img-saison">
-                </div>
-
-                <button type="submit" class="valider btn-valider">Ajouter les acteurs/épisodes de cette saison</button>
-
-            <div id="ajouter-act-real-ep" style="display:none">
-                <!-- DIV PERMETTANT D'AJOUTER UN ACTEUR A LA FOIS -->
-                <hr>
-                <div id="sous-div2">
-                    <h3>Ajouter l'acteur n°1 (saison 1)<span id="id-act"><?= $this->serieDB->countActs()+1 ?></span>
-                    </h3>
-                    <div>
-                        <label>Nom de l'acteur : </label>
-                        <input value="act" type="text" id="nom-act" required>
-                    </div>
-                    <br>
-                    <div>
-                        <label>Image de l'acteur (URL) : </label>
-                        <input value="img" type="text" id="img-act" required>
-                    </div>
-
-                    <!-- BOUTON POUR VALIDER ET AJOUTER UN ACTEUR DANS LA BD -->
-                    <button class="valider btn-valider" style="margin-top: 10px;">Acteur suivant</button>
-                </div>
-
-                <!-- DIV PERMETTANT D'AJOUTER UN EPISODE A LA FOIS -->
-                <hr>
-                <div id="sous-div3">
-                    <h3>Ajouter l'épisode n°1 (saison 1) #<span id="id-ep"><?= $this->serieDB->countEpisodes()+1 ?></span></h3>
-                    <div>
-                        <label>Titre de l'épisode : </label>
-                        <input type="text" id="titre-ep" required>
-                    </div>
-                    <br>
-                    <div>
-                        <label>Synopsis de l'épisode : </label>
-                        <input type="text" id="synopsis-ep" required>
-                    </div>
-                    <br>
-                    <div>
-                        <label>Durée de l'épisode (secondes) :</label>
-                        <input type="number" id="duree-ep" required>
-                    </div>
-                    <br>
-                    <!-- BOUTON POUR AJOUTER LES REALISATEURS -->
-                    <button class="valider btn-valider" style="margin-top: 10px;">Valider l'épisode et ajouter les réalisateurs</button>
-
-                    <div id="ajouter-real" style="display: none">
-                        <div>
-                            <div>
-                                <label id="label-real">Nom du réalisateur : #<span id="id-real"><?= $this->serieDB->countReals()+1 ?></span></label>
-                                <input type="text" id="nom-real" required>
-                            </div>
-                        <br>
-                        <div>
-                            <label>Image du réalisateur (URL) : </label>
-                            <input type="text" id="img-real" required>
-                        </div>
-                    </div>
-
-                    <!-- BOUTON POUR VALIDER ET AJOUTER UN ÉPISODE DANS LA BD -->
-                    <button class="valider btn-valider" style="margin-top: 10px;">Épisode suivant</button>
-                </div>
-
-                <hr>
-                <!-- BOUTON POUR VALIDER ET AJOUTER UNE SAISON DANS LA BD -->
-                <button class="valider btn-valider" style="margin-top: 10px;">Saison suivante</button>
-
-                <button id="terminer" class="btn-valider">Terminer</button>
-    </div>
-            </div>
-        </div>
-
-        <!-- script qui permet de transmettre les infos des acteurs/reals/saisons que l'on souhaite ajouter en utilisant fetch -->
-        <script src="../js/dashboard.js"></script>
-    <?php }
+        }
+    }
 
     /**
      * méthode qui supprime une série

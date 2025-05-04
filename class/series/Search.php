@@ -106,7 +106,7 @@ class Search{
     public function serieSearch(){
         $serieDB = new SerieDB();
         //affiche les saisons d'une série
-        $serie = $_GET['serie'];
+        $serie = htmlspecialchars($_GET['serie']);
 
         $serieID = $serieDB->getIdBySerie($serie);
         echo "<h1>La série " . $serie . " - Durée : " . round($serieDB->getTimeSerie($serieID)/60,1) . " heures</h1>";
@@ -144,7 +144,7 @@ class Search{
     public function realSearch(){
         $serieDB = new SerieDB();
 
-        $real = $_GET['real'];
+        $real = htmlspecialchars($_GET['real']);
 
         $realID = $serieDB->getRealId($real);
 
@@ -162,7 +162,7 @@ class Search{
     public function actSearch(){
         $serieDB = new SerieDB();
 
-        $act = $_GET['act'];
+        $act = htmlspecialchars($_GET['act']);
 
         $actID = $serieDB->getActId($act);
 

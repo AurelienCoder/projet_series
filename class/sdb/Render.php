@@ -51,7 +51,7 @@ class Render{
         <div class="series-list">
             <div class="model_serie">
                 <div style="overflow: hidden">
-                    <img class="img-serie" src="<?= htmlspecialchars($this->affiche_serie); ?>" alt="<?php echo htmlspecialchars($this->affiche_serie); ?>">
+                    <img class="img-serie" src="<?= htmlspecialchars($this->affiche_serie); ?>" alt="<?= htmlspecialchars($this->affiche_serie); ?>">
                 </div>
 
                 <?php if(isset($_SESSION['nickname'])): ?>
