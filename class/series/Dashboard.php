@@ -21,27 +21,31 @@ class Dashboard{
         header('Location: home.php');
         exit;
     }
+
     /**
      * méthode pour ajouter une série
      */
     public function ajouterSerie(){?>
 
         <!-- FORMULAIRE POUR AJOUTER UNE SERIE -->
-        <section class="form-ajouter">
+        <section class="form-ajouter" style="text-align:center;">
             <h1>Ajouter la série n°<span><?= $this->serieDB->countSeries()+1 ?></span></h1>
-            <form method="POST">
-                <label>Titre :</label>
+            
+            <div>
+                <label>Titre :</label><br>
                 <input id="titre-serie" value="titre" type="text" name="titre" required>
-
-                <label>Affiche (URL) :</label>
+            </div>
+            <div>
+                <label>Affiche (URL) :</label><br>
                 <input value="URL" id="img-serie" type="text" name="affiche" required>
-                
-                <label>Synopsis :</label>
+            </div>
+            <div>
+                <label>Synopsis :</label><br>
                 <textarea id="synopsis-serie" name="synopsis" required></textarea>
+            </div>
 
-                <!-- [0] BOUTON POUR AJOUTER UNE SERIE DANS LA BD + OUVRIR LA DIV POUR AJOUTER LES TAGS -->
-                <button type="submit" class="valider btn-valider">Valider la série et ajouter ses tags</button>
-            </form>
+            <!-- [0] BOUTON POUR AJOUTER UNE SERIE DANS LA BD + OUVRIR LA DIV POUR AJOUTER LES TAGS -->
+            <button type="submit" class="valider btn-valider">Valider la série et ajouter ses tags</button>
         </section>
 
         <!-- FORMULAIRE QUI PERMET D'AJOUTER DES SAISONS/ACTEURS/EPISODES/REALISATEURS -->
@@ -136,7 +140,7 @@ class Dashboard{
         <!-- script qui permet de transmettre les infos des acteurs/reals/saisons que l'on souhaite ajouter en utilisant fetch -->
         <script src="../js/dashboard.js"></script>
 
-        <?php //je récupère les données saisies envoyés en POST avec AJAX (fetch)
+        <?php //je récupère les données du formulaire saisies envoyés en POST avec AJAX (fetch)
 
         //LA SERIE
         if(isset($_POST['id_serie']) && isset($_POST['titre_serie']) && isset($_POST['affiche_serie']) && isset($_POST['synopsis_serie'])){

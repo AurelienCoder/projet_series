@@ -31,7 +31,7 @@ Autoloader::register();
         }else if(isset($_GET['value']) && $_GET['value'] == 'tag' ){
             if(isset($_GET['tag'])){
                 $dashboard->ajouterTag(htmlspecialchars($_GET['tag']));
-            } else { ?>
+            }else{ ?>
                 <script>
                     let tag = prompt("Saisir un tag :");
                     window.location.href = 'dashboard.php?value=tag&tag=' + tag;
