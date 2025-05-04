@@ -28,10 +28,15 @@ Autoloader::register();
             if(isset($_GET['supp'])){
                 $dashboard->supprimerReal(htmlspecialchars($_GET['supp']));
             }
-        }else if(isset($_GET['value']) && $_GET['value'] == 'tag' ){?>
-            <script>prompt("Saisir un tag :")</script>
-            
-            <?php //$dashboard->ajouterTag();
+        }else if(isset($_GET['value']) && $_GET['value'] == 'tag' ){
+            if(isset($_GET['tag'])){
+                $dashboard->ajouterTag(htmlspecialchars($_GET['tag']));
+            } else { ?>
+                <script>
+                    let tag = prompt("Saisir un tag :");
+                    window.location.href = 'dashboard.php?value=tag&tag=' + tag;
+                </script>
+            <?php }
         }
     }else{
         echo "<h1>VOUS N'AVEZ PAS ACCES A CETTE PAGE</h1>";

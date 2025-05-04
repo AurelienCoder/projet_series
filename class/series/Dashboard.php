@@ -16,8 +16,8 @@ class Dashboard{
     }
 
     //A TERMINER
-    public function ajouterTag(){
-        $this->serieDB->addTag($this->serieDB->countTags()+1, 'TEST');
+    public function ajouterTag($tag){
+        $this->serieDB->addTag($this->serieDB->countTags()+1, $tag);
         header('Location: home.php');
         exit;
     }
