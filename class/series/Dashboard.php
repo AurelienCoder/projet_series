@@ -48,7 +48,7 @@ class Dashboard{
             <button type="submit" class="valider btn-valider">Valider la série et ajouter ses tags</button>
         </section>
 
-        <!-- FORMULAIRE QUI PERMET D'AJOUTER DES SAISONS/ACTEURS/EPISODES/REALISATEURS -->
+        <!-- FORMULAIRE QUI PERMET D'AJOUTER LES SAISONS/ACTEURS/EPISODES/REALISATEURS DE LA SERIE -->
         <div id="ajout-infos">
             <div id="sous-div" style="margin-top: 80px; height: 500px; overflow: scroll;">
                 <label>Tag n°1 (un à la fois svp)</label>
