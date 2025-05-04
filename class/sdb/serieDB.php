@@ -274,10 +274,11 @@ class SerieDB{
     }
 
     //utilisée
-    public function addReal($nom, $img){
-        $sql = "INSERT INTO realisateur (nom_real, photo_real) 
-                VALUES (:nom, :img)";
+    public function addReal($id_real, $nom, $img){
+        $sql = "INSERT INTO realisateur (id_real, nom_real, photo_real) 
+                VALUES (:id_real, :nom, :img)";
         $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id_real', $id_real);
         $statement->bindParam(':nom', $nom);
         $statement->bindParam(':img', $img);
 

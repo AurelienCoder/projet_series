@@ -130,7 +130,7 @@ class Dashboard{
                 <input id="nom-tag" type="text" name="genre" required>
                 <button class="valider btn-valider">Ajouter le tag</button>
                 <hr>
-                <h3>Ajouter une saison</h3> <span id="id-saison" style="display: none"><?= $this->serieDB->countSaisons()+1 ?></span>
+                <h3>Ajouter la saison n°1<span id="id-saison"><?= $this->serieDB->countSaisons()+1 ?></span></h3>
                 <div>
                     <label>Titre de la saison :</label>
                     <input type="text" id="titre-saison">
@@ -147,7 +147,7 @@ class Dashboard{
                 <!-- DIV PERMETTANT D'AJOUTER UN ACTEUR A LA FOIS -->
                 <hr>
                 <div id="sous-div2">
-                    <h3>Ajouter l'acteur n°1 (saison 1) [n°<span id="id-act"><?= $this->serieDB->countActs()+1 ?></span> dans la BD]
+                    <h3>Ajouter l'acteur n°1 (saison 1)<span id="id-act"><?= $this->serieDB->countActs()+1 ?></span>
                     </h3>
                     <div>
                         <label>Nom de l'acteur : </label>
@@ -166,7 +166,7 @@ class Dashboard{
                 <!-- DIV PERMETTANT D'AJOUTER UN EPISODE A LA FOIS -->
                 <hr>
                 <div id="sous-div3">
-                    <h3>Ajouter l'épisode n°1 (saison 1)</h3><span id="id-ep" style="display: none"><?= $this->serieDB->countEpisodes()+1 ?></span>
+                    <h3>Ajouter l'épisode n°1 (saison 1) #<span id="id-ep"><?= $this->serieDB->countEpisodes()+1 ?></span></h3>
                     <div>
                         <label>Titre de l'épisode : </label>
                         <input type="text" id="titre-ep" required>
@@ -187,8 +187,8 @@ class Dashboard{
 
                     <div id="ajouter-real" style="display: none">
                         <div>
-                            <div><span id="id-real" style="display: none"><?= $this->serieDB->countReals()+1 ?></span>
-                                <label>Nom du réalisateur : </label>
+                            <div>
+                                <label id="label-real">Nom du réalisateur : #<span id="id-real"><?= $this->serieDB->countReals()+1 ?></span></label>
                                 <input type="text" id="nom-real" required>
                             </div>
                         <br>

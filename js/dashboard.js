@@ -121,7 +121,7 @@ valider[0].addEventListener('click', function(){
         alert("Veuillez d'abord choisir un titre !");
     } else{    
         infos.style.display = 'block';
-        h3.innerText = "Ajouter la saison n°" + numSaison;
+        h3.innerText = "Ajouter la saison n°" + numSaison + " --- id #" + idSaison;
     }
 })
 
@@ -142,7 +142,7 @@ valider[2].addEventListener('click', function(){
     let img = document.getElementById('img-saison');
 
     formDataSaison(titre.value, numSaison, img.value);
-    document.querySelector('#sous-div2 h3').innerText = "Ajouter l'acteur n°" + numAct + " (saison " + numSaison + ")";
+    document.querySelector('#sous-div2 h3').innerText = "Ajouter l'acteur n°" + numAct + " (saison " + numSaison + ")" + " --- id #" + idAct;
 
     titre.value = '';
     img.value = '';
@@ -157,7 +157,7 @@ valider[3].addEventListener('click', function(){
     formDataAct(nom.value, img.value);
     numAct++;
     idAct++;
-    document.querySelector('#sous-div2 h3').innerText = "Ajouter l'acteur n°" + numAct + " (saison " + numSaison + ")";
+    document.querySelector('#sous-div2 h3').innerText = "Ajouter l'acteur n°" + numAct + " (saison " + numSaison + ")" + " --- id #" + idAct;
 
     nom.value = '';
     img.value = '';
@@ -181,11 +181,13 @@ valider[5].addEventListener('click', function(){
 
     numEp++;
     idEp++;
+    idReal++;
     numReal = 1;
-    document.querySelector('#sous-div3 h3').innerText = "Ajouter l'épisode n°" + numEp + " (saison " + numSaison + ")";
+    document.querySelector('#sous-div3 h3').innerText = "Ajouter l'épisode n°" + numEp + " (saison " + numSaison + ")"+ " --- id #" + idEp;
     h3.innerText = "Ajouter la saison n°" + numSaison;
     valider[4].style.display = 'initial';
     document.getElementById('ajouter-real').style.display = 'none';
+    document.getElementById('label-real').innerText = "Nom du réalisateur #" + idReal + ' : ';
     nom.value = '';
     img.value = '';
 })
@@ -199,9 +201,9 @@ valider[6].addEventListener('click', function(){
     numAct = 1;
     numEp = 1;
     numReal = 1;
-    document.querySelector('#sous-div2 h3').innerText = "Ajouter l'acteur n°" + numAct + " (saison " + numSaison + ")";
-    document.querySelector('#sous-div3 h3').innerText = "Ajouter l'épisode n°" + numEp + " (saison " + numSaison + ")";
-    h3.innerText = "Ajouter la saison n°" + numSaison;
+    document.querySelector('#sous-div2 h3').innerText = "Ajouter l'acteur n°" + numAct + " (saison " + numSaison + ")" + " --- id #" + idAct;
+    document.querySelector('#sous-div3 h3').innerText = "Ajouter l'épisode n°" + numEp + " (saison " + numSaison + ")" + " --- id #" + idEp;
+    h3.innerText = "Ajouter la saison n°" + numSaison + " --- id #" + idSaison;
     document.getElementById('sous-div').scrollTop = 0;
 })
 
