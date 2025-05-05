@@ -230,6 +230,26 @@ class SerieDB{
         $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
         return $results;
     }
+    
+    //utilisée
+    public function getSaisonById($id_saison){
+        $sql = "SELECT titre_saison FROM saison WHERE id_saison = :id_saison";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id_saison', $id_saison);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        return $statement->fetchColumn();
+    }
+
+    //utilisée
+    public function getTitreSerieBySaison($id_saison){
+        $sql = "SELECT titre_serie FROM serie
+        INNER JOIN saison ON serie.id_serie = saison.id_serie
+        WHERE saison.id_saison = :id_saison";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id_saison', $id_saison);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        return $statement->fetchColumn();
+    }
 
     public function getEpisode($saison_id, $serie_id){
         $sql = "SELECT * FROM episode

@@ -74,8 +74,7 @@ class Render{
                         } 
                     ?></span>
                     <span class="nb-saisons"> Nombre de saisons : <?=  $this->serieDB->getNbSaison($this->id_serie) ?></span>
-                    <span class="duree">Durée : <?= round($this->serieDB->getTimeSerie($this->id_serie)/60,1) ?> heures</span>
-
+                    <span class="duree"><?= round(($this->serieDB->getTimeSerie($this->id_serie)-$this->serieDB->getTimeSerie($this->id_serie)%60)/60)?> heures <?= $this->serieDB->getTimeSerie($this->id_serie)%60?> minutes</span>
                 </div>
             </div>
         </div>
@@ -86,7 +85,7 @@ class Render{
         ?>
 
         <div class="series-list">
-            <div class="model_serie">
+            <div class="model_serie acteur">
                 <div style="overflow: hidden">
                     <img src="<?= htmlspecialchars($this->photo_acteur); ?>" alt="<?php echo htmlspecialchars($this->photo_acteur); ?>">
                 </div>
@@ -106,7 +105,7 @@ class Render{
         ?>
 
         <div class="series-list">
-            <div class="model_serie">
+            <div class="model_serie real">
                 <div style="overflow: hidden">
                     <img src="<?= htmlspecialchars($this->photo_real); ?>" alt="<?php echo htmlspecialchars($this->photo_real); ?>">
                 </div>
@@ -127,18 +126,19 @@ class Render{
         ?>
 
     <div class="series-list">
-        <div class="model_serie">
+        <div class="model_serie saison">
             <div style="overflow: hidden">
                 <img src="<?= htmlspecialchars($this->affiche_saison); ?>" alt="<?php echo htmlspecialchars($this->affiche_saison); ?>">
             </div>
 
             <h2><?= htmlspecialchars($this->titre_saison); ?></h2>
-            
-            <h2>Nombre d'épisodes : <?= $this->serieDB->getNbEpisode($this->id_saison) ?> épisodes</h2>
+            <span style="display: none" class="id-saison"><?= $this->id_saison ?></span>
 
-            <h2>Durée d'une saison : <?php
-                echo round($this->serieDB->getTimeSaison($this->id_saison)/60,1) ?> heures
-            </h2>
+            <h3>Nombre d'épisodes : <?= $this->serieDB->getNbEpisode($this->id_saison) ?> épisodes</h3>
+
+            <h3>Durée d'une saison : <?=
+            round(($this->serieDB->getTimeSaison($this->id_saison)-$this->serieDB->getTimeSaison($this->id_saison)%60)/60)?> heure(s) <?= $this->serieDB->getTimeSaison($this->id_saison)%60?> minutes</span>
+            </h3>
         </div>
     </div>
 
@@ -146,13 +146,12 @@ class Render{
 
     public function getHTMLEpisode(){
         ?>
-    <div class="series-list">
-        <div class="model_serie">
-            <h2><?= htmlspecialchars($this->titre_episode); ?></h2>
+    <div class="series-list" style="color: white;">
+            <h2>Titre : <?= htmlspecialchars($this->titre_episode); ?></h2>
             
-            <span class="synopsis" style="display:none"><?= $this->synopsis_serie ?></span>
+            <span class="synopsis"><?= $this->synopsis_episode ?></span>
 
-            <h2><?= htmlspecialchars($this->duree_episode); ?></h2>
+            <h2>Durée de l'épisode : <?= htmlspecialchars($this->duree_episode); ?> minutes</h2>
         </div>
     </div>
     <?php }

@@ -53,6 +53,7 @@ class Dashboard{
             <div id="sous-div" style="margin-top: 80px; height: 500px; overflow: scroll;">
                 <label>Tag n°1 (un à la fois svp)</label>
                 <input id="nom-tag" type="text" name="genre" required>
+
                 <!-- [1] BOUTON POUR AJOUTER UN TAG DANS LA BD -->
                 <button class="valider btn-valider">Ajouter le tag</button>
                 <hr>
@@ -153,6 +154,12 @@ class Dashboard{
 
         //LES TAGS DE LA SERIE
         if(isset($_POST['nom_tag']) && isset($_POST['id_serie'])){
+
+            //si le tag n'existe pas, on le rajoute dans la table tag
+            if($this->serieDB->getIdByTag($_POST['nom_tag']) == null){
+                $this->serieDB->addTag($this->serieDB->countTags()+1, $_POST['nom_tag']);
+            }
+
             //obligatoire sinon ça ne fonctionne pas
             header('Content-Type: application/json');
             var_dump($_POST['nom_tag']);

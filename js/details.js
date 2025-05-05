@@ -6,9 +6,9 @@ divs.forEach((div, index) => {
     div.addEventListener('click', function(){
         let getTitle = document.getElementById('title').innerText;
 
-        if(getTitle == 'LES ACTEURS'){
+        if(getTitle == 'LES ACTEURS' || div.classList.contains('acteur')){
             window.location.href = 'search.php?act=' + document.querySelectorAll('h2')[index].innerText;
-        }else if(getTitle == 'LES RÉALISATEURS'){
+        }else if(getTitle == 'LES RÉALISATEURS' || div.classList.contains('real')){
             window.location.href = 'search.php?real=' + document.querySelectorAll('h2')[index].innerText;
         }else if(getTitle == 'LES SERIES DU MOMENT' || getTitle == 'LES SERIES'){
             //Ces élements se trouvent dans la classe TEMPLATE
@@ -45,6 +45,8 @@ divs.forEach((div, index) => {
             a.addEventListener('click', function(){
                 container.style.display = 'none';
             })
+        }else if(div.classList.contains('saison')){
+            window.location.href = 'search.php?saison=' + document.querySelector('span').innerText;
         }
     })
 })

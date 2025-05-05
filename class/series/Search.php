@@ -174,5 +174,19 @@ class Search{
         }
         echo "</div>";
     }
+
+    public function saisonSearch($idSaison){
+        $serieDB = new SerieDB();
+
+        echo " <h1>Les épisodes de la " . $serieDB->getSaisonById($idSaison)  . " de " . $serieDB->getTitreSerieBySaison($idSaison) . "</h1><div id='title'></div> ";
+
+        echo "<div style='display:flex; overflow-x: auto;'>";
+        $episodes = $serieDB->getEpisodes($idSaison);
+
+        foreach($episodes as $episode){
+            echo $episode->getHTMLEpisode();
+        }
+        echo "</div>";
+    }
 }
 ?>

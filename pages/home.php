@@ -19,7 +19,7 @@ if(isset($_SESSION['time']) && time() > $_SESSION['time'] + 3600) session_destro
         <input class="category-btn" type="checkbox"/><label>Historique</label>
         <input class="category-btn" type="checkbox"/><label>Science-fiction</label>
         <input class="category-btn" type="checkbox"/><label>Action</label>
-        <input class="category-btn" type="checkbox"/><label>Aventure</label>
+        <input class="category-btn" type="checkbox"/><label>Amour</label>
         <input class="category-btn" type="checkbox"/><label>Thriller</label>
 
         <!-- si l'administrateur est connecté, alors on ajoute dans home les 2 boutons AJOUTER et Voir les statistiques -->
