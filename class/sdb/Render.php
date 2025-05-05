@@ -131,11 +131,11 @@ class Render{
             <h2><?= htmlspecialchars($this->titre_saison); ?></h2>
             <span style="display: none" class="id-saison"><?= $this->id_saison ?></span>
 
-            <h3>Nombre d'épisodes : <?= $this->serieDB->getNbEpisode($this->id_saison) ?> épisodes</h3>
+            <p>Nombre d'épisodes : <?= $this->serieDB->getNbEpisode($this->id_saison) ?> épisodes</p>
 
-            <h3>Durée d'une saison : <?=
+            <p>Durée d'une saison : <?=
             round(($this->serieDB->getTimeSaison($this->id_saison)-$this->serieDB->getTimeSaison($this->id_saison)%60)/60)?> heure(s) <?= $this->serieDB->getTimeSaison($this->id_saison)%60?> minutes</span>
-            </h3>
+            </p>
         </div>
     </div>
 
