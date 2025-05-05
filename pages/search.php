@@ -30,13 +30,6 @@ Autoloader::register();
         }else if(isset($_GET['tag']) && $_GET['tag'] != ''){
             $search->tagSearch(htmlspecialchars($_GET['tag']));
         }else{
-            /*$nom_act1 = 'Aaron Paul';
-            $nom_act2 = 'Anna Gunn';
-            $series = $serieDB->getMultipleAct($nom_act1, $nom_act2);
-            
-            foreach($series as $serie){
-                echo $serie->getHTMLSerie();
-            }*/
             //si l'utilisateur n'a pas encore fait de requête, alors on affiche le formulaire avec generateForm();
             $search->generateForm();
 

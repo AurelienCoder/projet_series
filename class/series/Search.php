@@ -42,10 +42,10 @@ class Search{
             </div>
 
             <div class="form-group">
-                <label for="acteur">Acteur :</label>
-                <input type="text" id="act" name="act" placeholder="Nom de l'acteur">
+                <label for="acteur">Acteur(s) : (séparez chaque acteur par une virgule)</label>
+                <input type="text" id="act" name="act" placeholder="Nom du/des acteur(s)">
             </div>
-
+            <br>
             <div class="form-group">
                 <button type="submit" class="favorite styled">Rechercher</button>
             </div>
@@ -193,23 +193,33 @@ class Search{
     }
 
     public function actSearch($nom_act){
+        $tab = explode(',', $nom_act);
+
         $serieDB = new SerieDB();
 
-        $act = $serieDB->getActByNom($nom_act);
+        if(count($tab) == 1){
+            $act = $serieDB->getActByNom($nom_act);
 
-        if($act != null && $act[0]->getIDAct() != null){
-        echo " <h1 class='centrer' style='text-decoration: underline'>Les séries jouées par " . $act[0]->getNomAct()  . "</h1><div id='title'></div> ";
+            if($act != null && $act[0]->getIDAct() != null){
+                echo " <h1 class='centrer' style='text-decoration: underline'>Les séries jouées par " . $act[0]->getNomAct()  . "</h1><div id='title'></div> ";
+        
+                echo "<div class='center-div'>";
+                $series = $serieDB->getSeriesByAct($act[0]->getIDAct());
+        
+                foreach($series as $serie){
+                    echo $serie->getHTMLSerie();
+                }
+                echo "</div>";
+                }
+                else{
+                    echo "<h1 class='centrer'>Pas de série liée à cet acteur</h1>";
+                }
+        }else{
+            $series = $serieDB->getMultipleAct($tab[0], $tab[1]);
 
-        echo "<div class='center-div'>";
-        $series = $serieDB->getSeriesByAct($act[0]->getIDAct());
-
-        foreach($series as $serie){
-            echo $serie->getHTMLSerie();
-        }
-        echo "</div>";
-        }
-        else{
-            echo "<h1 class='centrer'>Pas de série liée à cet acteur</h1>";
+            foreach($series as $serie){
+                echo $serie->getHTMLSerie();
+            }
         }
     }
 
