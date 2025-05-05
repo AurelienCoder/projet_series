@@ -108,30 +108,31 @@ class Search{
         //affiche les saisons d'une série
         $serieID = $serieDB->getIdBySerie($nom_serie);
         if($serieID != null){
-            echo "<h1>La série " . $nom_serie . " - Durée : " . round(($serieDB->getTimeSerie($serieID)- $serieDB->getTimeSerie($serieID)%60) /60) . " heures " . $serieDB->getTimeSerie($serieID)%60 . "minutes ";
+            echo "<h1 class='centrer' style='text-decoration: underline'>La série " . $nom_serie . "</h1><br>";
 
-            echo " <h1>Les saisons de " . $nom_serie. " - " . $serieDB->getNbSaison($serieID) . " saisons</h1><div id='title'></div>";
-            echo "<div style='display:flex; overflow-x: auto;'>";
+            echo "<hr><h1 class='centrer'>Durée : " . round(($serieDB->getTimeSerie($serieID)- $serieDB->getTimeSerie($serieID)%60) /60) . " heures " . $serieDB->getTimeSerie($serieID)%60 . " minutes </h1><br>";
+            echo "<hr><h1 class='centrer'>Les saisons de " . $nom_serie. " - " . $serieDB->getNbSaison($serieID) . " saisons</h1><div id='title'></div>";
+            echo "<div class='center-div'>";
             $saisons = $serieDB->getSaisons($serieID);
-    
+
             foreach($saisons as $saison){
                 echo $saison->getHTMLSaison();
             }
-            echo "</div>";
+            echo "</div><br><hr>";
     
             //affiche les réalisateurs d'une série
-            echo " <h1>Les réalisateurs de " . $nom_serie . "</h1><div id='title'></div> ";
-            echo "<div style='display:flex; overflow-x: auto;'>";
+            echo " <h1 class='centrer'>Les réalisateurs de " . $nom_serie . "</h1><div id='title'></div> ";
+            echo "<div class='center-div'>";
             $realisateurs = $serieDB->getReal($serieID);
     
             foreach($realisateurs as $realisateur){
                 echo $realisateur->getHTMLReal();
             }
-            echo "</div>";
+            echo "</div><br><hr>";
             
             //affiche les acteurs d'une série
-            echo " <h1>Les acteurs de " . $nom_serie . "</h1><div id='title'></div> ";
-            echo "<div style='display:flex; overflow-x: auto;'>";
+            echo " <h1 class='centrer'>Les acteurs de " . $nom_serie . "</h1><div id='title'></div> ";
+            echo "<div class='center-div'>";
             $acteurs = $serieDB->getActeurs($serieID);
     
             foreach($acteurs as $acteur){
@@ -151,9 +152,9 @@ class Search{
         foreach($tags as $tag){
             if($nom_tag == $tag->getTag()){
                 $ok = true;
-                echo " <h1>Les séries " . $nom_tag  . "</h1><div id='title'></div> ";
+                echo " <h1 class='centrer' style='text-decoration: underline'>Les séries " . $nom_tag  . "</h1><div id='title'></div> ";
 
-                echo "<div style='display:flex; overflow-x: auto;'>";
+                echo "<div class='center-div'>";
                 $series = $serieDB->getSeriesByTagName($nom_tag);
     
                 foreach($series as $serie){
@@ -163,20 +164,20 @@ class Search{
             }
         }
         if($ok == false){
-            echo "<h1>Ce tag n'existe pas !</h1>";
+            echo "<h1 class='centrer'>Ce tag n'existe pas !</h1>";
         }
     }
 
     public function realSearch($nom_real){
         $serieDB = new SerieDB();
 
-        $realID = $serieDB->getRealId($nom_real);
+        $real = $serieDB->getRealByNom($nom_real);
 
-        if($realID != null){
-            echo " <h1>Les séries réalisées par " . $nom_real  . "</h1><div id='title'></div> ";
+        if($real != null && $real[0]->getIDReal() != null){
+            echo " <h1 class='centrer' style='text-decoration: underline'>Les séries réalisées par " .  $real[0]->getNomReal()  . "</h1><div id='title'></div> ";
 
-            echo "<div style='display:flex; overflow-x: auto;'>";
-            $series = $serieDB->getSeriesByReal($realID);
+            echo "<div class='center-div''>";
+            $series = $serieDB->getSeriesByReal($real[0]->getIDReal());
     
             foreach($series as $serie){
                 echo $serie->getHTMLSerie();
@@ -184,7 +185,7 @@ class Search{
             echo "</div>";
         }
         else{
-            echo "<h1>Pas de série liée à ce réalisateur</h1>";
+            echo "<h1 class='centrer'>Pas de série liée à ce réalisateur</h1>";
         }
     }
 
@@ -196,9 +197,9 @@ class Search{
         $actID = $serieDB->getActId($act);
 
         if($actID != null){
-        echo " <h1>Les séries jouées par " . $act  . "</h1><div id='title'></div> ";
+        echo " <h1 class='centrer' style='text-decoration: underline'>Les séries jouées par " . $act  . "</h1><div id='title'></div> ";
 
-        echo "<div style='display:flex; overflow-x: auto;'>";
+        echo "<div class='center-div'>";
         $series = $serieDB->getSeriesByAct($actID);
 
         foreach($series as $serie){
@@ -207,7 +208,7 @@ class Search{
         echo "</div>";
         }
         else{
-            echo "<h1>Pas de série liée à cet acteur</h1>";
+            echo "<h1 class='centrer'>Pas de série liée à cet acteur</h1>";
         }
     }
 
@@ -215,9 +216,9 @@ class Search{
         $serieDB = new SerieDB();
 
         if($idSaison>0 && $idSaison<$serieDB->countSaisons()){
-            echo " <h1>Les épisodes de la " . $serieDB->getSaisonById($idSaison)  . " de " . $serieDB->getTitreSerieBySaison($idSaison) . "</h1><div id='title'></div> ";
+            echo " <h1 class='centrer'>Les épisodes de la " . $serieDB->getSaisonById($idSaison)  . " de " . $serieDB->getTitreSerieBySaison($idSaison) . "</h1><div id='title'></div> ";
 
-        echo "<div style='display:flex; overflow-x: auto;'>";
+        echo "<div class='center-div'>";
         $episodes = $serieDB->getEpisodes($idSaison);
 
         foreach($episodes as $episode){
@@ -226,7 +227,7 @@ class Search{
         echo "</div>";
         }
         else{
-            echo "<h1>L'ID de la saison est inexistant</h1>";
+            echo "<h1 class='centrer'>L'ID de la saison est inexistant</h1>";
         }
     }
 }

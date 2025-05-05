@@ -70,6 +70,7 @@ button.favorite.styled{
   flex-wrap: wrap;
   margin-top: 2rem;
   margin-left: 5px;
+  text-align:center;
 }
 
 /* PAGE SEARCH */
@@ -156,8 +157,24 @@ outline: 2px solid #f00;
 }
 
 
+.centrer{
+  color:white;
+  font-size:25px;
+  padding:10px;
+  text-align:center; 
+  margin-bottom:-10px;
+  font-style: italic;
+}
 
+hr{
+  color: crimson;
+}
 
+.center-div{
+  display:flex; 
+  overflow-x: auto;
+  justify-content:center;
+}
 
 
 

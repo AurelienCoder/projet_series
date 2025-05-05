@@ -1,5 +1,5 @@
-<footer class="navbar navbar-dark bg-dark">
-    <div class="navbar-brand" style="width:100% ; text-align:center; color: white;">
+<footer>
+    <div style="width:100% ; text-align:center; color: white;">
         <a href="https://www.allocine.fr/">
             Source : Allociné
         </a>

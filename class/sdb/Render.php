@@ -78,7 +78,6 @@ class Render{
                 </div>
             </div>
         </div>
-        <script src="../js/details.js"></script>
     <?php }
 
     public function getHTMLActor(){
@@ -98,7 +97,6 @@ class Render{
                 
             </div>
         </div>
-        <script src="../js/details.js"></script>
     <?php }
 
     public function getHTMLReal(){
@@ -119,7 +117,6 @@ class Render{
                 
             </div>
         </div>
-        <script src="../js/details.js"></script>
     <?php }
 
     public function getHTMLSaison(){
@@ -177,6 +174,14 @@ class Render{
     //utilisée dans dashboard.php pour modifier la série
     public function getTag(){
         return $this->nom_tag;
+    }
+
+    public function getNomReal(){
+        return $this->nom_real;
+    }
+
+    public function getIDReal(){
+        return $this->id_real;
     }
 }
 ?>

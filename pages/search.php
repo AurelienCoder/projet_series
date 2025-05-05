@@ -21,6 +21,7 @@ Autoloader::register();
         } else if(isset($_GET['serie']) && $_GET['serie'] != ''){//afficher les informations d'une série
             $search->serieSearch(htmlspecialchars($_GET['serie'])); 
         } else if(isset($_GET['real']) && $_GET['real'] != ''){//afficher les séries d'un réalisateur recherché
+            /* Michelle MacLaren a réalisée 2 séries */
             $search->realSearch(htmlspecialchars($_GET['real'])); 
         } else if(isset($_GET['act']) && $_GET['act'] != ''){//afficher les séries d'un acteur recherché
             $search->actSearch(htmlspecialchars($_GET['act']));
@@ -42,6 +43,9 @@ Autoloader::register();
         }
         ?>
 </div>
+
+<!-- script qui affiche les informations d'une série/d'un réalisateur/d'un acteur/saison lorsque l'on clique dessus  -->
+<script src='../js/details.js'></script>
 
 <?php $code = ob_get_clean(); ?>
 <?php Template::render($code); ?>

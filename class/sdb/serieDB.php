@@ -130,12 +130,13 @@ class SerieDB{
     }
 
     //utilisée
-    public function getRealId($nom_real){
-        $sql = "SELECT id_real FROM realisateur WHERE nom_real = :nom_real";
+    public function getRealByNom($nom_real){
+        $sql = "SELECT * FROM realisateur WHERE nom_real LIKE CONCAT('%',:nom_real,'%')";
         $statement = $this->pdo->prepare($sql);
         $statement->bindParam(':nom_real', $nom_real);
         $statement->execute() or die(var_dump($statement->errorInfo()));
-        return $statement->fetchColumn();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
+        return $results;
     }
 
     public function getSeriesByReal($real_id){
@@ -608,9 +609,9 @@ class SerieDB{
     }
 
     
-    // Supprimer toutes les séries, saisons et épisodes
-    public function deleteAllSeries(){
-        $sql = "DELETE FROM serie; DELETE FROM episode";
+    // Supprimer toutes la base de données
+    public function deleteAll(){
+        $sql = "DELETE FROM serie; DELETE FROM episode; DELETE FROM realisateur; DELETE FROM acteur; DELETE FROM saison;";
 
         $statement = $this->pdo->prepare($sql);
         $statement->execute() or die(var_dump($statement->errorInfo()));

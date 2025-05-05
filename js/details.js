@@ -6,11 +6,11 @@ divs.forEach((div, index) => {
     div.addEventListener('click', function(){
         let getTitle = document.getElementById('title').innerText;
 
-        if(getTitle == 'LES ACTEURS' || div.classList.contains('acteur')){
+        if(div.classList.contains('acteur')){
             window.location.href = 'search.php?act=' + document.querySelectorAll('h2')[index].innerText;
-        }else if(getTitle == 'LES RÉALISATEURS' || div.classList.contains('real')){
+        }else if(div.classList.contains('real')){
             window.location.href = 'search.php?real=' + document.querySelectorAll('h2')[index].innerText;
-        }else if(getTitle == 'LES SERIES DU MOMENT' || getTitle == 'LES SERIES' || div.classList.contains('serie')){
+        }else if(div.classList.contains('serie')){
             //Ces élements se trouvent dans la classe TEMPLATE
             let container = document.getElementById('alert');
             container.style.display = 'initial';

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 30 avr. 2025 à 12:42
+-- Généré le : lun. 05 mai 2025 à 14:33
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `acteur` (
   `nom_acteur` text NOT NULL,
   `photo_acteur` text NOT NULL,
   PRIMARY KEY (`id_acteur`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `acteur`
@@ -64,7 +64,23 @@ INSERT INTO `acteur` (`id_acteur`, `nom_acteur`, `photo_acteur`) VALUES
 (22, 'Wi Ha-Joon', 'https://fr.web.img4.acsta.net/c_310_420/pictures/22/05/11/09/45/4627158.jpg'),
 (23, 'Michael C. Hall', 'https://fr.web.img3.acsta.net/pictures/18/05/25/16/54/2970400.jpg'),
 (24, 'Jennifer Carpenter', 'https://m.media-amazon.com/images/M/MV5BMTA3Mzk2NTk0MDReQTJeQWpwZ15BbWU3MDQ1MDQyNzY@._V1_FMjpg_UX1000_.jpg'),
-(25, 'David Zayas', 'https://m.media-amazon.com/images/M/MV5BMjA5NTkwMTg1N15BMl5BanBnXkFtZTcwNzU2ODE3Mw@@._V1_FMjpg_UX1000_.jpg');
+(25, 'David Zayas', 'https://m.media-amazon.com/images/M/MV5BMjA5NTkwMTg1N15BMl5BanBnXkFtZTcwNzU2ODE3Mw@@._V1_FMjpg_UX1000_.jpg'),
+(26, 'Wentworth Miller', 'https://fr.web.img3.acsta.net/pictures/17/04/07/12/12/007870.jpg'),
+(27, 'Dominic Purcell', 'https://fr.web.img5.acsta.net/c_310_420/pictures/17/03/31/16/15/382424.jpg'),
+(28, 'Sarah Wayne Callies', 'https://fr.web.img6.acsta.net/c_310_420/pictures/16/05/19/17/48/475157.jpg'),
+(29, 'Wagner Moura', 'https://m.media-amazon.com/images/M/MV5BNzE0YTA3MWEtY2ZiYi00ZDFmLTgyY2QtMTUzZDIwOWU5NGFhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg'),
+(30, 'Pedro Pascal', 'https://cdn-elle.ladmedia.fr/var/plain_site/storage/images/personnalites/pedro-pascal/103289359-1-fre-FR/Pedro-Pascal.jpg'),
+(31, 'Boyd Holbrook', 'https://fr.web.img4.acsta.net/c_310_420/pictures/15/10/21/16/51/098547.jpg'),
+(32, 'Anya Taylor-Joy', 'https://upload.wikimedia.org/wikipedia/commons/a/aa/Anya_Taylor_Joy_at_28th_Critics_Choice_Red_Carpet_%281%2750%29.jpg'),
+(33, 'Harry Melling', 'https://fr.web.img5.acsta.net/pictures/18/09/20/14/43/5838407.jpg'),
+(34, 'Benedict Cumberbatch', 'https://m.media-amazon.com/images/M/MV5BMjE0MDkzMDQwOF5BMl5BanBnXkFtZTgwOTE1Mjg1MzE@._V1_FMjpg_UX1000_.jpg'),
+(35, 'Martin Freeman', 'https://fr.web.img5.acsta.net/pictures/18/01/30/10/47/4457967.jpg'),
+(36, 'Mark Gatiss', 'https://m.media-amazon.com/images/M/MV5BMTYzNDIwNzg4NF5BMl5BanBnXkFtZTcwNTI0MTk4OQ@@._V1_.jpg'),
+(37, 'Cillian Murphy', 'https://fr.web.img5.acsta.net/pictures/20/01/07/12/28/4858526.jpg'),
+(38, 'Sophie Rundle', 'https://fr.web.img3.acsta.net/c_310_420/pictures/16/07/19/15/40/229824.jpg'),
+(39, 'Peter Dinklage', 'https://fr.web.img6.acsta.net/c_310_420/pictures/15/07/20/17/24/353481.jpg'),
+(40, 'Kit Harington', 'https://m.media-amazon.com/images/M/MV5BMTA2NTI0NjYxMTBeQTJeQWpwZ15BbWU3MDIxMjgyNzY@._V1_FMjpg_UX1000_.jpg'),
+(41, 'Emilia Clarke', 'https://m.media-amazon.com/images/M/MV5BNjg3OTg4MDczMl5BMl5BanBnXkFtZTgwODc0NzUwNjE@._V1_.jpg');
 
 -- --------------------------------------------------------
 
@@ -79,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `episode` (
   `synopsis_episode` text NOT NULL,
   `duree_episode` int NOT NULL,
   PRIMARY KEY (`id_episode`)
-) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `episode`
@@ -150,7 +166,66 @@ INSERT INTO `episode` (`id_episode`, `titre_episode`, `synopsis_episode`, `duree
 (62, 'Es-tu un… ?', 'Dexter assure à Debra qu\'il a tué Travis Marshall en état de légitime défense, et qu\'il n\'a pas agi avec préméditation. Debra se laisse convaincre et ensemble, Dexter et Debra modifient la scène de crime pour laisser croire à un suicide. Le lendemain de la découverte du corps par les forces de l\'ordre, LaGuerta découvre une plaquette du sang de Travis que Dexter a égarée. De son côté, Mike Anderson découvre le cadavre d\'une jeune femme dans un coffre de voiture, et se fait tirer dessus par le conducteur de celle-ci, Viktor Baskov, un mafieux ukrainien. ', 57),
 (63, 'Le Code a changé', 'Debra décide de guérir Dexter de son « addiction » en le surveillant 24 heures sur 24, de ce fait il emménage chez elle. Dexter découvre que c\'est Louis qui lui a envoyé la main du tueur du camion de glace. Après avoir voulu le faire fuir, sans succès, il décide de le tuer mais se ravise au dernier moment. ', 55),
 (64, 'La Neuro-psychopathe', 'Six mois ont passé depuis la mort du capitaine LaGuerta, mais sa mémoire reste vive. Batista a du mal à faire son deuil. Deb a quitté la Miami Metro pour devenir détective privé et travaille sur des affaires dangereuses, s\'enfonçant dans la drogue et l\'alcool loin de Dexter. Une nouvelle affaire apparaît, où un tueur séquestre ses victimes avant de les abattre et de les opérer pour leur retirer un morceau de cerveau. Le lendemain, le Dr Evelyn Vogel, célèbre neuro-psychiatre spécialisée dans la psychopathie et amie de longue date du chef Matthews, rejoint la Miami Metro pour travailler sur l\'affaire.', 55),
-(65, 'Vous êtes parfait', 'Dexter découvre que le Dr Vogel a aidé Harry à mettre en place le code et faire de Dexter le tueur qu\'il est. Elle espère aussi son aide afin de capturer le chirurgien du cerveau, qu\'elle soupçonne être un de ses anciens patients. Debra prend des risques pour mener son affaire à bien mais son employeur craint qu\'elle n\'aille trop loin.', 54);
+(65, 'Vous êtes parfait', 'Dexter découvre que le Dr Vogel a aidé Harry à mettre en place le code et faire de Dexter le tueur qu\'il est. Elle espère aussi son aide afin de capturer le chirurgien du cerveau, qu\'elle soupçonne être un de ses anciens patients. Debra prend des risques pour mener son affaire à bien mais son employeur craint qu\'elle n\'aille trop loin.', 54),
+(66, 'La Grande Évasion', 'Michael Scofield, brillant ingénieur en génie civil, souffrant de trouble émotif, avec un QI exceptionnel, commet un braquage pour être incarcéré dans la même prison que son frère Lincoln Burrows, condamné à mort pour le meurtre de Terrence Steadman, un homme d\'affaires philanthrope et frère de la vice-présidente des États-Unis d\'Amérique. Michael est convaincu de l\'innocence de Lincoln, et planifie une évasion.', 43),
+(67, 'Allen', 'Une émeute fermente dans la prison. Scofield doit récupérer une vis, élément clé de son plan, qui se trouve sur un gradin appartenant à un des gangs (les \"bleachers\") mené par T-Bag. Il doit aussi récupérer un certain médicament auprès de C-Note pour continuer à simuler son diabète afin d\'avoir accès à l\'infirmerie, ceci faisant partie aussi de son plan d\'évasion.', 43),
+(68, 'Chasse à l\'homme', 'Huit heures après l\'évasion, le groupe est réduit à Sucre, Scofield, Burrows, Abruzzi et C-Note. Sur le point d\'être rattrapés, un train de marchandises leur permet d\'échapper temporairement à leurs poursuivants. T-Bag, abandonné par les autres, n\'est pas encore hors course et cherche à faire recoudre sa main au plus vite.', 43),
+(69, 'Otis', 'Après un dernier déjeuner, Abruzzi, Sucre et C-Note s\'en vont de leurs côtés alors que Michael et Lincoln prévoient un nouveau plan d\'évasion. Mais ce plan ne les concerne pas directement, car cette fois, ils devront secourir L.J. du palais de justice avant qu\'il ne soit transféré dans une prison en Arizona.', 44),
+(70, 'Survivre', 'Michael est emprisonné à Sona avec Mahone et Bellick, rejoints rapidement par T-Bag. Michael va découvrir son nouvel environnement et faire la connaissance de Lechero, le chef de Sona, qui va le détester dès la première rencontre. Pour cela, il va obliger Michael à participer à un duel à mort avec un autre détenu qui l\'accuse de lui avoir volé sa drogue.', 44),
+(71, 'L\'eau et le feu', 'Michael cherche à découvrir où se cache Whistler, l\'homme qu\'il est censé faire évader, mais il n\'est pas le seul à s\'intéresser à lui : cet homme est accusé d\'avoir tué le fils du maire de Panamá City, et le bruit court à Sona que le prisonnier qui parviendrait à le tuer serait libéré.', 43),
+(72, '« De Charybde... »', 'Après avoir fait des recherches sur Whistler, Michael retrouve sa trace à Los Angeles. Mahone, Gretchen et Whistler arrivent en limousine à une réception et ce dernier entre pour récupérer une étrange carte appelée \"Scylla\".', 43),
+(73, '... En Scylla', 'Un agent du Cartel est chargé de faire le ménage et de tuer toutes les personnes impliquées de près ou de loin à Scylla, ce livre noir contenant des informations susceptibles de compromettre cette mystérieuse organisation infiltrée à différents niveaux de l\'industrie et du gouvernement.', 43),
+(74, 'Ogygia', 'Michael Scofield est présumé mort il y a sept ans. Theodore Bagwell est libéré du pénitencier d\'État de Fox River dans l\'Illinois ; en récupérant ses effets personnels, il découvre une mystérieuse enveloppe envoyée du Yémen.', 43),
+(75, 'La Théorie des jeux', 'Au Yémen, alors que la capitale Sanaa est assiégée par l\'État islamique, Lincoln et C-Note reçoivent un message leur demandant de trouver le « Sheik de la lumière ». Emprisonné sous le patronyme de Kaniel Outis, terroriste accusé d\'avoir tué un agent de la CIA, Michael prépare son évasion avec son compagnon de cellule, Whip.', 43),
+(76, 'Tomber', 'Lors du coup d\'État de 1973 au Chili, plusieurs fabricants de médicaments sont alignés et abattus; Le chimiste chilien Cancrelas survit et apporte son produit au passeur colombien Pablo Escobar qui l\'exécute plus tard. L\'agent de la DEA Steve Murphy rejoint la guerre contre la drogue à Bogota.', 58),
+(77, 'L\'Épée de Simón Bolívar', 'Le groupe radical communiste M-19 fait un geste contre les narcos, tandis que Murphy reçoit une formation en application de la loi colombienne de son nouveau partenaire Peña.\r\n\r\nEn conséquence pour le mouvement mentionné -qui consiste à voler l\'épée de Simon Bolivar. Les dirigeants du M-19 (Elisa et Alejandro) célèbrent en ayant des relations sexuelles passionnées au camp de guérilla.', 51),
+(78, 'Enfin libre', 'À la suite d\'un effort militaire massif pour arrêter Pablo, la famille se réunit tandis que les ennemis s\'inquiètent. Steve et Connie se battent pour la sécurité.', 57),
+(79, 'Cambalache', 'Tata s\'impatiente de la vie en fuite. Pablo répond à l\'offre de récompense du président Gaviria. Steve et Javier rencontrent leur nouveau patron.\r\n', 56),
+(80, 'La Stratégie du Parrain', 'Six mois après la mort d\'Escobar, la DEA réoriente ses efforts vers le cartel de Cali, qui contrôle désormais la majorité du trafic mondial de cocaïne.\r\nL\'agent Peña, devenu héros national, revient en Colombie pour superviser la stratégie contre ce nouveau cartel, qui opère avec ruse, corruption et méthodes beaucoup plus subtiles.', 59),
+(81, 'Le KGB de Cali', 'Les agents infiltrent le réseau de surveillance du cartel de Cali, surnommé le \"KGB de Cali\", capable d’espionner toute la ville.\r\nPendant ce temps, Jorge Salcedo, responsable de la sécurité du cartel, commence à douter de son rôle, alors que la paranoïa et les tensions montent au sein de l\'organisation.', 52),
+(82, 'Ouverture', 'Après un tragique accident, la jeune orpheline Beth Harmon est envoyée dans un foyer où elle découvre deux choses : les échecs, grâce au gardien, et les tranquillisants, distribués aux pensionnaires… Ce double éveil marquera toute sa vie.', 59),
+(83, 'Échanges', 'Adoptée par un couple en crise, Beth tente de s’intégrer dans un monde d’adultes désabusés. Mais elle commence à briller dans les tournois d’échecs locaux, attirant rapidement l’attention par son talent hors norme.', 64),
+(84, 'Doubles coups', 'Beth enchaîne les victoires et gravit les échelons du circuit. Lors d’un tournoi majeur, elle affronte Benny Watts, l’un des plus jeunes maîtres du pays. En parallèle, elle développe une dépendance grandissante aux pilules.', 46),
+(85, 'Milieu de partie\r\n', 'Beth remporte de nombreux tournois et devient une célébrité. Mais sa vie privée reste instable, entre solitude, dépendances et relations difficiles. Son jeu devient plus agressif, mais aussi plus fragile émotionnellement.\r\n\r\n', 52),
+(86, 'Fourchette', 'En partant à Paris pour affronter le champion soviétique Borgov, Beth touche le sommet… mais s\'effondre sous la pression, l’alcool et l’absence de repères stables. C’est un tournant brutal dans son parcours.\r\n\r\n', 59),
+(87, 'Adjournement', 'Beth rentre chez elle en ruine morale. Elle tente de se reconstruire, aidée par d’anciens amis joueurs. Elle doit faire face à ses démons intérieurs si elle veut revenir au plus haut niveau.\r\n\r\n', 59),
+(88, 'Finale', 'Direction Moscou, pour le plus grand défi de sa vie : battre Borgov et prouver qu’elle est la meilleure. Mais cette victoire ne se joue pas seulement sur l’échiquier… Beth trouve enfin paix, reconnaissance et liberté.', 65),
+(89, 'Une étude en rose', 'Héros de guerre et invalide depuis l\'Afghanistan, le Dr Watson fait la connaissance d\'un personnage étrange et fascinant, un certain Sherlock Holmes, à la recherche, comme lui d\'un colocataire. Dans le même temps, une vague incompréhensible de suicides déroute Scotland Yard. Seul Holmes peut les aider. ', 88),
+(90, 'Le Banquier aveugle', 'Un message mystérieux est gribouillé sur les murs autour de Londres. La première personne à voir ce message est morte quelques heures après sa lecture. Sherlock se plonge dans un monde de codes et des symboles, consultant les meilleurs artistes de graffiti de Londres. Il apprend bientôt que la ville est sous l\'emprise d\'un gang de contrebandiers internationaux, une société secrète appelée le Lotus noir.', 89),
+(91, 'Un scandale à Buckingham', 'À la suite d\'un coup de fil étrange, le face à face entre Sherlock et Moriarty prend fin de manière inattendue. Plus tard, le détective est interrompu dans une de ses enquêtes et est conduit avec Watson au palais de Buckingham. En effet, la dominatrice Irene Adler possède des photos compromettantes d\'une princesse royale et Sherlock est engagé pour les récupérer. Cependant, après avoir fait connaissance de la brillante Irene, il se rend compte qu\'elle a des preuves beaucoup plus dangereuses en sa possession. ', 90),
+(92, 'Les Chiens de Baskerville', 'Sherlock et John sont contactés par Henry Knight, un jeune homme tourmenté par les souvenirs traumatiques qu\'il a de la mort de son père, tué par un monstrueux molosse vingt ans plus tôt. Henry est persuadé que la base militaire de Baskerville est utilisée par le gouvernement pour créer des animaux mutants. Holmes et Watson se rendent donc dans le Dartmoor pour enquêter. ', 89),
+(93, 'Le Cercueil vide', 'Après deux ans passés en souterrain à démanteler le réseau de Moriarty, Sherlock est rappelé à Londres par Mycroft pour empêcher un attentat terroriste. Sherlock souhaite retrouver l\'aide de Watson, mais celui-ci a tourné la page et s\'est fiancé. ', 86),
+(94, 'Le Signe des trois', 'Sherlock est le témoin de mariage de Watson, une position très inconfortable pour le détective. Au cours de son discours pendant le repas, le détective décide donc d\'évoquer deux affaires qu\'ils ont menées ensemble et qui pourraient être résolues pendant le mariage. ', 86),
+(95, 'Les six Thatcher', 'Avec le retour de Moriarty annoncé à travers Londres, le gouvernement britannique décide de blanchir Sherlock Holmes de la mort de Charles Augustus Magnussen. De retour à Baker Street et alors que John et Mary Watson deviennent parents, le détective attend le prochain coup du criminel. L\'affaire étrange de la mort d\'un adolescent va mener Sherlock Holmes sur la piste d\'un homme traquant une série de bustes de Margaret Thatcher.', 88),
+(96, 'Le détective affabulant', 'Sherlock s’attaque à l’ennemi le plus terrifiant de sa carrière : le puissant Culverton Smith, un homme qui détient un très sombre secret. ', 88),
+(97, 'Episode 1', 'Dans le Birmingham de 1919, Tommy Shelby, chef du gang des Peaky Blinders, récupère une cargaison d’armes militaires volées. Il veut s’en servir pour gagner en pouvoir, mais l’arrivée du redoutable inspecteur Campbell bouleverse ses plans.', 58),
+(98, 'Episode 2', 'Campbell commence sa traque des armes volées. Pendant ce temps, Tommy cherche à asseoir sa légitimité dans les paris, tout en manipulant les autres gangs et en se rapprochant de Grace, une barmaid au passé trouble.', 57),
+(99, 'Episode 1', 'Deux ans ont passé. Tommy étend ses activités à Londres, entrant en conflit avec la famille Sabini. La tension monte, et les enjeux sont plus élevés.', 59),
+(100, 'Episode 2', 'Tommy s’allie à de nouveaux partenaires tout en affrontant Sabini. Il commence une relation avec May Carleton, tandis que son influence politique s’élargit.', 59),
+(101, 'Episode 1', 'Tommy se marie, mais le bonheur est de courte durée. Il est contraint par des agents secrets à se lancer dans une opération criminelle internationale impliquant les Russes.', 58),
+(102, 'Episode 2', 'Tommy tente de manœuvrer entre les Soviétiques, les gangs londoniens et le gouvernement. La tension s’accroît, et ses relations familiales s’effritent.', 58),
+(103, 'Episode 1', 'Les Shelby sont menacés d’exécution, mais une grâce de dernière minute les sauve. Un nouveau danger surgit : la mafia italienne, venue venger l’un des leurs.', 58),
+(104, 'Episode 2', 'Alors que les tensions avec la famille Changretta augmentent, Tommy doit recruter une nouvelle équipe pour protéger sa famille, dont Aberama Gold.', 57),
+(105, 'Episode 1', 'En pleine crise financière de 1929, Tommy, désormais député, tente de maintenir l’empire familial. De nouvelles menaces politiques émergent.', 59),
+(106, 'Episode 2', 'Tommy soupçonne une taupe dans ses rangs. Il entre en contact avec Oswald Mosley, un homme politique fasciste à l’ambition inquiétante.', 58),
+(107, 'Episode 1', 'Après une tentative de suicide ratée, Tommy revient plus sombre que jamais. Il s’implique dans des affaires en Amérique et prépare une nouvelle stratégie contre les fascistes.', 57),
+(108, 'Episode 2', 'Tommy s’enfonce dans le trafic d’opium tout en jouant un double jeu avec les nationalistes irlandais et les fascistes. Les tensions internes à la famille refont surface.', 58),
+(109, 'Winter Is Coming', 'Eddard Stark est appelé à devenir la Main du Roi. De sombres complots naissent à Port-Réal, tandis qu’au Nord, d’étranges événements se produisent au-delà du Mur.', 62),
+(110, 'The Kingsroad', 'Jon Snow part rejoindre la Garde de Nuit. Arya reçoit son épée. Daenerys commence à s affirmer face à Khal Drogo.', 56),
+(111, 'The North Remembers', 'La guerre fait rage entre les royaumes. Robb Stark poursuit sa campagne, Stannis Baratheon revendique le trône et une nouvelle menace religieuse apparaît.', 53),
+(112, 'The Night Lands', 'Tyrion commence à gouverner à Port-Réal. Theon revient chez lui. Arya est en fuite, déguisée en garçon.', 54),
+(113, 'Valar Dohaeris', 'Jon Snow découvre les Sauvageons. Tyrion affronte son père Tywin. Daenerys engage une armée d’Immaculés.', 55),
+(114, 'Dark Wings, Dark Words', 'Bran fait la rencontre de Jojen Reed. Arya croise la Fraternité sans bannière. Sansa est approchée par Margaery.', 58),
+(115, 'Two Swords', 'Tywin fond l’épée de Ned Stark. Arya retrouve Aiguille. Jon Snow est jugé à Châteaunoir.', 58),
+(116, 'The Lion and the Rose', 'Le mariage royal de Joffrey et Margaery tourne au drame. Tyrion est accusé d’un crime majeur.', 52),
+(117, 'The Wars to Come', 'Cersei pleure Tywin. Jon tente d’unir la Garde et les Sauvageons. Daenerys perd le contrôle de Meereen.', 53),
+(118, 'The House of Black and White', 'Arya arrive à Braavos. Brienne retrouve Sansa. Dorne entre en jeu avec les Martell.', 54),
+(119, 'The Red Woman', 'Jon Snow est mort. Mélisandre révèle son vrai visage. Sansa et Theon fuient Ramsay', 50),
+(120, 'Home', 'Jon Snow est ressuscité. Bran explore le passé. Ramsay devient maître de Winterfell.', 54),
+(121, 'Dragonstone', 'Arya frappe fort. Daenerys accoste à Peyredragon. Jon prépare le Nord contre les Marcheurs.', 59),
+(122, 'Stormborn', 'Daenerys élabore sa stratégie. Arya apprend que Jon est à Winterfell. Yara et Theon subissent une embuscade.', 59),
+(123, 'Winterfell', 'Jon et Daenerys arrivent à Winterfell. Les tensions montent. Révélations sur la lignée de Jon.', 54),
+(124, 'A Knight of the Seven Kingdoms', 'La bataille approche. Les personnages se préparent et partagent des moments humains avant la guerre.', 58);
 
 -- --------------------------------------------------------
 
@@ -187,6 +262,8 @@ INSERT INTO `episode_realisateur` (`id_episode`, `id_real`) VALUES
 (30, 5),
 (36, 5),
 (9, 6),
+(117, 6),
+(118, 6),
 (11, 7),
 (12, 7),
 (13, 8),
@@ -243,7 +320,63 @@ INSERT INTO `episode_realisateur` (`id_episode`, `id_real`) VALUES
 (60, 27),
 (62, 27),
 (61, 28),
-(65, 29);
+(65, 29),
+(66, 30),
+(67, 31),
+(68, 32),
+(69, 32),
+(72, 32),
+(73, 32),
+(70, 33),
+(71, 33),
+(74, 34),
+(75, 35),
+(76, 36),
+(77, 36),
+(78, 37),
+(79, 37),
+(80, 38),
+(81, 38),
+(82, 39),
+(83, 39),
+(84, 39),
+(85, 39),
+(86, 39),
+(87, 39),
+(88, 39),
+(89, 40),
+(91, 40),
+(92, 40),
+(90, 41),
+(93, 42),
+(94, 43),
+(95, 44),
+(96, 45),
+(97, 46),
+(98, 46),
+(105, 47),
+(106, 47),
+(107, 47),
+(108, 47),
+(101, 48),
+(102, 48),
+(103, 49),
+(104, 49),
+(109, 50),
+(110, 50),
+(111, 51),
+(112, 51),
+(113, 52),
+(114, 52),
+(115, 53),
+(115, 54),
+(116, 55),
+(119, 56),
+(120, 56),
+(121, 56),
+(122, 57),
+(123, 58),
+(124, 58);
 
 -- --------------------------------------------------------
 
@@ -257,7 +390,7 @@ CREATE TABLE IF NOT EXISTS `realisateur` (
   `nom_real` text NOT NULL,
   `photo_real` text NOT NULL,
   PRIMARY KEY (`id_real`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `realisateur`
@@ -268,12 +401,12 @@ INSERT INTO `realisateur` (`id_real`, `nom_real`, `photo_real`) VALUES
 (2, 'Adam Bernstein', 'https://images.mubicdn.net/images/cast_member/6868/cache-129144-1455132428/image-w856.jpg'),
 (3, 'Bryan Cranston', 'https://m.media-amazon.com/images/M/MV5BMTA2NjEyMTY4MTVeQTJeQWpwZ15BbWU3MDQ5NDAzNDc@._V1_.jpg\n'),
 (4, 'Charles Haid', 'https://m.media-amazon.com/images/M/MV5BOTJmOTViZGItZDA3OC00YjhlLTliOWMtN2YwNzY3ZTc2ZDFhXkEyXkFqcGc@._V1_.jpg'),
-(5, 'Michelle MacLaren', 'https://static.wikia.nocookie.net/westworld/images/2/2a/Michelle_MacLaren.jpg/revision/latest?cb=20170403165438&path-prefix=fr'),
+(5, 'Michelle MacLaren', 'https://m.media-amazon.com/images/M/MV5BMTk4MTA1MjA4NV5BMl5BanBnXkFtZTgwOTExNjA3NDM@._V1_.jpg'),
 (6, 'Michael Slovis', 'https://m.media-amazon.com/images/M/MV5BNTdiNDM2OWMtZmRlMy00OTFmLWFiYzctYmQ4MDY3Nzc0YTRhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg'),
 (7, 'Nick Murphy', 'https://m.media-amazon.com/images/M/MV5BNTIyMDEwMmUtNjcyNi00OTM1LWFhN2UtZWIwOWIzZjIxMGY2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg'),
-(8, 'Peter Hoar', 'https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/29/Peter_Hoar.jpg/revision/latest?cb=20190922183032'),
+(8, 'Peter Hoar', 'https://resizing.flixster.com/00mYamnv9egx9tKAF3YrEEgtaF0=/fit-in/705x460/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/587425_v9_ba.jpg'),
 (9, 'Erik Leijonborg', 'https://fr.web.img6.acsta.net/pictures/20/02/13/14/52/5413722.jpg'),
-(10, 'Ed Bazalgette', 'https://static.wikia.nocookie.net/the-last-kingdom/images/4/46/Ed_Bazalgette.PNG/revision/latest?cb=20200629203620'),
+(10, 'Ed Bazalgette', 'https://images.cinefil.com/stars/1134397.webp'),
 (11, 'Andy Hay', 'https://m.media-amazon.com/images/M/MV5BMDBmMWRmOGEtY2Q0MS00M2VmLWJjN2EtOThiZWE5ZDY4OGZiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg'),
 (12, 'Matt Duffer', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIR2iY0U0XeypMY9_xQnoQAfYMiAFZ0kW1zQ&s'),
 (13, 'Ross Duffer', 'https://m.media-amazon.com/images/M/MV5BMDk1MGQ1YzQtMTg3Yi00MDcxLWJhNzUtZGQzNmU4MDhhMjRhXkEyXkFqcGc@._V1_.jpg'),
@@ -292,7 +425,36 @@ INSERT INTO `realisateur` (`id_real`, `nom_real`, `photo_real`) VALUES
 (26, 'Steve Shill', 'https://m.media-amazon.com/images/M/MV5BMjE1ODk4NDI2NF5BMl5BanBnXkFtZTcwNTA0Mjk3Mw@@._V1_.jpg'),
 (27, 'John Dahl', 'https://m.media-amazon.com/images/M/MV5BMTg4OTE2MzQ5MV5BMl5BanBnXkFtZTYwNTg0MTQ1._V1_FMjpg_UX1000_.jpg'),
 (28, 'SJ Clarkson', 'https://m.media-amazon.com/images/M/MV5BZTJkOGI1YzctOGNjNy00YjI5LWE3NjgtMjliN2JlOGZiYTlhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg'),
-(29, 'Michael C. Hall', 'https://fr.web.img3.acsta.net/pictures/18/05/25/16/54/2970400.jpg');
+(29, 'Michael C. Hall', 'https://fr.web.img3.acsta.net/pictures/18/05/25/16/54/2970400.jpg'),
+(30, 'Brett Ratner', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzIZZYgegbHWoXM4Ue6MamdjQ6Kdpb9FMdlg&s'),
+(31, 'Michael Watkins', 'https://w.notrecinema.com/images/usercontent/new2020/images/stars/200000/vign/v_196637.jpg'),
+(32, 'Kevin Hooks', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnNkP_xhdOlf3VOvozRDjTQqT1rqmYr3dJrA&s'),
+(33, 'Bobby Roth', 'https://m.media-amazon.com/images/M/MV5BYWQxZGZhZjctZDA5Mi00M2RjLWFmYjEtNjY0NTUwOTY3NzM4XkEyXkFqcGc@._V1_.jpg'),
+(34, 'Nelson McCormick', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI1XJSFp5iOqr_xOtBaX51pm5AsHovZJFAEw&s'),
+(35, 'Maja Vrvilo', 'https://www.dau.edu/sites/default/files/styles/large/public/2025-03/Maja%20Vrvilo%20Headshot.jpg?itok=-ceYvrUM'),
+(36, 'José Padilha', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzhjNNePlGpVSxPTgPZBXOXDIq9AU8zRj2kQ&s'),
+(37, 'Josef Kubota Wladyka', 'https://tv-programme.com/photos/josef-kubota-wladyka_people_13_132724_1200.webp'),
+(38, 'Andi Baiz', 'https://media.themoviedb.org/t/p/w500/qoURBKjgGDfpd5WB5YCPzYxwi6r.jpg'),
+(39, 'Scott Frank', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqxzb8YcTpp3eCSDxDua8aXjbrl2DXvWtoAA&s'),
+(40, 'Paul McGuigan', 'https://upload.wikimedia.org/wikipedia/commons/c/c2/Paul_McGuigan_2009.jpg'),
+(41, 'Euros Lyn', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGrlrx0_m_AAioLK6I5H-f0aO5bDT83OBDow&s'),
+(42, 'Jeremy Lovering', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBjt4CP9BMubZq-x_2STwucY5IFq-U8f6l_Q&s'),
+(43, 'Colm McCarthy', 'https://m.media-amazon.com/images/M/MV5BMjUwNDg0ODExN15BMl5BanBnXkFtZTgwODAyMzQwMDI@._V1_.jpg'),
+(44, 'Rachel Talalay', 'https://m.media-amazon.com/images/M/MV5BZjVhMmM1NDktMmI4My00MmVjLWJlMGUtYjQ4YjliMWE1MDcxXkEyXkFqcGc@._V1_QL75_UY207_CR86,0,140,207_.jpg'),
+(45, 'Nick Hurran', 'https://cdn.tv-programme.com/photos/nick-hurran_people_2_24163_1200.webp'),
+(46, 'Otto Bathurst', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdvMf0laH11nE9OnHN8zSKbljiE5AkOmtFuA&s'),
+(47, 'Anthony Byrne', 'https://m.media-amazon.com/images/M/MV5BMTczOGRiNTItNzA5ZS00NWU2LTg4NTQtYjJjM2I2ZTVjNDFiXkEyXkFqcGc@._V1_QL75_UY207_CR6,0,140,207_.jpg'),
+(48, 'Tim Mielants', 'https://m.media-amazon.com/images/M/MV5BNTIzN2EyMDEtOTQ3Zi00ZDhiLWIzYWUtZTQ5ZDBlNzYzYWFiXkEyXkFqcGc@._V1_.jpg'),
+(49, 'David Caffrey', 'https://images.mubicdn.net/images/cast_member/50193/cache-508955-1580368272/image-w856.jpg'),
+(50, 'Tim Van Patten', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4TJbZd-qwAc3XZLyH7Lj8DcIOPftl5XkhCA&s'),
+(51, 'Alan Taylor', 'https://m.media-amazon.com/images/M/MV5BMGYwMWY3NjctZTg4My00MzRiLThlODQtMTc5OTEzMzI0ZWQwXkEyXkFqcGc@._V1_.jpg'),
+(52, 'Daniel Minahan', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_MD6GSBxcpfF3oZpodu9hOS9qOUwnJOzZkQ&s'),
+(53, 'David Benioff', 'https://m.media-amazon.com/images/M/MV5BMTAzNjQzMTEzMzJeQTJeQWpwZ15BbWU3MDkxNjA4NDc@._V1_.jpg'),
+(54, 'D. B. Weiss', 'https://m.media-amazon.com/images/M/MV5BMTgxMjQzMTYxMF5BMl5BanBnXkFtZTcwOTA2MDg0Nw@@._V1_.jpg'),
+(55, 'Alex Graves', 'https://pics.filmaffinity.com/079601909421225-nm_200.jpg'),
+(56, 'Jeremy Podeswa', 'https://cdn.tv-programme.com/photos/jeremy-podeswa_people_1_11464_1200.webp'),
+(57, 'Mark Mylod', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ6HKc6hYfnrH21psX52YwxBeSaYyaZZjhQQ&s'),
+(58, 'David Nutter', 'https://m.media-amazon.com/images/M/MV5BMjI4MDIyMDI5NF5BMl5BanBnXkFtZTgwNjE0ODQ4NjE@._V1_.jpg');
 
 -- --------------------------------------------------------
 
@@ -309,7 +471,7 @@ CREATE TABLE IF NOT EXISTS `saison` (
   `id_serie` int NOT NULL,
   PRIMARY KEY (`id_saison`),
   KEY `serie_fk_saison` (`id_serie`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `saison`
@@ -336,6 +498,7 @@ INSERT INTO `saison` (`id_saison`, `titre_saison`, `numero_saison`, `affiche_sai
 (18, 'Saison 4', 4, 'https://fr.web.img6.acsta.net/pictures/18/07/02/14/12/3309351.jpg', 4),
 (19, 'Saison 5', 5, 'https://fr.web.img6.acsta.net/pictures/20/01/10/10/29/2311348.jpg', 4),
 (20, 'Saison 6', 6, 'https://www.benzinemag.net/wp-content/uploads/2022/08/Better-Call-Saul-S6-affiche.jpg', 4),
+(21, 'Saison 6', 6, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBN1oU9A-PojhWPC0OhVX1qIiyGzMTOBsn0Q&s', 12),
 (22, 'Saison 1', 1, 'https://fr.web.img4.acsta.net/pictures/23/01/03/14/05/3165194.jpg', 5),
 (23, 'Saison 1', 1, 'https://fr.web.img6.acsta.net/pictures/21/09/14/10/18/1090569.jpg', 6),
 (24, 'Saison 2', 2, 'https://fr.web.img3.acsta.net/img/b4/6d/b46d660ec6b885e4b322f96e378781de.jpg', 6),
@@ -346,7 +509,33 @@ INSERT INTO `saison` (`id_saison`, `titre_saison`, `numero_saison`, `affiche_sai
 (29, 'Cinquième saison', 5, 'https://fr.web.img3.acsta.net/r_1280_720/pictures/210/489/21048933_20131011194636374.jpg', 7),
 (30, 'Sixième saison', 6, 'https://fr.web.img4.acsta.net/pictures/210/489/21048935_20131011201954176.jpg', 7),
 (31, 'Septième saison', 7, 'https://fr.web.img2.acsta.net/pictures/210/489/21048948_20131011212508917.jpg', 7),
-(32, 'Huitième saison', 8, 'https://fr.web.img5.acsta.net/pictures/210/489/21048952_20131011215818987.jpg', 7);
+(32, 'Huitième saison', 8, 'https://fr.web.img5.acsta.net/pictures/210/489/21048952_20131011215818987.jpg', 7),
+(33, 'Saison 1', 1, 'https://fr.web.img4.acsta.net/pictures/18/10/30/14/28/5858042.jpg', 8),
+(34, 'Saison 2', 2, 'https://fr.web.img6.acsta.net/pictures/18/10/30/14/29/0808048.jpg', 8),
+(35, 'Saison 3', 3, 'https://fr.web.img6.acsta.net/pictures/18/10/30/14/29/1908055.jpg', 8),
+(36, 'Saison 4', 4, 'https://fr.web.img3.acsta.net/pictures/18/10/30/14/29/1951806.jpg', 8),
+(37, 'Saison 5', 5, 'https://fr.web.img4.acsta.net/pictures/18/10/30/14/29/1993993.jpg', 8),
+(38, 'Saison 1', 1, 'https://fr.web.img4.acsta.net/pictures/15/08/20/14/39/222186.jpg', 9),
+(39, 'Saison 2', 2, 'https://fr.web.img3.acsta.net/pictures/16/08/22/16/31/243659.jpg', 9),
+(40, 'Saison 3', 3, 'https://upload.wikimedia.org/wikipedia/en/1/11/Narcos_season_3.png', 9),
+(41, 'Saison 1', 1, 'https://fr.web.img4.acsta.net/pictures/20/09/25/09/06/0492330.jpg', 10),
+(42, 'Saison 1', 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJDcAulheAPWJcxedWVOZ2mIGRIX_l4Bxbgg&s', 11),
+(43, 'Saison 2', 2, 'https://fr.web.img5.acsta.net/pictures/18/11/05/18/04/5429486.jpg', 11),
+(44, 'Saison 3', 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_4qYjkzjfSBle6rC63-SspZeCs8B_ylADqw&s', 11),
+(45, 'Saison 4', 4, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaG5Dx86_ckNvbvhfVnDOutlHfdS9kCyilGw&s', 11),
+(46, 'Saison 1', 1, 'https://fr.web.img5.acsta.net/r_1280_720/pictures/210/249/21024934_20130806150142815.jpg', 12),
+(47, 'Saison 2', 2, 'https://www.tallengestore.com/cdn/shop/products/PeakyBlinders-Season2-GillianMurphy-NetflixTVShow-ArtPoster_b673c338-969e-4396-876e-e87f8b0e63b7.jpg?v=1619864584', 12),
+(48, 'Saison 3', 3, 'https://fr.web.img2.acsta.net/pictures/18/03/14/14/20/1888249.jpg', 12),
+(49, 'Saison 4', 4, 'https://fr.web.img6.acsta.net/pictures/18/03/14/14/20/2069499.jpg', 12),
+(50, 'Saison 5', 5, 'https://fr.web.img3.acsta.net/pictures/22/06/07/11/57/5231272.jpg', 12),
+(51, 'Saison 1', 1, 'https://sm.ign.com/t/ign_fr/screenshot/s/season-1-p/season-1-poster_3un5.1080.jpg', 13),
+(52, 'Saison 2', 2, 'https://media.themoviedb.org/t/p/w500/gnkVjZC7ZVRtJZk9VbhCWZYHNdY.jpg', 13),
+(53, 'Saison 3', 3, 'https://fr.web.img3.acsta.net/r_1280_720/medias/nmedia/18/89/08/62/20489276.jpg', 13),
+(54, 'Saison 4', 4, 'https://www.ecranlarge.com/content/uploads/2017/02/game-of-thrones-saison-4-affiche-saison-4-976886.jpg', 13),
+(55, 'Saison 5', 5, 'https://image.tmdb.org/t/p/original/mulWcghHSAl5cO3Y9abijIrM3h.jpg', 13),
+(56, 'Saison 6', 6, 'https://fr.web.img2.acsta.net/newsv7/16/02/24/16/40/5666390.jpg', 13),
+(57, 'Saison 7', 7, 'https://media.themoviedb.org/t/p/w500/w1S7aMlor6ZqrdEE5TentSNwwIs.jpg', 13),
+(58, 'Saison 8', 8, 'https://fr.web.img5.acsta.net/newsv7/19/02/28/14/34/42270090.jpg', 13);
 
 -- --------------------------------------------------------
 
@@ -414,6 +603,7 @@ INSERT INTO `saison_acteur` (`id_saison`, `id_acteur`) VALUES
 (12, 10),
 (13, 10),
 (14, 10),
+(2, 11),
 (15, 11),
 (16, 11),
 (17, 11),
@@ -465,7 +655,80 @@ INSERT INTO `saison_acteur` (`id_saison`, `id_acteur`) VALUES
 (29, 25),
 (30, 25),
 (31, 25),
-(32, 25);
+(32, 25),
+(33, 26),
+(34, 26),
+(35, 26),
+(36, 26),
+(37, 26),
+(33, 27),
+(34, 27),
+(36, 27),
+(37, 27),
+(33, 28),
+(34, 28),
+(35, 28),
+(36, 28),
+(37, 28),
+(38, 29),
+(39, 29),
+(40, 29),
+(38, 30),
+(39, 30),
+(40, 30),
+(38, 31),
+(39, 31),
+(40, 31),
+(41, 32),
+(41, 33),
+(42, 34),
+(43, 34),
+(44, 34),
+(45, 34),
+(42, 35),
+(43, 35),
+(44, 35),
+(45, 35),
+(42, 36),
+(43, 36),
+(44, 36),
+(45, 36),
+(21, 37),
+(46, 37),
+(47, 37),
+(48, 37),
+(49, 37),
+(50, 37),
+(21, 38),
+(46, 38),
+(47, 38),
+(48, 38),
+(49, 38),
+(50, 38),
+(51, 39),
+(52, 39),
+(53, 39),
+(54, 39),
+(55, 39),
+(56, 39),
+(57, 39),
+(58, 39),
+(51, 40),
+(52, 40),
+(53, 40),
+(54, 40),
+(55, 40),
+(56, 40),
+(57, 40),
+(58, 40),
+(51, 41),
+(52, 41),
+(53, 41),
+(54, 41),
+(55, 41),
+(56, 41),
+(57, 41),
+(58, 41);
 
 -- --------------------------------------------------------
 
@@ -550,7 +813,66 @@ INSERT INTO `saison_episode` (`id_saison`, `id_episode`) VALUES
 (31, 62),
 (31, 63),
 (32, 64),
-(32, 65);
+(32, 65),
+(33, 66),
+(33, 67),
+(34, 68),
+(34, 69),
+(35, 70),
+(35, 71),
+(36, 72),
+(36, 73),
+(37, 74),
+(37, 75),
+(38, 76),
+(38, 77),
+(39, 78),
+(39, 79),
+(40, 80),
+(40, 81),
+(41, 82),
+(41, 83),
+(41, 84),
+(41, 85),
+(41, 86),
+(41, 87),
+(41, 88),
+(42, 89),
+(42, 90),
+(43, 91),
+(43, 92),
+(44, 93),
+(44, 94),
+(45, 95),
+(45, 96),
+(46, 97),
+(46, 98),
+(47, 99),
+(47, 100),
+(48, 101),
+(48, 102),
+(49, 103),
+(49, 104),
+(50, 105),
+(50, 106),
+(21, 107),
+(21, 108),
+(51, 109),
+(51, 110),
+(52, 111),
+(52, 112),
+(53, 113),
+(53, 114),
+(54, 115),
+(54, 116),
+(55, 117),
+(55, 118),
+(56, 119),
+(56, 120),
+(57, 121),
+(57, 122),
+(58, 123),
+(58, 124);
 
 -- --------------------------------------------------------
 
@@ -565,7 +887,7 @@ CREATE TABLE IF NOT EXISTS `serie` (
   `synopsis_serie` text NOT NULL,
   `affiche_serie` text NOT NULL,
   PRIMARY KEY (`id_serie`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `serie`
@@ -578,8 +900,13 @@ INSERT INTO `serie` (`id_serie`, `titre_serie`, `synopsis_serie`, `affiche_serie
 (4, 'Better Call Saul', 'Six ans avant de croiser le chemin de Walter White et de Jesse Pinkman, James McGill, dit « Jimmy », est un avocat qui peine à faire décoller sa carrière, à Albuquerque, au Nouveau-Mexique. Devenu avocat sous l\'influence de son frère Charles McGill, dit « Chuck », lui-même avocat renommé et partenaire cofondateur du cabinet Hamlin, Hamlin et McGill au côté de Howard Hamlin , Jimmy tente de lui prouver sa valeur ainsi qu\'auprès de Kim Wexler , sa compagne qu\'il a rencontrée du temps où il travaillait au service du courrier de HHM.', 'https://fr.web.img4.acsta.net/pictures/15/12/17/16/57/343857.jpg'),
 (5, 'Chernobyl', 'Le 26 avril 1986, une explosion secoue la centrale nucléaire soviétique Lénine et réveille la ville de Prypiat. Tant à l\'intérieur qu\'à l\'extérieur de la centrale, scientifiques, ingénieurs et habitants n\'ont aucune idée du drame qui se joue.', 'https://m.media-amazon.com/images/M/MV5BNzU0OTI4YTQtNGQ1ZS00ZjA4LTg3MTMtZjkyZWNjN2RiZDJmXkEyXkFqcGc@._V1_.jpg'),
 (6, 'Squid Game', '456 personnes, qui ont toutes des difficultés financières, sont invitées à prendre part à une mystérieuse compétition de survie qu\'elles ne peuvent pas quitter d\'elles-mêmes, dans des locaux situés sur une île dont l\'emplacement est tenu secret. Participant à une série de jeux à première vue enfantins, elles risquent leur vie pour gagner jusqu\'à 45,6 milliards de wons.', 'https://images-cdn.ubuy.co.in/64271944a0278c4d900691f8-cinemaflix-squid-game-poster-tv-series.jpg'),
-(7, 'Dexter', 'Brillant expert scientifique du service médico-légal de la police de Miami, Dexter Morgan est spécialisé dans l\'analyse de prélèvements sanguins. Mais voilà, Dexter cache un terrible secret : il est également tueur en série. Un serial killer pas comme les autres, avec sa propre vision de la justice.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT2RdgdCrJN2oUBFXthmt1zESNftd4RV1TQw&s'),
-(8, 'Prison Break', 'Lincoln Burrows, un petit truand, est accusé à tort d\'avoir tué le frère de la vice-présidente des États-Unis. Condamné à mort, il est incarcéré dans le pénitencier d\'État de Fox River, dans l\'attente de son exécution. Son frère, Michael Scofield, un ingénieur surdoué convaincu de son innocence, l\'aide à s\'évader avant la date fatidique. Pour cela, Michael se fait tatouer les plans de la prison sur le torse, les bras et le dos, puis il commet un braquage afin d\'y être incarcéré à son tour. Une fois emprisonné à Fox River, Michael cherche à s\'évader en compagnie de son frère, à l\'aide des plans dessinés sur son corps.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA7Rmn7ggeZGaPRiCsxG5Ol35ZbMKXFInZtQ&s');
+(7, 'Dexter', 'Brillant expert scientifique du service médico-légal de la police de Miami, Dexter Morgan est spécialisé dans l\'analyse de prélèvements sanguins. Mais voilà, Dexter cache un terrible secret : il est également tueur en série. Un serial killer pas comme les autres, avec sa propre vision de la justice.', 'https://images.affiches-et-posters.com//albums/3/5010/5010-affiche-serie-tv-dexter.jpg'),
+(8, 'Prison Break', 'Lincoln Burrows, un petit truand, est accusé à tort d\'avoir tué le frère de la vice-présidente des États-Unis. Condamné à mort, il est incarcéré dans le pénitencier d\'État de Fox River, dans l\'attente de son exécution. Son frère, Michael Scofield, un ingénieur surdoué convaincu de son innocence, l\'aide à s\'évader avant la date fatidique. Pour cela, Michael se fait tatouer les plans de la prison sur le torse, les bras et le dos, puis il commet un braquage afin d\'y être incarcéré à son tour. Une fois emprisonné à Fox River, Michael cherche à s\'évader en compagnie de son frère, à l\'aide des plans dessinés sur son corps.', 'https://media.senscritique.com/media/000020199710/0/prison_break.jpg'),
+(9, 'Narcos', 'Loin d’un simple biopic de Pablo Escobar, Narcos retrace la lutte acharnée des États-Unis et de la Colombie contre le cartel de la drogue de Medellín, l’organisation la plus lucrative et impitoyable de l’histoire criminelle moderne.', 'https://fr.web.img6.acsta.net/pictures/15/07/29/14/33/086520.jpg'),
+(10, 'Le jeu de la dame', 'Cette fiction suit Elisabeth Harmon, une prodige des échecs orpheline, de neuf à vingt-deux ans, dans sa quête pour devenir la meilleure joueuse d\'échecs du monde, tout en luttant contre des problèmes émotionnels et une dépendance aux drogues et à l\'alcool. L\'histoire commence au milieu des années 1950 et se poursuit dans les années 1960.', 'https://fr.web.img4.acsta.net/pictures/20/09/25/09/06/0492330.jpg'),
+(11, 'Sherklock', 'Sherlock Holmes est détective consultant et il accueille comme colocataire le docteur Watson, un ancien médecin de l\'armée britannique blessé en Afghanistan. Il aide Scotland Yard à résoudre des enquêtes ardues en utilisant ses dons d\'observation et de déduction associés aux technologies actuelles comme Internet ou les téléphones portables.', 'https://fr.web.img5.acsta.net/pictures/18/11/05/18/04/4981046.jpg'),
+(12, 'Peaky Blinders', 'En 1919, à Birmingham, soldats, révolutionnaires politiques et criminels combattent pour se faire une place dans le paysage industriel de l\'après-Guerre. Le Parlement s\'attend à une violente révolte, et Winston Churchill mobilise des forces spéciales pour contenir les menaces. La famille Shelby compte parmi les membres les plus redoutables. ', 'https://fr.web.img3.acsta.net/pictures/22/06/07/11/57/5231272.jpg'),
+(13, 'Game of Thrones', 'Il y a très longtemps, à une époque oubliée, une force a détruit l\'équilibre des saisons. Dans un pays où l\'été peut durer plusieurs années et l\'hiver toute une vie, des forces sinistres et surnaturelles se pressent aux portes du Royaume des Sept Couronnes. La confrérie de la Garde de Nuit, protégeant le Royaume de toute créature pouvant provenir d\'au-delà du Mur protecteur, n\'a plus les ressources nécessaires pour assurer la sécurité de tous. Après un été de dix années, un hiver rigoureux s\'abat sur le Royaume avec la promesse d\'un avenir des plus sombres. Pendant ce temps, complots et rivalités se jouent sur le continent pour s\'emparer du Trône de Fer, le symbole du pouvoir absolu.', 'https://images.wall-art.de/format:webp/q:92/rs:fit:780:/_img/out/pictures/master/product/1/160751.jpg');
 
 -- --------------------------------------------------------
 
@@ -604,11 +931,20 @@ INSERT INTO `serie_tag` (`id_serie`, `id_tag`) VALUES
 (4, 1),
 (6, 1),
 (7, 1),
+(10, 1),
+(11, 1),
+(12, 1),
+(13, 1),
 (2, 2),
 (5, 2),
+(12, 2),
 (3, 3),
 (6, 4),
-(7, 4);
+(7, 4),
+(8, 4),
+(8, 5),
+(9, 5),
+(11, 6);
 
 -- --------------------------------------------------------
 
@@ -621,7 +957,7 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `id_tag` int NOT NULL AUTO_INCREMENT,
   `nom_tag` text NOT NULL,
   PRIMARY KEY (`id_tag`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `tag`
@@ -631,7 +967,9 @@ INSERT INTO `tag` (`id_tag`, `nom_tag`) VALUES
 (1, 'Drame'),
 (2, 'Historique'),
 (3, 'Science-fiction'),
-(4, 'Thriller');
+(4, 'Thriller'),
+(5, 'Action'),
+(6, 'Policier');
 
 --
 -- Contraintes pour les tables déchargées

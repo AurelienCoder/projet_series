@@ -30,14 +30,8 @@ Autoloader::register();
                 $dashboard->supprimerReal(htmlspecialchars($_GET['supp']));
             }
         }else if(isset($_GET['toutSupprimer'])){
-            //$serieDB->deleteAllSeries();
-            $allTags = $serieDB->getTagNames();
-            
-            foreach($tags as $tag){
-                var_dump($tag);
-            }
-
-            var_dump($allTags);
+            $serieDB->deleteAll();
+            header('Location: home.php');
         }else if(isset($_GET['value']) && $_GET['value'] == 'tag' ){
             if(isset($_GET['tag'])){
                 $dashboard->ajouterTag(htmlspecialchars($_GET['tag']));
