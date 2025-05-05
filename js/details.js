@@ -31,7 +31,7 @@ divs.forEach((div, index) => {
             h3.innerText = document.getElementsByClassName('nb-saisons')[index].innerText;
                
             h3 = document.querySelector('#alert #duree');
-            h3.innerText = document.getElementsByClassName('duree')[index].innerText;
+            h3.innerText = 'Durée : ' + document.getElementsByClassName('duree')[index].innerText;
     
             let p = document.querySelector('#alert p');
             p.innerText = document.getElementsByClassName('synopsis')[index].innerText;

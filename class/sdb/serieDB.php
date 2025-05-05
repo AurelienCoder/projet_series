@@ -655,4 +655,28 @@ class SerieDB{
         $statement->execute() or die(var_dump($statement->errorInfo()));
         return $statement->fetchColumn();
     }
+
+    public function getMultipleAct($nom_act1, $nom_act2){
+        $sql = "SELECT DISTINCT titre_serie, affiche_serie, synopsis_serie FROM serie
+        INNER JOIN saison on serie.id_serie = saison.id_serie
+
+        /*on INNER JOIN les saisons jouées par l'acteur 1*/
+        INNER JOIN saison_acteur sai_act1 on saison.id_saison =  sai_act1.id_saison
+        INNER JOIN acteur act1 on sai_act1.id_acteur = act1.id_acteur
+
+        /*on INNER JOIN les saisons jouées par l'acteur 2*/
+        INNER JOIN saison_acteur sai_act2 on saison.id_saison =  sai_act2.id_saison
+        INNER JOIN acteur act2 on sai_act2.id_acteur = act2.id_acteur
+
+        /* et enfin on regroupe uniquement quand le nom du premier acteur = nom 2ème acteur*/
+        WHERE act1.nom_acteur = :nom_act1 AND act2.nom_acteur = :nom_act2";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':nom_act1', $nom_act1);
+        $statement->bindParam(':nom_act2', $nom_act2);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
+        return $results;
+    }
 }

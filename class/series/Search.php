@@ -103,42 +103,45 @@ class Search{
     /**
      * cette méthode renvoie des informations sur une série particulière
      */
-    public function serieSearch(){
+    public function serieSearch($nom_serie){
         $serieDB = new SerieDB();
         //affiche les saisons d'une série
-        $serie = htmlspecialchars($_GET['serie']);
+        $serieID = $serieDB->getIdBySerie($nom_serie);
+        if($serieID != null){
+            echo "<h1>La série " . $nom_serie . " - Durée : " . round(($serieDB->getTimeSerie($serieID)- $serieDB->getTimeSerie($serieID)%60) /60) . " heures " . $serieDB->getTimeSerie($serieID)%60 . "minutes ";
 
-        $serieID = $serieDB->getIdBySerie($serie);
-        echo "<h1>La série " . $serie . " - Durée : " . round($serieDB->getTimeSerie($serieID)/60,1) . " heures</h1>";
-
-        echo " <h1>Les saisons de " . $serie . " - " . $serieDB->getNbSaison($serieID) . " saisons</h1><div id='title'></div>";
-        echo "<div style='display:flex; overflow-x: auto;'>";
-        $saisons = $serieDB->getSaisons($serieID);
-
-        foreach($saisons as $saison){
-            echo $saison->getHTMLSaison();
+            echo " <h1>Les saisons de " . $nom_serie. " - " . $serieDB->getNbSaison($serieID) . " saisons</h1><div id='title'></div>";
+            echo "<div style='display:flex; overflow-x: auto;'>";
+            $saisons = $serieDB->getSaisons($serieID);
+    
+            foreach($saisons as $saison){
+                echo $saison->getHTMLSaison();
+            }
+            echo "</div>";
+    
+            //affiche les réalisateurs d'une série
+            echo " <h1>Les réalisateurs de " . $nom_serie . "</h1><div id='title'></div> ";
+            echo "<div style='display:flex; overflow-x: auto;'>";
+            $realisateurs = $serieDB->getReal($serieID);
+    
+            foreach($realisateurs as $realisateur){
+                echo $realisateur->getHTMLReal();
+            }
+            echo "</div>";
+            
+            //affiche les acteurs d'une série
+            echo " <h1>Les acteurs de " . $nom_serie . "</h1><div id='title'></div> ";
+            echo "<div style='display:flex; overflow-x: auto;'>";
+            $acteurs = $serieDB->getActeurs($serieID);
+    
+            foreach($acteurs as $acteur){
+                echo $acteur->getHTMLActor();
+            }
+            echo "</div>";
+        } else {
+            echo "<h1>Cette série n'existe pas !</h1>";
         }
-        echo "</div>";
 
-        //affiche les réalisateurs d'une série
-        echo " <h1>Les réalisateurs de " . $serie . "</h1><div id='title'></div> ";
-        echo "<div style='display:flex; overflow-x: auto;'>";
-        $realisateurs = $serieDB->getReal($serieID);
-
-        foreach($realisateurs as $realisateur){
-            echo $realisateur->getHTMLReal();
-        }
-        echo "</div>";
-        
-        //affiche les acteurs d'une série
-        echo " <h1>Les acteurs de " . $serie . "</h1><div id='title'></div> ";
-        echo "<div style='display:flex; overflow-x: auto;'>";
-        $acteurs = $serieDB->getActeurs($serieID);
-
-        foreach($acteurs as $acteur){
-            echo $acteur->getHTMLActor();
-        }
-        echo "</div>";
     }
 
     public function realSearch($nom_real){

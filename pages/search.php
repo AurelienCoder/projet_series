@@ -18,17 +18,25 @@ Autoloader::register();
             <div style='display:flex; overflow-x: auto;'>";
                 $search->generalSearch(); 
             echo "</div>";
-        }else if(isset($_GET['serie']) && $_GET['serie'] != ''){
-            $search->serieSearch(); 
-        }else if(isset($_GET['real']) && $_GET['real'] != ''){
+        } else if(isset($_GET['serie']) && $_GET['serie'] != ''){//afficher les informations d'une série
+            $search->serieSearch(htmlspecialchars($_GET['serie'])); 
+        } else if(isset($_GET['real']) && $_GET['real'] != ''){//afficher les séries d'un réalisateur recherché
             $search->realSearch(htmlspecialchars($_GET['real'])); 
-        }else if(isset($_GET['act']) && $_GET['act'] != ''){
+        } else if(isset($_GET['act']) && $_GET['act'] != ''){//afficher les séries d'un acteur recherché
             $search->actSearch(htmlspecialchars($_GET['act']));
-        }else if(isset($_GET['saison']) && $_GET['saison'] != ''){
+        }else if(isset($_GET['saison']) && $_GET['saison'] != ''){ //afficher les caractéristiques d'une saison c-à-d les épisodes
             $search->saisonSearch(htmlspecialchars($_GET['saison']));
         }else{
+            $nom_act1 = 'Aaron Paul';
+            $nom_act2 = 'Anna Gunn';
+            $series = $serieDB->getMultipleAct($nom_act1, $nom_act2);
+            
+            foreach($series as $serie){
+                echo $serie->getHTMLSerie();
+            } 
             //si l'utilisateur n'a pas encore fait de requête, alors on affiche le formulaire avec generateForm();
-            $search->generateForm(); 
+            //$search->generateForm();
+
         }
         ?>
 </div>
