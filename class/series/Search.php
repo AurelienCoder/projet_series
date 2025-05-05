@@ -143,21 +143,44 @@ class Search{
         }
 
     }
+    public function tagSearch($nom_tag){
+        $serieDB = new SerieDB();
+
+        if($nom_tag != null){
+            echo " <h1>Les séries " . $nom_tag  . "</h1><div id='title'></div> ";
+
+            echo "<div style='display:flex; overflow-x: auto;'>";
+            $series = $serieDB->getSeriesByTagName($nom_tag);
+    
+            foreach($series as $serie){
+                echo $serie->getHTMLSerie();
+            }
+            echo "</div>";
+        }
+        else{
+            echo "<h1>Pas de tag</h1>";
+        }
+    }
 
     public function realSearch($nom_real){
         $serieDB = new SerieDB();
 
         $realID = $serieDB->getRealId($nom_real);
 
-        echo " <h1>Les séries réalisées par " . $nom_real  . "</h1><div id='title'></div> ";
+        if($realID != null){
+            echo " <h1>Les séries réalisées par " . $nom_real  . "</h1><div id='title'></div> ";
 
-        echo "<div style='display:flex; overflow-x: auto;'>";
-        $series = $serieDB->getSeriesByReal($realID);
-
-        foreach($series as $serie){
-            echo $serie->getHTMLSerie();
+            echo "<div style='display:flex; overflow-x: auto;'>";
+            $series = $serieDB->getSeriesByReal($realID);
+    
+            foreach($series as $serie){
+                echo $serie->getHTMLSerie();
+            }
+            echo "</div>";
         }
-        echo "</div>";
+        else{
+            echo "<h1>Pas de série liée à ce réalisateur</h1>";
+        }
     }
 
     public function actSearch(){
@@ -167,6 +190,7 @@ class Search{
 
         $actID = $serieDB->getActId($act);
 
+        if($actID != null){
         echo " <h1>Les séries jouées par " . $act  . "</h1><div id='title'></div> ";
 
         echo "<div style='display:flex; overflow-x: auto;'>";
@@ -176,12 +200,17 @@ class Search{
             echo $serie->getHTMLSerie();
         }
         echo "</div>";
+        }
+        else{
+            echo "<h1>Pas de série liée à cet acteur</h1>";
+        }
     }
 
     public function saisonSearch($idSaison){
         $serieDB = new SerieDB();
 
-        echo " <h1>Les épisodes de la " . $serieDB->getSaisonById($idSaison)  . " de " . $serieDB->getTitreSerieBySaison($idSaison) . "</h1><div id='title'></div> ";
+        if($idSaison>0 && $idSaison<$serieDB->countSaisons()){
+            echo " <h1>Les épisodes de la " . $serieDB->getSaisonById($idSaison)  . " de " . $serieDB->getTitreSerieBySaison($idSaison) . "</h1><div id='title'></div> ";
 
         echo "<div style='display:flex; overflow-x: auto;'>";
         $episodes = $serieDB->getEpisodes($idSaison);
@@ -191,6 +220,10 @@ class Search{
             echo "<hr>";
         }
         echo "</div>";
+        }
+        else{
+            echo "<h1>L'ID de la saison est inexistant</h1>";
+        }
     }
 }
 ?>
