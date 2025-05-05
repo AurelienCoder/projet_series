@@ -25,7 +25,7 @@ Autoloader::register();
         } else if(isset($_GET['act']) && $_GET['act'] != ''){//afficher les séries d'un acteur recherché
             $search->actSearch(htmlspecialchars($_GET['act']));
         }else if(isset($_GET['saison']) && $_GET['saison'] != ''){ //afficher les caractéristiques d'une saison c-à-d les épisodes
-            $search->saisonSearch(htmlspecialchars($_GET['saison']));
+            $search->episodesSearch(htmlspecialchars($_GET['saison']));
         }else if(isset($_GET['tag']) && $_GET['tag'] != ''){
             $search->tagSearch(htmlspecialchars($_GET['tag']));
         }else{

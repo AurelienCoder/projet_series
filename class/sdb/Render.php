@@ -156,6 +156,7 @@ class Render{
             <h2>Durée de l'épisode : <?= htmlspecialchars($this->duree_episode) ?> minutes</h2>
         </div>
     </div>
+    <hr>
     <?php }
 
     //utilisée dans dashboard.php pour modifier la série

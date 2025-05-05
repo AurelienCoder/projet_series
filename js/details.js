@@ -46,7 +46,7 @@ divs.forEach((div, index) => {
                 container.style.display = 'none';
             })
         }else if(div.classList.contains('saison')){
-            window.location.href = 'search.php?saison=' + document.querySelector('span').innerText;
+            window.location.href = 'search.php?saison=' + document.querySelectorAll('span')[index].innerText;
         }
     })
 })

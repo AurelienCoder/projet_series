@@ -143,7 +143,7 @@ class Search{
         }
 
     }
-    
+
     public function tagSearch($nom_tag){
         $serieDB = new SerieDB();
         $tags = $serieDB->getTagNames();
@@ -211,7 +211,7 @@ class Search{
         }
     }
 
-    public function saisonSearch($idSaison){
+    public function episodesSearch($idSaison){
         $serieDB = new SerieDB();
 
         if($idSaison>0 && $idSaison<$serieDB->countSaisons()){
@@ -222,7 +222,6 @@ class Search{
 
         foreach($episodes as $episode){
             echo $episode->getHTMLEpisode();
-            echo "<hr>";
         }
         echo "</div>";
         }

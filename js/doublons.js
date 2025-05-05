@@ -4,21 +4,24 @@ exemple : elle peut avoir un tag Aventure et un tag Action : il faut donc suppri
 //tableau de toutes les séries incluant les doublons
 let series = document.querySelectorAll('.series-list');
 
-//un tableau récuperant le titre des séries
-let titresAjoutes = [];
-let tag = [];
+//un tableau récuperant l'objet HTML contenant les tags
+let tagsAjoutes = [];
 
 //boucle passant en revue le tableaux des doublons
 series.forEach( (serie, i)=> {
     let titre = document.getElementsByTagName('h2')[i].innerText;
-    let tag;
+    let tagActuel = document.getElementsByClassName('tag')[i].innerText;
 
-    //on parcourt le tableau des titres
-    for(let k=0; k<titresAjoutes.length; k++){
-        //si un titre a déjà été ajouté alors il y a un doublon
-        if(titre == titresAjoutes[k]){
-            document.getElementsByClassName('tag')[k].innerText += tag[k];
-            serie.style.display = 'none';
+    
+    if(tagsAjoutes[titre]){
+        serie.style.display = 'none';
+
+        let tag = tagsAjoutes[titre];
+
+        if(!tag.innerText.includes(tagActuel)){
+            tag.innerText += " " + tagActuel;
         }
+    }else{
+        tagsAjoutes[titre] = serie.querySelector('.tag');
     }
 });
