@@ -584,4 +584,75 @@ class SerieDB{
         $statement->execute() or die(var_dump($statement->errorInfo()));
         return $statement->fetchColumn();
     }
+
+
+    
+    public function deleteSaison($saison_id){
+        $sql = "DELETE FROM saison
+        WHERE id_saison = :saison_id";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id_saison', $saison_id);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
+    public function deleteEpisode($episode_id){
+        $sql = "DELETE FROM episode
+        WHERE id_episode = :episode_id";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':episode_id', $episode_id);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
+    
+    // Supprimer toutes les séries, saisons et épisodes
+    public function deleteAllSeries(){
+        $sql = "DELETE FROM serie; DELETE FROM episode";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
+    // Sup tous les réals
+    public function deleteAllReal(){
+        $sql = "DELETE FROM realisateur";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
+    // Sup tous les acteurs
+    public function deleteAllActeur(){
+        $sql = "DELETE FROM acteur";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
+    public function getTitreSerieByIdSaison($id_saison){
+        $sql="SELECT titre_serie FROM serie
+        INNER JOIN saison on serie.id_serie = saison.id_serie
+        WHERE saison.id_saison = :id_saison";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id_saison', $id_saison);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        return $statement->fetchColumn();
+    }
+
+    public function getEpiBySerieId($id_serie){
+        $sql="SELECT titre_episode FROM episode
+        INNER JOIN saison_episode on episode.id_episode = saison_episode.id_episode
+        INNER JOIN saison on saison_episode.id_saison = saison.id_saison
+        INNER JOIN serie on saison.id_serie = serie.id_serie
+        WHERE serie.id_serie = :id_serie";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id_serie', $id_serie);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        return $statement->fetchColumn();
+    }
 }

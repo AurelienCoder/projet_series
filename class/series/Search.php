@@ -185,6 +185,7 @@ class Search{
 
         foreach($episodes as $episode){
             echo $episode->getHTMLEpisode();
+            echo "<hr>";
         }
         echo "</div>";
     }
