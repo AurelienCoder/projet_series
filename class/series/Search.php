@@ -15,7 +15,7 @@ class Search{
      */
     public function generateForm(){?>
         <form name="search" action="search.php" method="GET" class="search-form">
-            
+        <span style="color:red">Veuillez ne rechercher qu'un champ svp merci</span>
             <div class="form-group">
                 <label for="serie">Nom de la série :</label>
                 <input type="text" id="serie" name="serie" placeholder="Nom de la série">
@@ -106,12 +106,15 @@ class Search{
     public function serieSearch($nom_serie){
         $serieDB = new SerieDB();
         //affiche les saisons d'une série
-        $serieID = $serieDB->getIdBySerie($nom_serie);
-        if($serieID != null){
-            echo "<h1 class='centrer' style='text-decoration: underline'>La série " . $nom_serie . "</h1><br>";
+        $serie = $serieDB->getSerieByTitre($nom_serie);
+        if($serie != null && $serie[0]->getIDSerie() != null){
+            $serieID = $serie[0]->getIDSerie();
+            $serieTitre = $serie[0]->getTitreSerie();
+
+            echo "<h1 class='centrer' style='text-decoration: underline'>La série " . $serieTitre . "</h1><br>";
 
             echo "<hr><h1 class='centrer'>Durée : " . round(($serieDB->getTimeSerie($serieID)- $serieDB->getTimeSerie($serieID)%60) /60) . " heures " . $serieDB->getTimeSerie($serieID)%60 . " minutes </h1><br>";
-            echo "<hr><h1 class='centrer'>Les saisons de " . $nom_serie. " - " . $serieDB->getNbSaison($serieID) . " saisons</h1><div id='title'></div>";
+            echo "<hr><h1 class='centrer'>Les saisons de " . $serie[0]->getTitreSerie(). " - " . $serieDB->getNbSaison($serieID) . " saisons</h1><div id='title'></div>";
             echo "<div class='center-div'>";
             $saisons = $serieDB->getSaisons($serieID);
 
@@ -121,7 +124,7 @@ class Search{
             echo "</div><br><hr>";
     
             //affiche les réalisateurs d'une série
-            echo " <h1 class='centrer'>Les réalisateurs de " . $nom_serie . "</h1><div id='title'></div> ";
+            echo " <h1 class='centrer'>Les réalisateurs de " . $serieTitre . "</h1><div id='title'></div> ";
             echo "<div class='center-div'>";
             $realisateurs = $serieDB->getReal($serieID);
     
@@ -131,7 +134,7 @@ class Search{
             echo "</div><br><hr>";
             
             //affiche les acteurs d'une série
-            echo " <h1 class='centrer'>Les acteurs de " . $nom_serie . "</h1><div id='title'></div> ";
+            echo " <h1 class='centrer'>Les acteurs de " . $serieTitre . "</h1><div id='title'></div> ";
             echo "<div class='center-div'>";
             $acteurs = $serieDB->getActeurs($serieID);
     
@@ -189,18 +192,16 @@ class Search{
         }
     }
 
-    public function actSearch(){
+    public function actSearch($nom_act){
         $serieDB = new SerieDB();
 
-        $act = htmlspecialchars($_GET['act']);
+        $act = $serieDB->getActByNom($nom_act);
 
-        $actID = $serieDB->getActId($act);
-
-        if($actID != null){
-        echo " <h1 class='centrer' style='text-decoration: underline'>Les séries jouées par " . $act  . "</h1><div id='title'></div> ";
+        if($act != null && $act[0]->getIDAct() != null){
+        echo " <h1 class='centrer' style='text-decoration: underline'>Les séries jouées par " . $act[0]->getNomAct()  . "</h1><div id='title'></div> ";
 
         echo "<div class='center-div'>";
-        $series = $serieDB->getSeriesByAct($actID);
+        $series = $serieDB->getSeriesByAct($act[0]->getIDAct());
 
         foreach($series as $serie){
             echo $serie->getHTMLSerie();

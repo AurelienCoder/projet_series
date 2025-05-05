@@ -161,6 +161,11 @@ class Render{
         return $this->titre_serie;
     }
 
+    //utilisée dans search.php
+    public function getIDSerie(){
+        return $this->id_serie;
+    }
+
     //utilisée dans dashboard.php pour modifier la série
     public function getAfficheSerie(){
         return $this->affiche_serie;
@@ -176,12 +181,24 @@ class Render{
         return $this->nom_tag;
     }
 
+    //utilisée dans search.php
     public function getNomReal(){
         return $this->nom_real;
     }
 
+    //utilisée dans search.php
     public function getIDReal(){
         return $this->id_real;
+    }
+
+    //utilisée dans search.php
+    public function getNomAct(){
+        return $this->nom_acteur;
+    }
+
+    //utilisée dans search.php
+    public function getIDAct(){
+        return $this->id_acteur;
     }
 }
 ?>

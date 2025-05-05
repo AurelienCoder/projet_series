@@ -7,7 +7,7 @@ Autoloader::register();
 
 <?php ob_start() ?>
 
-<div style="margin-top: 10px; margin-bottom: 30px;">
+<div style="margin-top: 10px; margin-bottom: 30px; color:white; text-align:center">
     <?php 
         $search = new \series\Search();
         $serieDB = new \sdb\SerieDB();

@@ -156,14 +156,13 @@ class SerieDB{
         return $results;
     }
 
-        
-    //utilisée
-    public function getActId($nom_act){
-        $sql = "SELECT id_acteur FROM acteur WHERE nom_acteur = :nom_act";
+    public function getActByNom($nom_act){
+        $sql = "SELECT * FROM acteur WHERE nom_acteur LIKE CONCAT('%',:nom_act,'%')";
         $statement = $this->pdo->prepare($sql);
         $statement->bindParam(':nom_act', $nom_act);
         $statement->execute() or die(var_dump($statement->errorInfo()));
-        return $statement->fetchColumn();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
+        return $results;
     }
 
     public function getSeriesByAct($act_id){
@@ -195,12 +194,13 @@ class SerieDB{
     }
 
     //utilisée
-    public function getIdBySerie($serie){
-        $sql = "SELECT id_serie FROM serie WHERE titre_serie = :titre_serie";
+    public function getSerieByTitre($titre_serie){
+        $sql = "SELECT * FROM serie WHERE titre_serie LIKE CONCAT('%',:titre_serie,'%')";
         $statement = $this->pdo->prepare($sql);
-        $statement->bindParam(':titre_serie', $serie);
+        $statement->bindParam(':titre_serie', $titre_serie);
         $statement->execute() or die(var_dump($statement->errorInfo()));
-        return $statement->fetchColumn();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
+        return $results;
     }
 
     //utilisée
