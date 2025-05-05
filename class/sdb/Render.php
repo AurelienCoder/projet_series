@@ -69,8 +69,20 @@ class Render{
                     <span class="synopsis"><?= $this->synopsis_serie ?></span>
                     <span class="reals">Les réalisateurs : <?php         
                         $realisateurs = $this->serieDB->getReal($this->id_serie);
+
+                        //pour éviter d'avoir un virgule à la fin
+                        $tab = [];
+                        $i = 0;
                         foreach($realisateurs as $realisateur){
-                            echo $realisateur->nom_real . ", ";
+                            $tab[$i] = $realisateur->nom_real;
+                            $i++;
+                        }
+
+                        for($i=0; $i<count($tab); $i++){
+                            echo $tab[$i];
+                            if(isset($tab[$i+1])){
+                                echo ", ";
+                            }
                         }
                     ?></span>
                     <span class="nb-saisons"> Nombre de saisons : <?=  $this->serieDB->getNbSaison($this->id_serie) ?></span>
