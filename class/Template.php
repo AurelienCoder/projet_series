@@ -31,6 +31,7 @@ class Template{
                     background-size: 100%;
                     background-attachment : fixed;
                     color: black;
+                    overflow-x: hidden;
                 }
 
                 header{
@@ -132,7 +133,7 @@ class Template{
                             </div>
                         </div>
 
-                        <div style="margin-left: 50px; text-align:center;padding-top: 40px; border:solid 1px black; border-radius: 5px;">
+                        <div style="width: 100%; margin-left: 50px; text-align:center;padding-top: 40px; border:solid 1px black; border-radius: 5px;">
                             <h3 id="reals">Les réalisateurs :</h3>
                             <hr style="border-color:black">
                             <h3 id="nb-saisons">Nombre de saisons :</h3>

@@ -20,7 +20,7 @@ series.forEach( (serie, i)=> {
 
         //on ajoute au tag qui existe déjà, le tag actuel
         tagsAjoutes[titre].innerText += " " + tagActuel;
-    }else{//sinon on stocke dans l'index titre (qui correspond au titre d'une série), le tag qui correspond à une série qui n'a pas encore été ajouté
+    }else{//sinon on stocke dans l'index titre (qui correspond au titre d'une série), l'adresse DOM du tag qui correspond à une série qui n'a pas encore été ajouté
         tagsAjoutes[titre] = serie.querySelector('.tag');
     }
 });

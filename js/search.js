@@ -4,54 +4,47 @@
 */
 
 //on récupère l'ensemble des checkboxes
-const checkboxes = document.querySelectorAll('.category-btn');
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
 series = document.querySelectorAll('.model_serie');
 
 let labels = document.querySelectorAll('label');
 
 //pour chaque checkbox, on entre dans la boucle
-checkboxes.forEach( (checkbox,index) => {
+checkboxes.forEach((checkbox,index) => {
     checkbox.addEventListener('change', function(){
 
+        //on enlève les check de toutes les checkboxes sauf celle de la case checkée
+        for(let i=0; i<checkboxes.length; i++){
+            if(i != index) checkboxes[i].checked = false;
+        }
+
+        //on réinitialise l'affichage des séries
+        series.forEach(serie => {
+            serie.style.display = 'initial';
+        })
+
         if(checkbox.checked){
-            //on réinitialise l'affichage des séries
-            series.forEach(serie => {
-                serie.style.display = 'initial';
-            })
+
+            series.forEach((serie,k) => {
+
+            //variable récupérant les genres des séries
+            let serie_tag = serie.querySelector('span').innerText;
+
+            //variable récupérant les genres des checkboxes
+            let checkbox_tag = labels[index].innerText;
+
+            if(checkbox_tag != 'Tout'){
     
-            series.forEach(serie => {
-
-                    //si la case "tout" est cochée, alors on enlève les check de toutes les autres checkboxes sauf celle de "tout"
-                    for(let i=0; i<checkboxes.length; i++){
-                        if(i != index) checkboxes[i].checked = false;
-                    }
-                    //si on clique un genre, on enlève le check sur 'Tout'
-                    checkboxes[0].checked = false;
-
-                    //variable récupérant les genres des séries
-                    let serie_tag = serie.getElementsByTagName('span')[0].innerText;
-        
-                    //variable récupérant les genres des checkboxes
-                    let checkbox_tag = '';
-                    
-                    for(let i=0; i<checkboxes.length; i++){
-                        if(checkboxes[i].checked) checkbox_tag = labels[i].innerText;
-                    }
-
-                    //alert(checkbox_tag);
-        
-                    //on doit transformer le genre des checkboxes en expression RegExp car match ne prend en compte que des RegExp
-                    let regex = new RegExp(checkbox_tag);
-        
-                    //et maintenant on regarde si la série matche avec le regex
-                    if(checkbox_tag != 'Tout'){
-                        if(serie_tag.match(regex) == null){
-                            serie.style.display = 'none';
-                        }
-                    }
-                
-            })
+                //on doit transformer le genre des checkboxes en expression RegExp car match ne prend en compte que des RegExp
+                let regex = new RegExp(checkbox_tag);
+    
+                //et maintenant on regarde si la série matche avec le regex
+                if(serie_tag.match(regex) == null){
+                    serie.style.display = 'none';
+                }
+            }
+        })
         }
     })
 })

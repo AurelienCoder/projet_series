@@ -33,7 +33,7 @@ if(isset($_SESSION['time']) && time() > $_SESSION['time'] + 3600) session_destro
     </div>
 
     <!-- div qui affiche les séries via la méthode getAllSeries(), méthode qui recupère les séries avec une requête -->
-    <div style="display:flex; overflow-x: auto;">
+    <div style="display:flex; overflow-x: auto; overflow-y: hidden;">
         <?php 
             $serieDB = new \sdb\SerieDB();
             $series = $serieDB->getAllSeries();
