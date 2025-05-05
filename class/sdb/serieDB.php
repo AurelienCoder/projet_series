@@ -681,22 +681,24 @@ class SerieDB{
     }
 
     public function getTagNames(){
-        $sql = "SELECT nom_tag FROM  tag";
+        $sql = "SELECT nom_tag FROM tag";
 
         $statement = $this->pdo->prepare($sql);
         $statement->execute() or die(var_dump($statement->errorInfo()));
-        return $statement->fetchColumn();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
+        return $results;
     }
 
     public function getSeriesByTagName($nom_tag){
         $sql = "SELECT * FROM serie
         INNER JOIN serie_tag on serie.id_serie = serie_tag.id_serie
         INNER JOIN tag on serie_tag.id_tag = tag.id_tag
-        WHERE tag.nom_tag = :name_tag";
+        WHERE tag.nom_tag = :nom_tag";
 
         $statement = $this->pdo->prepare($sql);
         $statement->bindParam(':nom_tag', $nom_tag);
         $statement->execute() or die(var_dump($statement->errorInfo()));
-        return $statement->fetchColumn();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
+        return $results;
     }
 }

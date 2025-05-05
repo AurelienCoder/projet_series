@@ -170,5 +170,10 @@ class Render{
     public function getSynopsisSerie(){
         return $this->synopsis_serie;
     }
+
+    //utilisée dans dashboard.php pour modifier la série
+    public function getTag(){
+        return $this->nom_tag;
+    }
 }
 ?>

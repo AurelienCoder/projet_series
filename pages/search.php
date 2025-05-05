@@ -27,7 +27,7 @@ Autoloader::register();
         }else if(isset($_GET['saison']) && $_GET['saison'] != ''){ //afficher les caractéristiques d'une saison c-à-d les épisodes
             $search->saisonSearch(htmlspecialchars($_GET['saison']));
         }else if(isset($_GET['tag']) && $_GET['tag'] != ''){
-            $search->saisonSearch(htmlspecialchars($_GET['tag']));
+            $search->tagSearch(htmlspecialchars($_GET['tag']));
         }else{
             /*$nom_act1 = 'Aaron Paul';
             $nom_act2 = 'Anna Gunn';
