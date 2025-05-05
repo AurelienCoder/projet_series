@@ -9,6 +9,7 @@ Autoloader::register();
 
 <?php
     $dashboard = new \series\Dashboard();
+    $serieDB = new \sdb\SerieDB();
 
     if($logged){
         //si value = serie, alors ça veut dire que l'on souhaite ajouter/modifier ou supprimer une série
@@ -28,6 +29,8 @@ Autoloader::register();
             if(isset($_GET['supp'])){
                 $dashboard->supprimerReal(htmlspecialchars($_GET['supp']));
             }
+        }else if(isset($_GET['toutSupprimer'])){
+            $serieDB->deleteAllSeries();
         }else if(isset($_GET['value']) && $_GET['value'] == 'tag' ){
             if(isset($_GET['tag'])){
                 $dashboard->ajouterTag(htmlspecialchars($_GET['tag']));
