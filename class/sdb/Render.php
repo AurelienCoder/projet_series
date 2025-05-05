@@ -135,7 +135,7 @@ class Render{
 
             <p>Durée d'une saison : <?=
             round(($this->serieDB->getTimeSaison($this->id_saison)-$this->serieDB->getTimeSaison($this->id_saison)%60)/60)?> heure(s) <?= $this->serieDB->getTimeSaison($this->id_saison)%60?> minutes</span>
-            </p>
+            </>
         </div>
     </div>
 
@@ -144,16 +144,16 @@ class Render{
     public function getHTMLEpisode(){
         ?>
     <div style="color: white; text-align: center;">
+        <hr>
             <h2>Titre : <?= htmlspecialchars($this->titre_episode) ?></h2>
             
             <br>
             <span class="synopsis"><?= htmlspecialchars($this->synopsis_episode) ?></span>
             <br>
 
-            <h2>Durée de l'épisode : <?= htmlspecialchars($this->duree_episode) ?> minutes</h2>
+            <h3 style="font-style: italic">Durée de l'épisode : <?= htmlspecialchars($this->duree_episode) ?> minutes</h3>
         </div>
     </div>
-    <hr>
     <?php }
 
     //utilisée dans dashboard.php pour modifier la série

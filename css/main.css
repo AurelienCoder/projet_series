@@ -176,7 +176,11 @@ hr{
   justify-content:center;
 }
 
-
+#search-input{
+  margin-top: 10px;
+  width: 250px;
+  text-align:center;
+}
 
 
 

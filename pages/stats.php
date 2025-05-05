@@ -8,9 +8,9 @@ $serieDB = new \sdb\SerieDB();
 ob_start();
 ?>
 
-<h1>Statistiques</h1>
+<h1 style="color:white; text-align:center">Statistiques</h1>
 
-<div style="display: flex; gap: 20px;">
+<div style="display: flex; gap: 20px; justify-content:center;">
     <div style="padding: 20px; background-color: #f0f0f0; border-radius: 10px;">
         <h2>Nombre total de séries</h2>
         <p style="font-size: 30px;"><?= $serieDB->countSeries() ?></p>
