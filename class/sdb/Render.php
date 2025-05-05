@@ -66,6 +66,7 @@ class Render{
                 <span class="tag"><?= $this->nom_tag ?></span>
 
                 <div  style="display: none">
+                    <span class="id"><?= $this->id_serie ?></span>
                     <span class="synopsis"><?= $this->synopsis_serie ?></span>
                     <span class="reals">Les réalisateurs : <?php         
                         $realisateurs = $this->serieDB->getReal($this->id_serie);

@@ -47,7 +47,7 @@ divs.forEach((div, index) => {
                     container.style.display = 'none';
                 })
             }else{
-                window.location.href = 'search.php?serie=' + document.querySelector('div h2').innerText;
+                window.location.href = 'search.php?serie=' + document.querySelectorAll('h2')[index].innerText;
             }
 
         }else if(div.classList.contains('saison')){
