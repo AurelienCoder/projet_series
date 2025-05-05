@@ -22,13 +22,10 @@ checkboxes.forEach( (checkbox,index) => {
     
             series.forEach(serie => {
 
-                //si l'index == 0 alors ça veut dire que l'on clique sur 'Tout'
-                if(index == 0){
                     //si la case "tout" est cochée, alors on enlève les check de toutes les autres checkboxes sauf celle de "tout"
                     for(let i=0; i<checkboxes.length; i++){
-                        if(i != index)checkboxes[i].checked = false;
+                        if(i != index) checkboxes[i].checked = false;
                     }
-                } else{
                     //si on clique un genre, on enlève le check sur 'Tout'
                     checkboxes[0].checked = false;
 
@@ -39,7 +36,7 @@ checkboxes.forEach( (checkbox,index) => {
                     let checkbox_tag = '';
                     
                     for(let i=0; i<checkboxes.length; i++){
-                        if(checkboxes[i].checked) checkbox_tag += labels[i].innerText;
+                        if(checkboxes[i].checked) checkbox_tag = labels[i].innerText;
                     }
 
                     //alert(checkbox_tag);
@@ -53,7 +50,7 @@ checkboxes.forEach( (checkbox,index) => {
                             serie.style.display = 'none';
                         }
                     }
-                }
+                
             })
         }
     })

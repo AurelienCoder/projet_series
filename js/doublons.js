@@ -6,33 +6,19 @@ let series = document.querySelectorAll('.series-list');
 
 //un tableau récuperant le titre des séries
 let titresAjoutes = [];
+let tag = [];
 
 //boucle passant en revue le tableaux des doublons
 series.forEach( (serie, i)=> {
-
     let titre = document.getElementsByTagName('h2')[i].innerText;
-
-    let index = null;
     let tag;
 
     //on parcourt le tableau des titres
-    for(let idTitreAjoute=0; idTitreAjoute<titresAjoutes.length; idTitreAjoute++){
+    for(let k=0; k<titresAjoutes.length; k++){
         //si un titre a déjà été ajouté alors il y a un doublon
-
-        if(titre == titresAjoutes[idTitreAjoute]){
-            //on stocke dans index l'endroit où existe déjà la série
-            index = idTitreAjoute;
-
-            //on stocke dans tag le tag du doublon
-            tag = document.getElementsByClassName('tag')[i].innerText;
+        if(titre == titresAjoutes[k]){
+            document.getElementsByClassName('tag')[k].innerText += tag[k];
+            serie.style.display = 'none';
         }
-    }
-    
-    //si index = null, le titre n'existe pas encore, on peut le rajouter dans titresAjoutes
-    if(index==null){
-        titresAjoutes.push(titre);
-    } else{ //sinon la série existe déjà, il faut donc la cacher et juste récuperer son tag pour l'ajouter à l'endroit où la série existe déjà
-        serie.style.display = 'none';
-        document.getElementsByClassName('tag')[index].innerText += ' '+ tag;
     }
 });

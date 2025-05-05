@@ -143,22 +143,27 @@ class Search{
         }
 
     }
+    
     public function tagSearch($nom_tag){
         $serieDB = new SerieDB();
+        $tags = $serieDB->getTagNames();
+        $ok = false;
+        foreach($tags as $tag){
+            if($nom_tag == $tag->getTag()){
+                $ok = true;
+                echo " <h1>Les séries " . $nom_tag  . "</h1><div id='title'></div> ";
 
-        if($nom_tag != null){
-            echo " <h1>Les séries " . $nom_tag  . "</h1><div id='title'></div> ";
-
-            echo "<div style='display:flex; overflow-x: auto;'>";
-            $series = $serieDB->getSeriesByTagName($nom_tag);
+                echo "<div style='display:flex; overflow-x: auto;'>";
+                $series = $serieDB->getSeriesByTagName($nom_tag);
     
-            foreach($series as $serie){
-                echo $serie->getHTMLSerie();
-            }
+                foreach($series as $serie){
+                    echo $serie->getHTMLSerie();
+                }
             echo "</div>";
+            }
         }
-        else{
-            echo "<h1>Pas de tag</h1>";
+        if($ok == false){
+            echo "<h1>Ce tag n'existe pas !</h1>";
         }
     }
 

@@ -146,12 +146,14 @@ class Render{
 
     public function getHTMLEpisode(){
         ?>
-    <div class="series-list" style="color: white;">
-            <h2>Titre : <?= htmlspecialchars($this->titre_episode); ?></h2>
+    <div style="color: white; text-align: center;">
+            <h2>Titre : <?= htmlspecialchars($this->titre_episode) ?></h2>
             
-            <span class="synopsis"><?= $this->synopsis_episode ?></span>
+            <br>
+            <span class="synopsis"><?= htmlspecialchars($this->synopsis_episode) ?></span>
+            <br>
 
-            <h2>Durée de l'épisode : <?= htmlspecialchars($this->duree_episode); ?> minutes</h2>
+            <h2>Durée de l'épisode : <?= htmlspecialchars($this->duree_episode) ?> minutes</h2>
         </div>
     </div>
     <?php }
