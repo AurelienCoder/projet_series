@@ -123,7 +123,7 @@ class Template{
 
             <!-- cette div affiche des informations quand on clique sur une série dans home.php, search.php -->
             <div id="alert">
-                <section style="color: black;" id="page-serie" onclick="display()">
+                <section style="color: black;" id="page-serie">
                     <div style="display:flex;">
                         <div>
                             <h1 style="font-family: 'ELEGANT', sans-serif; text-align: center;">TITRE SERIE</h1>
@@ -149,7 +149,6 @@ class Template{
                     </div>
                 </section>
             </div>
-            <script></script>
 
             <div id="injected-content">
                 <?php echo $content ?>

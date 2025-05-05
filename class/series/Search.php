@@ -141,14 +141,12 @@ class Search{
         echo "</div>";
     }
 
-    public function realSearch(){
+    public function realSearch($nom_real){
         $serieDB = new SerieDB();
 
-        $real = htmlspecialchars($_GET['real']);
+        $realID = $serieDB->getRealId($nom_real);
 
-        $realID = $serieDB->getRealId($real);
-
-        echo " <h1>Les séries réalisées par " . $real  . "</h1><div id='title'></div> ";
+        echo " <h1>Les séries réalisées par " . $nom_real  . "</h1><div id='title'></div> ";
 
         echo "<div style='display:flex; overflow-x: auto;'>";
         $series = $serieDB->getSeriesByReal($realID);
