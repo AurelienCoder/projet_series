@@ -71,7 +71,7 @@ class Render{
                         $realisateurs = $this->serieDB->getReal($this->id_serie);
                         foreach($realisateurs as $realisateur){
                             echo $realisateur->nom_real . ", ";
-                        } 
+                        }
                     ?></span>
                     <span class="nb-saisons"> Nombre de saisons : <?=  $this->serieDB->getNbSaison($this->id_serie) ?></span>
                     <span class="duree"><?= round(($this->serieDB->getTimeSerie($this->id_serie)-$this->serieDB->getTimeSerie($this->id_serie)%60)/60)?> heures <?= $this->serieDB->getTimeSerie($this->id_serie)%60?> minutes</span>
