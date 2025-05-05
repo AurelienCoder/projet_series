@@ -15,7 +15,7 @@ Autoloader::register();
         if(isset($_GET['search'])){ //$_GET['search'] est utilisé pour afficher soit TOUS les acteurs ou TOUS les réalisateurs ou TOUTES les séries
             echo "<div id='title'></div>
 
-            <div style='display:flex; overflow-x: auto;'>";
+            <div style='display:flex; overflow-x: auto; text-align:center;'>";
                 $search->generalSearch(); 
             echo "</div>";
         } else if(isset($_GET['serie']) && $_GET['serie'] != ''){//afficher les informations d'une série

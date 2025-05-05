@@ -132,20 +132,22 @@ class Template{
                             </div>
                         </div>
 
-                        <div style="margin-left: 50px;">
+                        <div style="margin-left: 50px; text-align:center;padding-top: 40px; border:solid 1px black; border-radius: 5px;">
                             <h3 id="reals">Les réalisateurs :</h3>
+                            <hr style="border-color:black">
                             <h3 id="nb-saisons">Nombre de saisons :</h3>
                             <h3 id="duree">Durée :</h3>
-                            <button>Plus d'infos</button>
+                            <hr style="border-color:black">
+                            <button class="category-btn">Plus d'infos</button>
                         </div>
                     </div>
 
-                    <div style="background: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 10px;">
+                    <div style="margin-top: 10px; background: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 10px;">
                         <p> SYNOPSIS </p>
                     </div>
                     
-                    <div style="margin-top: 20px;">
-                        <a href="home.php" style="color: black;">Retour à la liste</a>
+                    <div style="margin-top: 10px;text-align:center;" class="category-btn">
+                        <a href="home.php">Retour à la liste</a>
                     </div>
                 </section>
             </div>
