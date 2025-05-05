@@ -10,7 +10,7 @@ divs.forEach((div, index) => {
             window.location.href = 'search.php?act=' + document.querySelectorAll('h2')[index].innerText;
         }else if(getTitle == 'LES RÉALISATEURS' || div.classList.contains('real')){
             window.location.href = 'search.php?real=' + document.querySelectorAll('h2')[index].innerText;
-        }else if(getTitle == 'LES SERIES DU MOMENT' || getTitle == 'LES SERIES'){
+        }else if(getTitle == 'LES SERIES DU MOMENT' || getTitle == 'LES SERIES' || div.classList.contains('serie')){
             //Ces élements se trouvent dans la classe TEMPLATE
             let container = document.getElementById('alert');
             container.style.display = 'initial';

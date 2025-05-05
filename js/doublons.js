@@ -4,7 +4,7 @@ exemple : elle peut avoir un tag Aventure et un tag Action : il faut donc suppri
 //tableau de toutes les séries incluant les doublons
 let series = document.querySelectorAll('.series-list');
 
-//un tableau récuperant l'objet HTML contenant les tags
+//un tableau récuperant l'objet HTML contenant les tags des titres uniquement si il n'ont pas été ajoutés
 let tagsAjoutes = [];
 
 //boucle passant en revue le tableaux des doublons
@@ -12,16 +12,14 @@ series.forEach( (serie, i)=> {
     let titre = document.getElementsByTagName('h2')[i].innerText;
     let tagActuel = document.getElementsByClassName('tag')[i].innerText;
 
-    
-    if(tagsAjoutes[titre]){
+    if(tagsAjoutes[titre]){//si un tag est déja inséré dans l'index titre (qui correspond au titre d'une série)
+
+        //on cache la série
         serie.style.display = 'none';
 
-        let tag = tagsAjoutes[titre];
-
-        if(!tag.innerText.includes(tagActuel)){
-            tag.innerText += " " + tagActuel;
-        }
-    }else{
+        //on ajoute au tag qui existe déjà, le tag actuel
+        tagsAjoutes[titre].innerText += " " + tagActuel;
+    }else{//sinon on stocke dans l'index titre (qui correspond au titre d'une série), le tag qui correspond à une série qui n'a pas encore été ajouté
         tagsAjoutes[titre] = serie.querySelector('.tag');
     }
 });
