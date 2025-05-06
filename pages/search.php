@@ -12,7 +12,10 @@ Autoloader::register();
         $search = new \series\Search();
         $serieDB = new \sdb\SerieDB();
 
-        if(isset($_GET['search'])){ //$_GET['search'] est utilisé pour afficher soit TOUS les acteurs ou TOUS les réalisateurs ou TOUTES les séries
+        if(isset($_GET['serie']) && $_GET['serie'] != '' && isset($_GET['tag']) && $_GET['tag'] != ''){
+            
+
+        } else if(isset($_GET['search'])){ //$_GET['search'] est utilisé pour afficher soit TOUS les acteurs ou TOUS les réalisateurs ou TOUTES les séries
             echo "<div id='title'></div>
 
             <div style='display:flex; overflow-x: auto; text-align:center;'>";

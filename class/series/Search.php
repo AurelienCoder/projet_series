@@ -97,7 +97,7 @@ class Search{
             echo "<script src='../js/doublons.js'></script>";
         }
 
-        echo "<script src='../js/search.js'></script>";
+        echo "<script src='../js/inputSearch.js'></script>";
     }
 
     /**

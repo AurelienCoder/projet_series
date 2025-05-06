@@ -49,7 +49,7 @@ class Render{
         ?>
 
         <div class="series-list">
-            <div class="model_serie serie">
+            <div class="model serie">
                 <div style="overflow: hidden">
                     <img class="img-serie" src="<?= htmlspecialchars($this->affiche_serie); ?>" alt="<?= htmlspecialchars($this->affiche_serie); ?>">
                 </div>
@@ -68,10 +68,11 @@ class Render{
                 <div  style="display: none">
                     <span class="id"><?= $this->id_serie ?></span>
                     <span class="synopsis"><?= $this->synopsis_serie ?></span>
+
                     <span class="reals">Les réalisateurs : <?php         
                         $realisateurs = $this->serieDB->getReal($this->id_serie);
 
-                        //pour éviter d'avoir un virgule à la fin
+                        //une petite fonction pour éviter d'avoir un virgule à la fin
                         $tab = [];
                         $i = 0;
                         foreach($realisateurs as $realisateur){
@@ -97,7 +98,7 @@ class Render{
         ?>
 
         <div class="series-list">
-            <div class="model_serie acteur">
+            <div class="model acteur">
                 <div style="overflow: hidden">
                     <img src="<?= htmlspecialchars($this->photo_acteur); ?>" alt="<?php echo htmlspecialchars($this->photo_acteur); ?>">
                 </div>
@@ -116,7 +117,7 @@ class Render{
         ?>
 
         <div class="series-list">
-            <div class="model_serie real">
+            <div class="model real">
                 <div style="overflow: hidden">
                     <img src="<?= htmlspecialchars($this->photo_real); ?>" alt="<?php echo htmlspecialchars($this->photo_real); ?>">
                 </div>
@@ -136,7 +137,7 @@ class Render{
         ?>
 
     <div class="series-list">
-        <div class="model_serie saison">
+        <div class="model saison">
             <div style="overflow: hidden">
                 <img src="<?= htmlspecialchars($this->affiche_saison); ?>" alt="<?php echo htmlspecialchars($this->affiche_saison); ?>">
             </div>

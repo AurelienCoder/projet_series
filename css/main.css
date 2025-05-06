@@ -32,7 +32,7 @@ button.favorite.styled{
   color: white;
 }
 
-.model_serie:hover{
+.model:hover{
   transform: scale(1.05);
   background-color: white;
   border: solid 1px grey;
@@ -40,7 +40,7 @@ button.favorite.styled{
   cursor: pointer;
 }
 
-.model_serie{
+.model{
   background: #222;
   color: #fff;
   padding: 0.5rem;
@@ -49,18 +49,18 @@ button.favorite.styled{
   box-shadow: 0 4px 8px rgba(0,0,0,0.8);
 }
 
-.model_serie img{
+.model img{
   width: auto;
   height: 350px;
   border-radius: 10px;
 }
 
-.model_serie h2 {
+.model h2 {
   margin: 1rem 0 0.5rem 0;
   font-size: 15px;
 }
 
-.model_serie span{
+.model span{
   font-size: 1.4rem;
   color: #aaa;
 }

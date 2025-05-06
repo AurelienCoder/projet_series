@@ -38,6 +38,7 @@ if(isset($_SESSION['time']) && time() > $_SESSION['time'] + 3600) session_destro
             $serieDB = new \sdb\SerieDB();
             $series = $serieDB->getAllSeries();
             
+            //Render.php
             foreach($series as $serie){
                 echo $serie->getHTMLSerie();
             }
@@ -48,7 +49,7 @@ if(isset($_SESSION['time']) && time() > $_SESSION['time'] + 3600) session_destro
     <script src="../js/doublons.js"></script>
 
     <!-- script qui en fonction du click sur les boutons du dessus, affiche les préférences, les séries liées au tag choisi  -->
-    <script src="../js/search.js"></script>
+    <script src="../js/checkbox.js"></script>
 
     <!-- script qui affiche les informations d'une série lorsque l'on clique dessus  -->
     <script src="../js/details.js"></script>
