@@ -172,23 +172,39 @@ class Search{
     }
 
     public function realSearch($nom_real){
+        $tab = explode(',', $nom_real);
+
         $serieDB = new SerieDB();
 
-        $real = $serieDB->getRealByNom($nom_real);
+        if(count($tab) == 1){
 
-        if($real != null && $real[0]->getIDReal() != null){
-            echo " <h1 class='centrer' style='text-decoration: underline'>Les séries réalisées par " .  $real[0]->getNomReal()  . "</h1><div id='title'></div> ";
+            $serieDB = new SerieDB();
 
-            echo "<div class='center-div''>";
-            $series = $serieDB->getSeriesByReal($real[0]->getIDReal());
+            $real = $serieDB->getRealByNom($nom_real);
+
+            for($i=0; $i<count($real); $i++){
+                if($real != null && $real[$i]->getIDReal() != null){
+                    echo " <h1 class='centrer' style='text-decoration: underline'>Les séries réalisées par " .  $real[$i]->getNomReal()  . "</h1><div id='title'></div> ";
     
+                    echo "<div class='center-div''>";
+                    $series = $serieDB->getSeriesByReal($real[$i]->getIDReal());
+            
+                    foreach($series as $serie){
+                        echo $serie->getHTMLSerie();
+                    }
+                    echo "</div>";    
+                }else{
+                    echo "<h1 class='centrer'>Pas de série liée à ce réalisateur</h1>";
+                }
+            }
+
+        } else{
+            var_dump("test");
+            $series = $serieDB->getSeriesByMultipleReal($tab[0], $tab[1]);
+
             foreach($series as $serie){
                 echo $serie->getHTMLSerie();
             }
-            echo "</div>";
-        }
-        else{
-            echo "<h1 class='centrer'>Pas de série liée à ce réalisateur</h1>";
         }
     }
 
@@ -215,7 +231,7 @@ class Search{
                     echo "<h1 class='centrer'>Pas de série liée à cet acteur</h1>";
                 }
         }else{
-            $series = $serieDB->getMultipleAct($tab[0], $tab[1]);
+            $series = $serieDB->getSeriesByMultipleAct($tab[0], $tab[1]);
 
             foreach($series as $serie){
                 echo $serie->getHTMLSerie();

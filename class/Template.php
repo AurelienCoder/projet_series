@@ -113,15 +113,12 @@ class Template{
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    bottom: 0;
-                    flex: 1;
+                    padding: 3px;
                 }
             </style>
         </head>
 
         <body>
-            <?php include "header.php" ?>
-
             <!-- cette div affiche des informations quand on clique sur une série dans home.php, search.php -->
             <div id="alert">
                 <section style="color: black;" id="page-serie">
@@ -153,19 +150,16 @@ class Template{
                 </section>
             </div>
 
-            <div id="injected-content">
-                <?php echo $content ?>
+            <div style="flex:1">
+                <?php include "header.php" ?>
+                <div id="injected-content">
+                    <?php echo $content ?>
+                </div>
             </div>
-
             <?php include "footer.php" ?>
         </body>
-
-</html>
-
-
+    </html>
 <?php
     }
 }
-
-
 ?>
