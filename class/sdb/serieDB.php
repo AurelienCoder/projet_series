@@ -313,7 +313,7 @@ class SerieDB{
         $statement = $this->pdo->prepare($sql);
 
         for($i=1; $i<=$nbActeurs; $i++){
-            $statement->bindValue(":nom_act$i", $separation[$i-1]);
+            $statement->bindValue(":nom_act$i", $tab[$i-1]);
         }
 
         $statement->execute() or die(var_dump($statement->errorInfo()));

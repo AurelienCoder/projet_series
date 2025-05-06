@@ -207,33 +207,42 @@ class Search{
     public function actSearch($str){
         $serieDB = new SerieDB();
         $tab= explode(',', $str);
+        $null = false;
 
         //si il n'y a qu'un mot recherché : alors ça affiche les séries correspondant à chaque acteur ayant approximativement le nom du mot recherché*/
         if(count($tab) == 1){
             $act = $serieDB->getActByNom($str);
 
-            for($i=0; $i<count($act); $i++){
-                if($act != null && $act[$i]->getIDAct() != null){
-                    echo " <h1 class='centrer' style='text-decoration: underline'>Les séries jouées par " . $act[$i]->getNomAct()  . "</h1><div id='title'></div> ";
-            
-                    echo "<div class='center-div'>";
-                    $series = $serieDB->getSeriesByAct($act[$i]->getIDAct());
-            
-                    foreach($series as $serie){
-                        echo $serie->getHTMLSerie();
+            if($act != null){
+                for($i=0; $i<count($act); $i++){
+                    if($act != null && $act[$i]->getIDAct() != null){
+                        echo " <h1 class='centrer' style='text-decoration: underline'>Les séries jouées par " . $act[$i]->getNomAct()  . "</h1><div id='title'></div> ";
+                
+                        echo "<div class='center-div'>";
+                        $series = $serieDB->getSeriesByAct($act[$i]->getIDAct());
+                
+                        foreach($series as $serie){
+                            echo $serie->getHTMLSerie();
+                        }
+                        echo "</div>";
                     }
-                    echo "</div>";
                 }
+            }else{
+                $null = true;
             }
         }else if(count($tab)>1){//si plusieurs acteurs sont recherchés, alors on affiche uniquement leurs séries communes
             $series = $serieDB->getSeriesByMultipleAct($tab);
 
-            foreach($series as $serie){
-                echo $serie->getHTMLSerie();
+            if($series != null){
+                foreach($series as $serie){
+                    echo $serie->getHTMLSerie();
+                }
+            }else{
+                $null = true;
             }
-        } else{
-            echo "<h1 class='centrer'>Pas de série liée à cet acteur</h1>";
         }
+
+        if($null==true) echo "<h1 class='centrer'>Pas de série liée à cet acteur</h1>";
     }
 
     /**
