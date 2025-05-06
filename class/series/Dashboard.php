@@ -15,7 +15,10 @@ class Dashboard{
         $this->serieDB = new SerieDB();
     }
 
-    //A TERMINER
+    /**
+     * méthode pour ajouter un tag
+     * @param tag le nom du tag que l'on souhaite ajouter
+     */
     public function ajouterTag($tag){
         $this->serieDB->addTag($this->serieDB->countTags()+1, $tag);
         header('Location: home.php');
@@ -227,6 +230,7 @@ class Dashboard{
 
     /**
      * méthode qui supprime une série
+     * @param id de la série
      */
     public function supprimerSerie($id){        
         $this->serieDB->deleteSerie($id);
@@ -236,6 +240,7 @@ class Dashboard{
 
     /**
      * méthode qui modifie une série
+     * @param id de la série
      */
     public function modifierSerie($id){
         /*
@@ -275,6 +280,7 @@ class Dashboard{
 
     /**
      * méthode qui supprime un acteur
+     * @param id de l'acteur
      */
     public function supprimerAct($id){
         $this->serieDB->deleteAct($id);
@@ -284,6 +290,7 @@ class Dashboard{
 
     /**
      * méthode qui supprime un réalisateur
+     * @param id du réalisateur
      */
     public function supprimerReal($id){
         $this->serieDB->deleteReal($id);

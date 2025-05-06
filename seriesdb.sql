@@ -451,7 +451,7 @@ INSERT INTO `realisateur` (`id_real`, `nom_real`, `photo_real`) VALUES
 (52, 'Daniel Minahan', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_MD6GSBxcpfF3oZpodu9hOS9qOUwnJOzZkQ&s'),
 (53, 'David Benioff', 'https://m.media-amazon.com/images/M/MV5BMTAzNjQzMTEzMzJeQTJeQWpwZ15BbWU3MDkxNjA4NDc@._V1_.jpg'),
 (54, 'D. B. Weiss', 'https://m.media-amazon.com/images/M/MV5BMTgxMjQzMTYxMF5BMl5BanBnXkFtZTcwOTA2MDg0Nw@@._V1_.jpg'),
-(55, 'Alex Graves', 'https://pics.filmaffinity.com/079601909421225-nm_200.jpg'),
+(55, 'Alex Graves', 'https://media.baselineresearch.com/images/2197269/2197269_full.jpg'),
 (56, 'Jeremy Podeswa', 'https://cdn.tv-programme.com/photos/jeremy-podeswa_people_1_11464_1200.webp'),
 (57, 'Mark Mylod', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ6HKc6hYfnrH21psX52YwxBeSaYyaZZjhQQ&s'),
 (58, 'David Nutter', 'https://m.media-amazon.com/images/M/MV5BMjI4MDIyMDI5NF5BMl5BanBnXkFtZTgwNjE0ODQ4NjE@._V1_.jpg');
