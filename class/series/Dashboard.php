@@ -148,9 +148,6 @@ class Dashboard{
 
         //LA SERIE
         if(isset($_POST['id_serie']) && isset($_POST['titre_serie']) && isset($_POST['affiche_serie']) && isset($_POST['synopsis_serie'])){
-            //obligatoire sinon ça ne fonctionne pas
-            header('Content-Type: application/json');
-
             $this->serieDB->addSerie(htmlspecialchars($_POST['id_serie']), htmlspecialchars($_POST['titre_serie']), htmlspecialchars($_POST['affiche_serie']), htmlspecialchars($_POST['synopsis_serie']));
             exit;
         }
@@ -163,8 +160,6 @@ class Dashboard{
                 $this->serieDB->addTag($this->serieDB->countTags()+1, htmlspecialchars($_POST['nom_tag']));
             }
 
-            //obligatoire sinon ça ne fonctionne pas
-            header('Content-Type: application/json');
             var_dump($_POST['nom_tag']);
             $idTag = $this->serieDB->getIdByTag(htmlspecialchars($_POST['nom_tag']));
             $this->serieDB->addSerieTagJointure(htmlspecialchars($_POST['id_serie']), $idTag);
@@ -173,18 +168,12 @@ class Dashboard{
 
         //LES SAISONS DE LA SERIE
         if(isset($_POST['id_saison']) && isset($_POST['titre_saison']) && isset($_POST['num_saison']) && isset($_POST['affiche_saison']) && isset($_POST['id_serie'])){
-            //obligatoire sinon ça ne fonctionne pas
-            header('Content-Type: application/json');
-
             $this->serieDB->addSaison(htmlspecialchars($_POST['id_saison']), htmlspecialchars($_POST['titre_saison']), htmlspecialchars($_POST['num_saison']), htmlspecialchars($_POST['affiche_saison']), htmlspecialchars($_POST['id_serie']));
             exit;
         }
 
         //LES ACTEURS D'UNE SAISON
         if(isset($_POST['nom_act']) && isset($_POST['image_act'])){
-            //obligatoire sinon ça ne fonctionne pas
-            header('Content-Type: application/json');
-
             $nom = htmlspecialchars($_POST['nom_act']);
             $image = htmlspecialchars($_POST['image_act']);
 
@@ -198,9 +187,6 @@ class Dashboard{
         
         //LES REALISATEURS D'UNE SAISON
         if(isset($_POST['nom_real']) && isset($_POST['image_real'])){
-            //obligatoire sinon ça ne fonctionne pas
-            header('Content-Type: application/json');
-
             $id_ep = htmlspecialchars($_POST['id_ep']);
             $id_real = htmlspecialchars($_POST['id_real']);
             $nom = htmlspecialchars($_POST['nom_real']);
@@ -213,9 +199,6 @@ class Dashboard{
 
         //LES EPISODES D'UNE SAISON
         if(isset($_POST['id_ep'])){
-            //obligatoire sinon ça ne fonctionne pas
-            header('Content-Type: application/json');
-
             $id_saison = htmlspecialchars($_POST['id_saison']);
             $id_ep = htmlspecialchars($_POST['id_ep']);
             $titre = htmlspecialchars($_POST['titre_ep']);
