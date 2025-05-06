@@ -80,8 +80,8 @@ function formDataSaison(titre, num, img){
 //AJOUTER UN ACTEUR
 function formDataAct(nom, img){
     let data = new FormData();
-    data.append('nom', nom);
-    data.append('image', img);
+    data.append('nom_act', nom);
+    data.append('image_act', img);
     data.append('id_act', idAct);
     data.append('id_saison', idSaison);
     fetchPOST(data);

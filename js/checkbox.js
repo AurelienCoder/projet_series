@@ -23,25 +23,25 @@ checkboxes.forEach((checkbox,index) => {
 
         if(checkbox.checked){
 
-            series.forEach(serie => {
-
-            //variable récupérant les genres des séries
-            let serie_tag = serie.querySelector('.tag').innerText;
-
             //variable récupérant les genres des checkboxes
             let checkbox_tag = labels[index].innerText;
 
-            if(checkbox_tag != 'Tout'){
-    
-                //on doit transformer le genre des checkboxes en expression RegExp car match() ne prend en compte que des RegExp
-                let regex = new RegExp(checkbox_tag);
-    
-                //et maintenant on regarde si la série matche avec le regex
-                if(serie_tag.match(regex) == null){
-                    serie.style.display = 'none';
+                series.forEach(serie => {
+
+                //variable récupérant les genres des séries
+                let serie_tag = serie.querySelector('.tag').innerText;
+
+                if(checkbox_tag != 'Tout'){
+        
+                    //on doit transformer le genre des checkboxes en expression RegExp car match() ne prend en compte que des RegExp
+                    let regex = new RegExp(checkbox_tag);
+        
+                    //et maintenant on regarde si la série matche avec le regex
+                    if(serie_tag.match(regex) == null){
+                        serie.style.display = 'none';
+                    }
                 }
-            }
-        })
+            })
         }
     })
 })

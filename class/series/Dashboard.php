@@ -178,12 +178,12 @@ class Dashboard{
         }
 
         //LES ACTEURS D'UNE SAISON
-        if(isset($_POST['nom']) && isset($_POST['image'])){
+        if(isset($_POST['nom_act']) && isset($_POST['image_act'])){
             //obligatoire sinon ça ne fonctionne pas
             header('Content-Type: application/json');
 
-            $nom = $_POST['nom'];
-            $image = $_POST['image'];
+            $nom = $_POST['nom_act'];
+            $image = $_POST['image_act'];
 
             $id_saison = $_POST['id_saison'];
             $id_act = $_POST['id_act'];
