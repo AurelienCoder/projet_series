@@ -151,7 +151,7 @@ class Dashboard{
             //obligatoire sinon ça ne fonctionne pas
             header('Content-Type: application/json');
 
-            $this->serieDB->addSerie($_POST['id_serie'], $_POST['titre_serie'], $_POST['affiche_serie'], $_POST['synopsis_serie']);
+            $this->serieDB->addSerie(htmlspecialchars($_POST['id_serie']), htmlspecialchars($_POST['titre_serie']), htmlspecialchars($_POST['affiche_serie']), htmlspecialchars($_POST['synopsis_serie']));
             exit;
         }
 
@@ -160,14 +160,14 @@ class Dashboard{
 
             //si le tag n'existe pas, on le rajoute dans la table tag
             if($this->serieDB->getIdByTag($_POST['nom_tag']) == null){
-                $this->serieDB->addTag($this->serieDB->countTags()+1, $_POST['nom_tag']);
+                $this->serieDB->addTag($this->serieDB->countTags()+1, htmlspecialchars($_POST['nom_tag']));
             }
 
             //obligatoire sinon ça ne fonctionne pas
             header('Content-Type: application/json');
             var_dump($_POST['nom_tag']);
-            $idTag = $this->serieDB->getIdByTag($_POST['nom_tag']);
-            $this->serieDB->addSerieTagJointure($_POST['id_serie'], $idTag);
+            $idTag = $this->serieDB->getIdByTag(htmlspecialchars($_POST['nom_tag']));
+            $this->serieDB->addSerieTagJointure(htmlspecialchars($_POST['id_serie']), $idTag);
             exit;
         }
 
@@ -176,7 +176,7 @@ class Dashboard{
             //obligatoire sinon ça ne fonctionne pas
             header('Content-Type: application/json');
 
-            $this->serieDB->addSaison($_POST['id_saison'], $_POST['titre_saison'], $_POST['num_saison'], $_POST['affiche_saison'], $_POST['id_serie']);
+            $this->serieDB->addSaison(htmlspecialchars($_POST['id_saison']), htmlspecialchars($_POST['titre_saison']), htmlspecialchars($_POST['num_saison']), htmlspecialchars($_POST['affiche_saison']), htmlspecialchars($_POST['id_serie']));
             exit;
         }
 
@@ -185,11 +185,11 @@ class Dashboard{
             //obligatoire sinon ça ne fonctionne pas
             header('Content-Type: application/json');
 
-            $nom = $_POST['nom_act'];
-            $image = $_POST['image_act'];
+            $nom = htmlspecialchars($_POST['nom_act']);
+            $image = htmlspecialchars($_POST['image_act']);
 
-            $id_saison = $_POST['id_saison'];
-            $id_act = $_POST['id_act'];
+            $id_saison = htmlspecialchars($_POST['id_saison']);
+            $id_act = htmlspecialchars($_POST['id_act']);
             
             $this->serieDB->addAct($id_act, $nom, $image);
             $this->serieDB->addSaisonActJointure($id_saison, $id_act);
@@ -201,10 +201,10 @@ class Dashboard{
             //obligatoire sinon ça ne fonctionne pas
             header('Content-Type: application/json');
 
-            $id_ep = $_POST['id_ep'];
-            $id_real = $_POST['id_real'];
-            $nom = $_POST['nom_real'];
-            $image = $_POST['image_real'];
+            $id_ep = htmlspecialchars($_POST['id_ep']);
+            $id_real = htmlspecialchars($_POST['id_real']);
+            $nom = htmlspecialchars($_POST['nom_real']);
+            $image = htmlspecialchars($_POST['image_real']);
 
             $this->serieDB->addReal($id_real, $nom, $image);
             $this->serieDB->addEpisodeRealisateurJointure($id_ep, $id_real);
@@ -216,11 +216,11 @@ class Dashboard{
             //obligatoire sinon ça ne fonctionne pas
             header('Content-Type: application/json');
 
-            $id_saison = $_POST['id_saison'];
-            $id_ep = $_POST['id_ep'];
-            $titre = $_POST['titre_ep'];
-            $synopsis = $_POST['synopsis_ep'];
-            $duree = $_POST['duree_ep'];
+            $id_saison = htmlspecialchars($_POST['id_saison']);
+            $id_ep = htmlspecialchars($_POST['id_ep']);
+            $titre = htmlspecialchars($_POST['titre_ep']);
+            $synopsis = htmlspecialchars($_POST['synopsis_ep']);
+            $duree = htmlspecialchars($_POST['duree_ep']);
 
             $this->serieDB->addEp($id_ep, $titre, $synopsis, $duree);
             $this->serieDB->addSaisonEpisodeJointure($id_saison, $id_ep);
@@ -251,9 +251,9 @@ class Dashboard{
         $serie = $this->serieDB->getSerieById($id);
         
         if(isset($_POST['titre']) && isset($_POST['affiche']) && isset($_POST['synopsis'])){
-            $titre = $_POST['titre'];
-            $affiche = $_POST['affiche'];
-            $synopsis = $_POST['synopsis'];
+            $titre = htmlspecialchars($_POST['titre']);
+            $affiche = htmlspecialchars($_POST['affiche']);
+            $synopsis = htmlspecialchars($_POST['synopsis']);
         
             $this->serieDB->updateSerie($id, $titre, $affiche, $synopsis);
             header('Location: home.php');
