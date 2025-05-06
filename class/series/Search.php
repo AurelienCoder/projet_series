@@ -215,7 +215,7 @@ class Search{
 
             if($act != null){
                 for($i=0; $i<count($act); $i++){
-                    if($act != null && $act[$i]->getIDAct() != null){
+                    if($act[$i]->getIDAct() != null){
                         echo " <h1 class='centrer' style='text-decoration: underline'>Les séries jouées par " . $act[$i]->getNomAct()  . "</h1><div id='title'></div> ";
                 
                         echo "<div class='center-div'>";
@@ -234,9 +234,13 @@ class Search{
             $series = $serieDB->getSeriesByMultipleAct($tab);
 
             if($series != null){
+                echo " <h1 class='centrer' style='text-decoration: underline'>Les séries jouées par " . $str  . "</h1><div id='title'></div> ";
+                
+                echo "<div class='center-div'>";
                 foreach($series as $serie){
                     echo $serie->getHTMLSerie();
                 }
+                echo "</div>";
             }else{
                 $null = true;
             }
