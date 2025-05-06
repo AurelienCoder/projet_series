@@ -290,9 +290,9 @@ class SerieDB{
         return $statement->fetchColumn();
     }
 
+    //les séries en communs
     public function getSeriesByMultipleAct($tab){
-        $separation = explode(',', $tab);
-        $nbActeurs = count($separation);
+        $nbActeurs = count($tab);
 
         $sql = "SELECT DISTINCT titre_serie, affiche_serie, synopsis_serie FROM serie
         INNER JOIN saison on serie.id_serie = saison.id_serie ";

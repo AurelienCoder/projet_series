@@ -176,27 +176,28 @@ class Search{
     }
 
     /**
-     * cette méthode renvoie les séries d'un réalisateur
+     * cette méthode renvoie les séries d'un réalisateur ou les séries de plusieurs réalisateurs ayant approximativement le même nom
      * @param nom_real le réalisateur recherché
      */
     public function realSearch($nom_real){
-        $serieDB = new SerieDB();
+            $serieDB = new SerieDB();
 
-        $real = $serieDB->getRealByNom($nom_real);
-
-        if($real != null && $real[0]->getIDReal() != null){
-            echo " <h1 class='centrer' style='text-decoration: underline'>Les séries réalisées par " .  $real[0]->getNomReal()  . "</h1><div id='title'></div> ";
-
-            echo "<div class='center-div''>";
-            $series = $serieDB->getSeriesByReal($real[0]->getIDReal());
+            $real = $serieDB->getRealByNom($nom_real);
+            if($real != null){
+                for($i=0; $i<count($real); $i++){
+                    echo " <h1 class='centrer' style='text-decoration: underline'>Les séries réalisées par " .  $real[$i]->getNomReal()  . "</h1><div id='title'></div> ";
     
-            foreach($series as $serie){
-                echo $serie->getHTMLSerie();
+                    echo "<div class='center-div''>";
+                    $series = $serieDB->getSeriesByReal($real[$i]->getIDReal());
+            
+                    foreach($series as $serie){
+                        echo $serie->getHTMLSerie();
+                    }
+                    echo "</div>";    
+                }
+            }else{
+                echo "<h1 class='centrer'>Pas de série liée à ce réalisateur</h1>";
             }
-            echo "</div>";    
-        }else{
-            echo "<h1 class='centrer'>Pas de série liée à ce réalisateur</h1>";
-        }
     }
 
     /**
@@ -207,30 +208,31 @@ class Search{
         $serieDB = new SerieDB();
         $tab= explode(',', $str);
 
-        //si il n'y a qu'un acteur
+        //si il n'y a qu'un mot recherché : alors ça affiche les séries correspondant à chaque acteur ayant approximativement le nom du mot recherché*/
         if(count($tab) == 1){
             $act = $serieDB->getActByNom($str);
 
-            if($act != null && $act[0]->getIDAct() != null){
-                echo " <h1 class='centrer' style='text-decoration: underline'>Les séries jouées par " . $act[0]->getNomAct()  . "</h1><div id='title'></div> ";
-        
-                echo "<div class='center-div'>";
-                $series = $serieDB->getSeriesByAct($act[0]->getIDAct());
-        
-                foreach($series as $serie){
-                    echo $serie->getHTMLSerie();
+            for($i=0; $i<count($act); $i++){
+                if($act != null && $act[$i]->getIDAct() != null){
+                    echo " <h1 class='centrer' style='text-decoration: underline'>Les séries jouées par " . $act[$i]->getNomAct()  . "</h1><div id='title'></div> ";
+            
+                    echo "<div class='center-div'>";
+                    $series = $serieDB->getSeriesByAct($act[$i]->getIDAct());
+            
+                    foreach($series as $serie){
+                        echo $serie->getHTMLSerie();
+                    }
+                    echo "</div>";
                 }
-                echo "</div>";
-                }
-                else{
-                    echo "<h1 class='centrer'>Pas de série liée à cet acteur</h1>";
-                }
-        }else{//pour plusieurs acteurs
-            $series = $serieDB->getSeriesByMultipleAct($tab[0], $tab[1]);
+            }
+        }else if(count($tab)>1){//si plusieurs acteurs sont recherchés, alors on affiche uniquement leurs séries communes
+            $series = $serieDB->getSeriesByMultipleAct($tab);
 
             foreach($series as $serie){
                 echo $serie->getHTMLSerie();
             }
+        } else{
+            echo "<h1 class='centrer'>Pas de série liée à cet acteur</h1>";
         }
     }
 
