@@ -48,7 +48,7 @@ if(isset($_SESSION['time']) && time() > $_SESSION['time'] + 3600) session_destro
     <!-- script qui checke s'il y a des doublons dans les séries -->
     <script src="../js/doublons.js"></script>
 
-    <!-- script qui en fonction du click sur les boutons du dessus, affiche les préférences, les séries liées au tag choisi  -->
+    <!-- script qui en fonction du click sur les checkboxes du dessus, affiche les séries liées au tag choisi  -->
     <script src="../js/checkbox.js"></script>
 
     <!-- script qui affiche les informations d'une série lorsque l'on clique dessus  -->
