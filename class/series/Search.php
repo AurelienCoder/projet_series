@@ -148,6 +148,10 @@ class Search{
 
     }
 
+    /**
+     * cette méthode renvoie les séries ayant des tags en commun
+     * @param nom_tag nom du tag que les séries doivent avoir en commun
+     */
     public function tagSearch($nom_tag){
         $serieDB = new SerieDB();
         $tags = $serieDB->getTagNames();
@@ -171,47 +175,39 @@ class Search{
         }
     }
 
+    /**
+     * cette méthode renvoie les séries d'un réalisateur
+     * @param nom_real le réalisateur recherché
+     */
     public function realSearch($nom_real){
-        $tab = explode(',', $nom_real);
-
         $serieDB = new SerieDB();
 
-        if(count($tab) == 1){
+        $real = $serieDB->getRealByNom($nom_real);
 
-            $serieDB = new SerieDB();
+        if($real != null && $real[0]->getIDReal() != null){
+            echo " <h1 class='centrer' style='text-decoration: underline'>Les séries réalisées par " .  $real[0]->getNomReal()  . "</h1><div id='title'></div> ";
 
-            $real = $serieDB->getRealByNom($nom_real);
-
-            for($i=0; $i<count($real); $i++){
-                if($real != null && $real[$i]->getIDReal() != null){
-                    echo " <h1 class='centrer' style='text-decoration: underline'>Les séries réalisées par " .  $real[$i]->getNomReal()  . "</h1><div id='title'></div> ";
+            echo "<div class='center-div''>";
+            $series = $serieDB->getSeriesByReal($real[0]->getIDReal());
     
-                    echo "<div class='center-div''>";
-                    $series = $serieDB->getSeriesByReal($real[$i]->getIDReal());
-            
-                    foreach($series as $serie){
-                        echo $serie->getHTMLSerie();
-                    }
-                    echo "</div>";    
-                }else{
-                    echo "<h1 class='centrer'>Pas de série liée à ce réalisateur</h1>";
-                }
-            }
-
-        } else{
-            var_dump("test");
-            $series = $serieDB->getSeriesByMultipleReal($tab[0], $tab[1]);
-
             foreach($series as $serie){
                 echo $serie->getHTMLSerie();
             }
+            echo "</div>";    
+        }else{
+            echo "<h1 class='centrer'>Pas de série liée à ce réalisateur</h1>";
         }
     }
 
+    /**
+     * cette méthode renvoie les séries jouées par un ou des acteurs
+     * @param str une chaine de caractères qui regroupe l'ensemble des acteurs, séparée par des virgules
+     */
     public function actSearch($str){
         $serieDB = new SerieDB();
         $tab= explode(',', $str);
 
+        //si il n'y a qu'un acteur
         if(count($tab) == 1){
             $act = $serieDB->getActByNom($str);
 
@@ -229,7 +225,7 @@ class Search{
                 else{
                     echo "<h1 class='centrer'>Pas de série liée à cet acteur</h1>";
                 }
-        }else{
+        }else{//pour plusieurs acteurs
             $series = $serieDB->getSeriesByMultipleAct($tab[0], $tab[1]);
 
             foreach($series as $serie){
@@ -238,6 +234,9 @@ class Search{
         }
     }
 
+    /**
+     * cette méthode génère les épisodes d'une série
+     */
     public function episodesSearch($idSaison){
         $serieDB = new SerieDB();
 

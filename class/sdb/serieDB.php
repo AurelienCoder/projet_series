@@ -266,6 +266,83 @@ class SerieDB{
         return $results;
     }
 
+    public function getTitreSerieByIdSaison($id_saison){
+        $sql="SELECT titre_serie FROM serie
+        INNER JOIN saison on serie.id_serie = saison.id_serie
+        WHERE saison.id_saison = :id_saison";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id_saison', $id_saison);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        return $statement->fetchColumn();
+    }
+
+    public function getEpiBySerieId($id_serie){
+        $sql="SELECT titre_episode FROM episode
+        INNER JOIN saison_episode on episode.id_episode = saison_episode.id_episode
+        INNER JOIN saison on saison_episode.id_saison = saison.id_saison
+        INNER JOIN serie on saison.id_serie = serie.id_serie
+        WHERE serie.id_serie = :id_serie";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id_serie', $id_serie);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        return $statement->fetchColumn();
+    }
+
+    public function getSeriesByMultipleAct($tab){
+        $separation = explode(',', $tab);
+        $nbActeurs = count($separation);
+
+        $sql = "SELECT DISTINCT titre_serie, affiche_serie, synopsis_serie FROM serie
+        INNER JOIN saison on serie.id_serie = saison.id_serie ";
+
+        for($i=1; $i<=$nbActeurs; $i++){
+            /*on INNER JOIN les saisons jouées par chaque acteur */
+            $sql .= "INNER JOIN saison_acteur sai_act$i on saison.id_saison = sai_act$i.id_saison
+            INNER JOIN acteur act$i on sai_act$i.id_acteur = act$i.id_acteur ";
+        }
+
+        /* et enfin on regroupe uniquement quand le nom du premier acteur = nom 2ème acteur*/
+        $sql.= "WHERE act1.nom_acteur LIKE CONCAT('%',:nom_act1,'%') ";
+        
+        for($i=2; $i<=$nbActeurs; $i++){
+            $sql .= " AND act$i.nom_acteur LIKE CONCAT('%',:nom_act$i,'%')";
+        }
+
+        $statement = $this->pdo->prepare($sql);
+
+        for($i=1; $i<=$nbActeurs; $i++){
+            $statement->bindValue(":nom_act$i", $separation[$i-1]);
+        }
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
+        return $results;
+    }
+
+    public function getTagNames(){
+        $sql = "SELECT nom_tag FROM tag";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
+        return $results;
+    }
+
+    public function getSeriesByTagName($nom_tag){
+        $sql = "SELECT * FROM serie
+        INNER JOIN serie_tag on serie.id_serie = serie_tag.id_serie
+        INNER JOIN tag on serie_tag.id_tag = tag.id_tag
+        WHERE tag.nom_tag = :nom_tag";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':nom_tag', $nom_tag);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
+        return $results;
+    }
+
     /* LES FONCTIONS CI-DESSOUS REGROUPENT LES REQUETES POUR MODIFIER LA BD : AJOUTER, MODIFIER, SUPPRIMER... */
 
     //utilisée
@@ -463,6 +540,51 @@ class SerieDB{
         $statement->execute() or die(var_dump($statement->errorInfo()));
     }
 
+    
+    public function deleteSaison($saison_id){
+        $sql = "DELETE FROM saison
+        WHERE id_saison = :saison_id";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id_saison', $saison_id);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
+    public function deleteEpisode($episode_id){
+        $sql = "DELETE FROM episode
+        WHERE id_episode = :episode_id";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':episode_id', $episode_id);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
+    // Sup toutes la base de données
+    public function deleteAll(){
+        $sql = "DELETE FROM serie; DELETE FROM episode; DELETE FROM realisateur; DELETE FROM acteur; DELETE FROM saison;";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
+    // Sup tous les réals
+    public function deleteAllReal(){
+        $sql = "DELETE FROM realisateur";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
+    // Sup tous les acteurs
+    public function deleteAllActeur(){
+        $sql = "DELETE FROM acteur";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
     /* LES FONCTIONS CI-DESSOUS REGROUPENT LES REQUETES POUR COMPTER LE TOTAL DES SERIES, GENRES...*/
 
     //utilisée
@@ -584,129 +706,5 @@ class SerieDB{
         $statement->bindParam(':id_saison', $saison_id);
         $statement->execute() or die(var_dump($statement->errorInfo()));
         return $statement->fetchColumn();
-    }
-
-
-    
-    public function deleteSaison($saison_id){
-        $sql = "DELETE FROM saison
-        WHERE id_saison = :saison_id";
-
-        $statement = $this->pdo->prepare($sql);
-        $statement->bindParam(':id_saison', $saison_id);
-
-        $statement->execute() or die(var_dump($statement->errorInfo()));
-    }
-
-    public function deleteEpisode($episode_id){
-        $sql = "DELETE FROM episode
-        WHERE id_episode = :episode_id";
-
-        $statement = $this->pdo->prepare($sql);
-        $statement->bindParam(':episode_id', $episode_id);
-
-        $statement->execute() or die(var_dump($statement->errorInfo()));
-    }
-
-    
-    // Supprimer toutes la base de données
-    public function deleteAll(){
-        $sql = "DELETE FROM serie; DELETE FROM episode; DELETE FROM realisateur; DELETE FROM acteur; DELETE FROM saison;";
-
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute() or die(var_dump($statement->errorInfo()));
-    }
-
-    // Sup tous les réals
-    public function deleteAllReal(){
-        $sql = "DELETE FROM realisateur";
-
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute() or die(var_dump($statement->errorInfo()));
-    }
-
-    // Sup tous les acteurs
-    public function deleteAllActeur(){
-        $sql = "DELETE FROM acteur";
-
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute() or die(var_dump($statement->errorInfo()));
-    }
-
-    public function getTitreSerieByIdSaison($id_saison){
-        $sql="SELECT titre_serie FROM serie
-        INNER JOIN saison on serie.id_serie = saison.id_serie
-        WHERE saison.id_saison = :id_saison";
-
-        $statement = $this->pdo->prepare($sql);
-        $statement->bindParam(':id_saison', $id_saison);
-        $statement->execute() or die(var_dump($statement->errorInfo()));
-        return $statement->fetchColumn();
-    }
-
-    public function getEpiBySerieId($id_serie){
-        $sql="SELECT titre_episode FROM episode
-        INNER JOIN saison_episode on episode.id_episode = saison_episode.id_episode
-        INNER JOIN saison on saison_episode.id_saison = saison.id_saison
-        INNER JOIN serie on saison.id_serie = serie.id_serie
-        WHERE serie.id_serie = :id_serie";
-
-        $statement = $this->pdo->prepare($sql);
-        $statement->bindParam(':id_serie', $id_serie);
-        $statement->execute() or die(var_dump($statement->errorInfo()));
-        return $statement->fetchColumn();
-    }
-
-    public function getSeriesByMultipleAct($tab){
-        $separation = explode(',', $tab);
-        $nbActeurs = count($separation);
-
-        $sql = "SELECT DISTINCT titre_serie, affiche_serie, synopsis_serie FROM serie
-        INNER JOIN saison on serie.id_serie = saison.id_serie ";
-
-        for($i=1; $i<=$nbActeurs; $i++){
-            /*on INNER JOIN les saisons jouées par chaque acteur */
-            $sql .= "INNER JOIN saison_acteur sai_act$i on saison.id_saison = sai_act$i.id_saison
-            INNER JOIN acteur act$i on sai_act$i.id_acteur = act$i.id_acteur ";
-        }
-
-        /* et enfin on regroupe uniquement quand le nom du premier acteur = nom 2ème acteur*/
-        $sql.= "WHERE act1.nom_acteur LIKE CONCAT('%',:nom_act1,'%') ";
-        
-        for($i=2; $i<=$nbActeurs; $i++){
-            $sql .= " AND act$i.nom_acteur LIKE CONCAT('%',:nom_act$i,'%')";
-        }
-
-        $statement = $this->pdo->prepare($sql);
-
-        for($i=1; $i<=$nbActeurs; $i++){
-            $statement->bindValue(":nom_act$i", $separation[$i-1]);
-        }
-
-        $statement->execute() or die(var_dump($statement->errorInfo()));
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
-        return $results;
-    }
-
-    public function getTagNames(){
-        $sql = "SELECT nom_tag FROM tag";
-
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute() or die(var_dump($statement->errorInfo()));
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
-        return $results;
-    }
-
-    public function getSeriesByTagName($nom_tag){
-        $sql = "SELECT * FROM serie
-        INNER JOIN serie_tag on serie.id_serie = serie_tag.id_serie
-        INNER JOIN tag on serie_tag.id_tag = tag.id_tag
-        WHERE tag.nom_tag = :nom_tag";
-
-        $statement = $this->pdo->prepare($sql);
-        $statement->bindParam(':nom_tag', $nom_tag);
-        $statement->execute() or die(var_dump($statement->errorInfo()));
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "\sdb\Render");
-        return $results;
     }
 }
