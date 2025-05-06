@@ -12,10 +12,11 @@ series.forEach( (serie, i)=> {
     let titre = document.getElementsByTagName('h2')[i].innerText;
     let tagActuel = document.getElementsByClassName('tag')[i].innerText;
 
+    //tagsAjoutes['Breaking Bad'] = l'adresse DOM où se trouve le tag de BreakingBad
     if(tagsAjoutes[titre]){//si un tag est déja inséré dans l'index titre (qui correspond au titre d'une série)
 
         //si un tag est déja associé à une série, alors la série existe déjà, il ne faut donc pas afficher une nouvelle fois la même série
-        // donc on la cache
+        //donc on la cache
         serie.style.display = 'none';
 
         //on ajoute au tag qui existe déjà, le tag actuel
