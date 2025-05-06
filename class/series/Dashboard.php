@@ -144,7 +144,7 @@ class Dashboard{
         <!-- script qui permet de transmettre les infos des acteurs/reals/saisons que l'on souhaite ajouter en utilisant fetch -->
         <script src="../js/dashboard.js"></script>
 
-        <?php //je récupère les données du formulaire saisies envoyés en POST avec AJAX (fetch)
+        <?php //je récupère les données du formulaire saisies envoyées en POST avec AJAX (fetch)
 
         //LA SERIE
         if(isset($_POST['id_serie']) && isset($_POST['titre_serie']) && isset($_POST['affiche_serie']) && isset($_POST['synopsis_serie'])){
@@ -264,7 +264,7 @@ class Dashboard{
             <h1>Modifier une série</h1>
             <form method="POST">
                 <label>Titre :</label>
-                <!--après avoir tout fusionner dans une classe Render, j'ai eu un problème et j'ai du ajouté [0] -->
+                <!--après avoir tout fusionné dans une classe Render, j'ai eu un problème et j'ai du ajouté [0] -->
                 <input type="text" name="titre" value="<?= htmlspecialchars($serie[0]->getTitreSerie()); ?>" required>
         
                 <label>Affiche (URL de l'image) :</label>
