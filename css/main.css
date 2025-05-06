@@ -118,8 +118,6 @@ outline: 2px solid #f00;
   display: none;
 }
 
-
-
 #page-serie {
   max-width: 800px;
   margin: 0 auto;
@@ -128,10 +126,6 @@ outline: 2px solid #f00;
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
-
-
-
-
 
 /* Modal style */
 #ajout-infos{
