@@ -209,7 +209,7 @@ class Search{
         $tab= explode(',', $str);
         $null = false;
 
-        //si il n'y a qu'un mot recherché : alors ça affiche les séries correspondant à chaque acteur ayant approximativement le nom du mot recherché*/
+        //si il n'y a qu'un mot recherché : alors ça affiche les séries correspondantes à chaque acteur ayant approximativement le nom du mot recherché*/
         if(count($tab) == 1){
             $act = $serieDB->getActByNom($str);
 
@@ -234,7 +234,7 @@ class Search{
             $series = $serieDB->getSeriesByMultipleAct($tab);
 
             if($series != null){
-                echo " <h1 class='centrer' style='text-decoration: underline'>Les séries jouées par " . $str  . "</h1><div id='title'></div> ";
+                echo " <h1 class='centrer' style='text-decoration: underline'>Les séries communes jouées par " . $str  . "</h1><div id='title'></div> ";
                 
                 echo "<div class='center-div'>";
                 foreach($series as $serie){

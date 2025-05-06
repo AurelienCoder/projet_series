@@ -303,9 +303,8 @@ class SerieDB{
             INNER JOIN acteur act$i on sai_act$i.id_acteur = act$i.id_acteur ";
         }
 
-        /* et enfin on regroupe uniquement quand le nom du premier acteur = nom 2ème acteur*/
-        $sql.= "WHERE act1.nom_acteur LIKE CONCAT('%',:nom_act1,'%') ";
-        
+        /* et enfin on regroupe uniquement quand le nom du premier acteur = nom 2ème acteur...*/
+        $sql.= "WHERE act1.nom_acteur LIKE CONCAT('%',:nom_act1,'%') "; 
         for($i=2; $i<=$nbActeurs; $i++){
             $sql .= " AND act$i.nom_acteur LIKE CONCAT('%',:nom_act$i,'%')";
         }
