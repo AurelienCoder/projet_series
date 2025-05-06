@@ -208,13 +208,12 @@ class Search{
         }
     }
 
-    public function actSearch($nom_act){
-        $tab = explode(',', $nom_act);
-
+    public function actSearch($str){
         $serieDB = new SerieDB();
+        $tab= explode(',', $str);
 
         if(count($tab) == 1){
-            $act = $serieDB->getActByNom($nom_act);
+            $act = $serieDB->getActByNom($str);
 
             if($act != null && $act[0]->getIDAct() != null){
                 echo " <h1 class='centrer' style='text-decoration: underline'>Les séries jouées par " . $act[0]->getNomAct()  . "</h1><div id='title'></div> ";

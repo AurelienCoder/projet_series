@@ -21,9 +21,12 @@ Autoloader::register();
         } else if(isset($_GET['serie']) && $_GET['serie'] != ''){//afficher les informations d'une série
             $search->serieSearch(htmlspecialchars($_GET['serie'])); 
         } else if(isset($_GET['real']) && $_GET['real'] != ''){//afficher les séries d'un réalisateur recherché
-            /* Michelle MacLaren a réalisée 2 séries */
+            /* - Michelle MacLaren a réalisée 2 séries : juste écrire Michelle
+               - Plusieurs réalisateurs s'appellent David  */
             $search->realSearch(htmlspecialchars($_GET['real'])); 
         } else if(isset($_GET['act']) && $_GET['act'] != ''){//afficher les séries d'un acteur recherché
+            /*Emilia Et Peter ont joués dans Game Of Thrones
+            */
             $search->actSearch(htmlspecialchars($_GET['act']));
         }else if(isset($_GET['saison']) && $_GET['saison'] != ''){ //afficher les caractéristiques d'une saison c-à-d les épisodes
             $search->episodesSearch(htmlspecialchars($_GET['saison']));
