@@ -329,6 +329,18 @@ class SerieDB{
         return $results;
     }
 
+    public function getTagBySerie($id_serie){
+        $sql = "SELECT nom_tag FROM tag 
+        INNER JOIN serie_tag ON serie_tag.id_tag = tag.id_tag
+        INNER JOIN serie ON serie_tag.id_serie = serie.id_serie
+        WHERE serie.id_serie = :id_serie";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id_serie', $id_serie);
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        return $statement->fetchColumn();
+    }
+
     public function getSeriesByTagName($nom_tag){
         $sql = "SELECT * FROM serie
         INNER JOIN serie_tag on serie.id_serie = serie_tag.id_serie
@@ -497,6 +509,19 @@ class SerieDB{
         $statement->execute() or die(var_dump($statement->errorInfo()));
     }
 
+    public function updateActeur($id, $nom_acteur, $photo_acteur){
+        $sql = "UPDATE acteur
+                SET photo_acteur = :photo_acteur, 
+                    nom_acteur = :nom_acteur
+                WHERE id_acteur = :id";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':photo_acteur', $photo_acteur);
+        $statement->bindParam(':id', $id);
+        $statement->bindParam(':nom_acteur', $nom_acteur);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
     public function updateEpisode($id, $titre, $duree, $synopsis){
         $sql = "UPDATE episode 
                 SET titre_serie = :titre, 
@@ -510,6 +535,28 @@ class SerieDB{
         $statement->bindParam(':id', $id);
 
         $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
+    public function updateSerieTag($id_serie, $nom_tag){
+        $id_tag = $this->getIdTagByNom($nom_tag);
+
+        $sql = "UPDATE serie_tag 
+                SET id_tag = :id_tag 
+                WHERE id_serie = :id_serie";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':id_tag', $id_tag);
+        $statement->bindParam(':id_serie', $id_serie);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+    }
+
+    public function getIdTagByNom($nom_tag){
+        $sql = "SELECT id_tag FROM tag WHERE nom_tag = :nom_tag";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':nom_tag', $nom_tag);
+
+        $statement->execute() or die(var_dump($statement->errorInfo()));
+        return $statement->fetchColumn();
     }
 
     //utilisée

@@ -24,12 +24,14 @@ Autoloader::register();
         }else if(isset($_GET['value']) && $_GET['value'] == 'act' ){
             if(isset($_GET['supp'])){
                 $dashboard->supprimerAct(htmlspecialchars($_GET['supp']));
+            }else if(isset($_GET['modif'])){
+                $dashboard->modifierActeur(htmlspecialchars($_GET['modif']));
             }
         }else if(isset($_GET['value']) && $_GET['value'] == 'real' ){
             if(isset($_GET['supp'])){
                 $dashboard->supprimerReal(htmlspecialchars($_GET['supp']));
             }
-        }else if(isset($_GET['toutSupprimer'])){
+        }else if(isset($_GET['toutSupprimer'])){//tout supprimer
             $serieDB->deleteAll();
             header('Location: home.php');
         }else if(isset($_GET['value']) && $_GET['value'] == 'tag' ){

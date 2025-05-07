@@ -107,7 +107,7 @@ class Search{
         $serieDB = new SerieDB();
         //affiche les saisons d'une série
         $serie = $serieDB->getSerieByTitre($nom_serie);
-        if($serie != null && $serie[0]->getIDSerie() != null){
+        if($serie != null){
             $serieID = $serie[0]->getIDSerie();
             $serieTitre = $serie[0]->getTitreSerie();
 
@@ -215,17 +215,15 @@ class Search{
 
             if($act != null){
                 for($i=0; $i<count($act); $i++){
-                    if($act[$i]->getIDAct() != null){
-                        echo " <h1 class='centrer' style='text-decoration: underline'>Les séries jouées par " . $act[$i]->getNomAct()  . "</h1><div id='title'></div> ";
-                
-                        echo "<div class='center-div'>";
-                        $series = $serieDB->getSeriesByAct($act[$i]->getIDAct());
-                
-                        foreach($series as $serie){
-                            echo $serie->getHTMLSerie();
-                        }
-                        echo "</div>";
+                    echo " <h1 class='centrer' style='text-decoration: underline'>Les séries jouées par " . $act[$i]->getNomAct()  . "</h1><div id='title'></div> ";
+            
+                    echo "<div class='center-div'>";
+                    $series = $serieDB->getSeriesByAct($act[$i]->getIDAct());
+            
+                    foreach($series as $serie){
+                        echo $serie->getHTMLSerie();
                     }
+                    echo "</div>";
                 }
             }else{
                 $null = true;

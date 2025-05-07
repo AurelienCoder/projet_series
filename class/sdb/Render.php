@@ -105,6 +105,7 @@ class Render{
 
                 <?php if(isset($_SESSION['nickname'])): ?>
                     <a href="dashboard.php?value=act&supp=<?= $this->id_acteur; ?>" ><button class="category-btn" type="button" style="background-color: red;" onclick="return confirm('Es-tu sûr de vouloir supprimer cette série ?');">SUPPRIMER</button></a>
+                    <a href="dashboard.php?value=act&modif=<?= $this->id_acteur; ?>" ><button class="category-btn" type="button" style="background-color: blue;">MODIFIER</button></a>
                 <?php endif; ?>
 
                 <h2><?= htmlspecialchars($this->nom_acteur); ?></h2>
@@ -125,7 +126,7 @@ class Render{
                 <!-- si nous sommes connectés en tant qu'admin, nous pouvons modifier chaque élement -->
                 <?php if(isset($_SESSION['nickname'])): ?>
                     <a href="dashboard.php?value=real&supp=<?= $this->id_real; ?>" ><button class="category-btn" type="button" style="background-color: red;" onclick="return confirm('Es-tu sûr de vouloir supprimer cette série ?');">SUPPRIMER</button></a>
-                <?php endif; ?>
+                    <?php endif; ?>
 
                 <h2><?= htmlspecialchars($this->nom_real); ?></h2>
                 
@@ -208,6 +209,10 @@ class Render{
     //utilisée dans search.php
     public function getNomAct(){
         return $this->nom_acteur;
+    }
+
+    public function getPhotoAct(){
+        return $this->photo_acteur;
     }
 
     //utilisée dans search.php

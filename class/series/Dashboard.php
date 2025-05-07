@@ -234,12 +234,21 @@ class Dashboard{
         $serie = $this->serieDB->getSerieById($id);
         
         if(isset($_POST['titre']) && isset($_POST['affiche']) && isset($_POST['synopsis'])){
-            $titre = htmlspecialchars($_POST['titre']);
-            $affiche = htmlspecialchars($_POST['affiche']);
-            $synopsis = htmlspecialchars($_POST['synopsis']);
-        
+            $titre = $_POST['titre'];
+            $affiche = $_POST['affiche'];
+            $synopsis = $_POST['synopsis'];
+            $nom_tag = $_POST['tag'];
+
+            //si le tag n'existe pas, on le rajoute dans la table tag
+            if($this->serieDB->getIdByTag($nom_tag) == null){
+                $this->serieDB->addTag($this->serieDB->countTags()+1, htmlspecialchars($nom_tag));
+            }
+
             $this->serieDB->updateSerie($id, $titre, $affiche, $synopsis);
+            $this->serieDB->updateSerieTag($id, $nom_tag);
+
             header('Location: home.php');
+
             exit;
         }?>
 
@@ -253,8 +262,43 @@ class Dashboard{
                 <label>Affiche (URL de l'image) :</label>
                 <input type="text" name="affiche" value="<?= htmlspecialchars($serie[0]->getAfficheSerie()); ?>" required>
         
+                <label>Tag :</label>
+                <input type="text" name="tag" value="<?= $this->serieDB->getTagBySerie($id);//htmlspecialchars($serie[0]->getTag()); ?>" required>
+
                 <label>Synopsis :</label>
                 <textarea name="synopsis" required><?= htmlspecialchars($serie[0]->getSynopsisSerie()); ?></textarea>
+        
+                <button type="submit" class="btn-valider">Enregistrer</button>
+            </form>
+        </section>
+   <?php }
+
+
+    /**
+     * méthode qui modifie un acteur    
+     * @param id de l'acteur
+     */
+    public function modifierActeur($id){
+
+        if(isset($_POST['photo_acteur']) && isset($_POST['nom_acteur'])){
+            $nom_acteur = htmlspecialchars($_POST['nom_acteur']);
+            $photo_acteur = htmlspecialchars($_POST['photo_acteur']);
+        
+            $this->serieDB->updateActeur($id, $nom_acteur, $photo_acteur);
+            header('Location: home.php');
+            exit;
+        }?>
+
+        <section class="form-modifier">
+            <h1>Modifier un acteur</h1>
+            <form method="POST">
+                <label>Nom de l'acteur :</label>
+                <!--après avoir tout fusionné dans une classe Render, j'ai eu un problème et j'ai du ajouté [0] -->
+                <input type="text" name="nom_acteur" value="" required>
+        
+                <label>Photo de l'acteur :</label>
+                <input type="text" name="photo_acteur" value="" required>
+        
         
                 <button type="submit" class="btn-valider">Enregistrer</button>
             </form>

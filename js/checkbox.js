@@ -23,7 +23,7 @@ checkboxes.forEach((checkbox,index) => {
 
         if(checkbox.checked){
 
-            //variable récupérant les genres des checkboxes
+            //variable récupérant les genres d'une checkbox
             let checkbox_tag = labels[index].innerText;
 
                 series.forEach(serie => {
